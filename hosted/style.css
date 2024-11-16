@@ -1,295 +1,64 @@
- html,
- body {
-     height: 100%;
-     width: 100%;
-     margin: 0;
-     padding: 0;
-     overflow-x: hidden;
- }
-
- #logo {
-     height: 40px;
-     width: 40;
-     padding-top: 5px;
-     float: left;
-     border-radius: 8px;
- }
-
- nav {
-     width: 100%;
-     height: 50px;
-     background-color: #55acee;
- }
-
- nav:nth-child(1) {
-     padding-left: 25px;
- }
-
- .navlink {
-     padding: 5px;
-     padding-top: 12px;
-     padding-left: 20px;
-     color: white;
-     font-size: 1.3em;
-     float: left;
- }
-
- .navlink a,
- .navlink a:link,
- .navlink a:visited,
- .navlink a:hover,
- .navlink a:active {
-     color: white;
-     text-decoration: none;
-     padding: 5px;
-     border-radius: 4px;
-     background-color: #55acee;
-     transition: background-color 0.4s ease;
- }
-
- .navlink a:hover {
-     transition: background-color 0.8s ease;
-     background-color: #66bdff;
- }
-
- .domoForm {
-
-     margin: auto;
-     padding: .5em 0;
-     display: flex;
-     justify-content: center;
-     align-items: center;
- }
-
- .domoForm label {
-     /* display: inline-block; */
-     /* width: 75px; */
-     margin: 0 .5em 0 1em;
-     font-size: 1.2em;
-     float: left;
-     /* color: white; */
- }
-
- .domoForm input[type=text] {
-     float: left;
- }
-
- .form-container {
-    padding: .5em 0;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     flex-direction: column;
- }
-
- .makeRand {
-    transition: background-color 0.4s ease;
-    display: inline;
-    background-color: #55acee;
-    border-radius: 2px;
-    color: white;
-    text-decoration: none;
-    margin-right: 3em;
- }
-
- .makeDomoSubmit {
-     margin-left: 10px;
-     transition: background-color 0.4s ease;
-     display: inline;
-     width: 90px;
-     background-color: #55acee;
-     border-radius: 2px;
-     color: white;
-     text-decoration: none;
- }
-
- .makeDomoSubmit:link,
- .makeDomoSubmit:visited,
- .makeDomoSubmit:hover,
- .makeDomoSubmit:active {
-     color: white;
- }
-
- .makeDomoSubmit:hover {
-     transition: background-color 0.4s ease;
-     background-color: #338acc;
- }
-
- .mainForm {
-     height: 300px;
-     width: 350px;
-     margin: 0 auto;
-     padding-top: 350px;
-     font-size: 1.2em;
- }
-
- .mainForm h3 {
-     text-align: center;
- }
-
- .mainForm label {
-     display: inline-block;
-     width: 100px;
-     margin-right: 10px;
-     text-align: right;
-     font-size: 1.2em;
- }
-
- .formSubmit {
-     transition: background-color 0.4s ease;
-     display: block;
-     text-align: center;
-     margin: 0 auto;
-     margin-top: 14px;
-     font-size: 1.2em;
-     width: 100px;
-     background-color: #55acee;
-     border-radius: 2px;
-     border-color: #66acee;
-     padding: 3px 0px;
-     color: white;
-     text-decoration: none;
- }
-
- .formSubmit:link,
- .formSubmit:visited,
- .formSubmit:hover,
- .formSubmit:active {
-     color: white;
- }
-
- .formSubmit:hover {
-     transition: background-color 0.4s ease;
-     background-color: #338acc;
- }
-
- #user,
- #pass,
- #pass2 {
-     text-align: center;
-     font-size: 1.1em;
-     width: 180px;
-     border-radius: 6px;
- }
-
- #user:focus,
- #pass:focus,
- #pass2:focus {
-     outline: none;
-     box-shadow: 0px 0px 1px 1px #55acee;
- }
-
- .hidden {
-     display: none;
- }
-
- #domoMessage {
-     top: 250px;
-     width: 250px;
-     height: 650px;
-     position: absolute;
-     z-index: 200;
-     right: 0px;
-     overflow: hidden;
- }
-
- #domoMessage h3 {
-     width: 200px;
-     position: absolute;
-     top: 0px;
-     left: 20px;
- }
-
- #speech {
-     height: 120px;
-     width: 250px;
-     z-index: 300;
- }
-
- #errorMessage {
-     font-size: 1.2em;
-     font-weight: bold;
-     color: red;
-     font-style: italic;
- }
-
- #domo {
-     z-index: 225;
-     margin-top: -20px;
-     margin-left: 135px;
-     height: 450px;
-     width: 300px;
-     -ms-transform: rotate(330deg);
-     -webkit-transform: rotate(330deg);
-     transform: rotate(330deg);
- }
-
- #domos {
-     width: 40%;
-     min-width: 400px;
-     border: 2px solid #55acee;
-     border-radius: 4px;
-     margin: 0 auto;
-     margin-top: 100px;
- }
-
- .domo:hover {
-     transition: border-color 0.2s ease-out;
-     border-color: rgba(255, 255, 255, 0.8);
-     transition: background-color 2.6s ease-out;
-     background-color: #66bfff;
- }
-
- img.domoFace {
-     margin-left: 25px;
-     margin-right: 10px;
-     height: 60px;
-     width: 60px;
-     border-radius: 4px;
-     margin-top: 10px;
-     float: left;
- }
-
- h3.emptyDomo {
-     width: 400px;
-     font-size: 1.5em;
-     margin: 0 auto;
-     text-align: center;
-     margin-top: 18px;
- }
-
-.domo-container {
-    background-color: #366f9b;
-    border-radius: 15px;
-    padding: 10px;
-    margin: 1em auto;
-    width: 50%;
+/*https://codepen.io/mupkoo/pen/YgddgB*/
+.with-google {
+    
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=);
+    
 }
-.battle-domo {
-    background-color: #366f9b;
-    border-radius: 15px;
-    padding: 10px;
-    margin: 1em auto;
-    width: 100%;
+
+.login-btn {
+    transition: background-color .3s, box-shadow .3s;
+    width: 300px;
+    padding: 16px 20px 16px 48px;
+    border: none;
+    border-radius: 3px;
+    /* box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25); */
+
+    color: #c5c5c5;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+
+    /* background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=); */
+    background-color: rgb(32, 32, 32);
+    background-repeat: no-repeat;
+    background-position: 12px 17px;
+    border-radius: 25px;
+
+    &:hover {
+        box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 2px 4px rgba(0, 0, 0, .25);
+        background-color: rgb(71, 71, 71);
+    }
+
+    &:active {
+        background-color: #eeeeee;
+    }
+
+    &:focus {
+        outline: none;
+        box-shadow:
+            0 -1px 0 rgba(0, 0, 0, .04),
+            0 2px 4px rgba(0, 0, 0, .25),
+            0 0 0 3px #c8dafc;
+    }
+
+    &:disabled {
+        filter: grayscale(100%);
+        background-color: #ebebeb;
+        box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
+        cursor: not-allowed;
+    }
 }
-.winner {
-    background-color: #3d8138;
+
+.title {
+    font-size: 104px;
+    font-weight: 900;
+    color: black;
+    text-align: left;
 }
-.loser {
-    background-color: #742a23;
+.subtitle {
+    color: black;
 }
- .domo-container h3 {
-     margin: 0 1em;
- }
- .domo:last-child {
-     margin-bottom: 10px;
- }
 
- /* Battle Page */
-
- body {
-    background-color: #303946 !important;
-    color: rgb(255, 255, 255) !important;
- }
-
-
+.indent {
+    padding-left: 1em;
+}

@@ -10,12 +10,16 @@
     "start": "node ./server/app.js",
     "pretest": "eslint ./server --fix",
     "test": "echo \"Tests complete\"",
-    "heroku-postbuild": "webpack",
-    "dev": "npm run wpw & npm run nodemon"
+    "heroku-postbuild": "webpack"
   },
-  "keywords": [],
+  "keywords": [
+    "Node",
+    "MVC",
+    "Redis",
+    "Login"
+  ],
   "author": "Michael Eaton",
-  "license": "ISC",
+  "license": "Apache 2.0",
   "devDependencies": {
     "@babel/core": "^7.26.0",
     "@babel/preset-react": "^7.25.9",

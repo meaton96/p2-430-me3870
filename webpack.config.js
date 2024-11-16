@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-    entry: { //TODO FIX!!!!!!!!
+    entry: {
         app: './client/maker.jsx',
         login: './client/login.jsx',
         battle: './client/battle.jsx',

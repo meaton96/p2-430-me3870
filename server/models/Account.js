@@ -33,6 +33,11 @@ const AccountSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  avatar: {
+    type: String,
+    default: '/assets/img/avatar-grey.png',
+    required: true,
+  },
   createdDate: {
     type: Date,
     default: Date.now,

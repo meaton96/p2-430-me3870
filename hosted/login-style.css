@@ -50,7 +50,7 @@
 }
 
 .title {
-    font-size: 104px;
+    font-size: 6.5rem;
     font-weight: 900;
     color: black;
     text-align: left;
@@ -62,3 +62,92 @@
 .indent {
     padding-left: 1em;
 }
+figure.image {
+    max-width: 100%;
+    height: auto; 
+    object-fit: contain;
+}
+.image img {
+    max-width: 100%; 
+    height: auto; 
+    ;
+    /* max-height: 800px;  */
+    object-fit: contain; 
+}
+.columns .column {
+    flex: 1; /* Ensures equal spacing */
+}
+@media  screen and (max-width: 1350px) {
+    
+    .title {
+        font-size: 4.5rem;
+        font-weight: 700;
+    }
+    .login-btn {
+        width: 250px; 
+        font-size: 16px; 
+    }
+    .indent {
+        padding-left: .5em;
+    }
+    
+}
+@media  screen and (max-width: 1000px) {
+    
+    .title {
+        font-size: 3rem;
+        font-weight: 600;
+    }
+    .login-btn {
+        width: 175px; 
+        font-size: 14px; 
+    }
+    .indent {
+        padding-left: 0em;
+    }
+    
+}
+
+/* @media (min-width: 1200px) {
+    .columns .column.is-half {
+        flex: 0 0 45%; 
+    }
+}
+
+@media (min-width: 768px) {
+    .title {
+        font-size: 64px; 
+    }
+
+    .subtitle {
+        font-size: 24px; 
+    }
+
+    .login-btn {
+        width: 250px; 
+        font-size: 16px; 
+    }
+
+    .image img {
+        max-height: 200px; 
+    }
+}
+
+@media (min-width: 1200px) {
+    .title {
+        font-size: 48px; 
+    }
+
+    .subtitle {
+        font-size: 20px; 
+    }
+
+    .login-btn {
+        width: 200px; 
+        font-size: 14px; 
+    }
+
+    .image img {
+        max-height: 150px; 
+    }
+} */

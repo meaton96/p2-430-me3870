@@ -76,6 +76,18 @@ AccountSchema.statics.authenticate = async (username, password, callback) => {
     return callback(err);
   }
 };
+AccountSchema.statics.checkUsername = async (username, callback) => {
+  try {
+    const doc = await AccountModel.findOne({ username }).exec();
+    if (!doc) {
+      return callback(null, false);
+    }
+    return callback(null, true);
+  } catch (err) {
+    return callback(err, false);
+  }
+
+};
 
 AccountModel = mongoose.model('Account', AccountSchema);
 module.exports = AccountModel;

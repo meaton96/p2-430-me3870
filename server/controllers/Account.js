@@ -11,6 +11,25 @@ const logout = (req, res) => {
   res.redirect('/');
 };
 
+const validateUsername = async (request, response) => {
+
+  const username = `${request.body.username}`;
+  
+  if (!username) {
+    return response.status(400).json({ error: 'Username is required' });
+  }
+  return Account.checkUsername(username, (err, exists) => {
+    if (err) {
+      console.log(err.message);
+      return response.status(500).json({ error: `An error occurred: ${err.message}` });
+    }
+    console.log(username, `exists: ${exists}`);
+    return response.status(200).json({ exists });
+  });
+
+};
+
+
 const login = (request, response) => {
   const username = `${request.body.username}`;
   const password = `${request.body.pass}`;
@@ -23,7 +42,7 @@ const login = (request, response) => {
       return response.status(401).json({ error: 'Wrong username or password' });
     }
     request.session.account = Account.toAPI(account);
-    return response.json({ redirect: '/maker' });
+    return response.json({ redirect: '/maker' }); //todo: update this to redirect to the correct page
   });
 };
 
@@ -44,7 +63,7 @@ const signup = async (request, response) => {
     const newAcc = new Account({ username, password: hash });
     await newAcc.save();
     request.session.account = Account.toAPI(newAcc);
-    return response.json({ redirect: '/maker' });
+    return response.json({ redirect: '/maker' }); //todo: update this to redirect to the correct page
   } catch (err) {
     if (err.code === 11000) {
       return response.status(400).json({ error: 'Username already in use.' });
@@ -58,4 +77,5 @@ module.exports = {
   login,
   logout,
   signup,
+  validateUsername,
 };

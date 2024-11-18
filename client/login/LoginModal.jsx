@@ -11,92 +11,106 @@ const LoginModal = ({ title, onClose }) => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [_title, setTitle] = useState(title);
     const [selectAvatar, setSelectAvatar] = useState(false);
+    const [loginError, setLoginError] = useState(""); // Track login errors
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        if (!username || !password) return false;
+        if (!username || !password) return;
 
-        helper.sendPost("/login", { username, pass: password });
-        return false;
+        try {
+            const res = await helper.sendPost("/login", { username, pass: password });
+            if (res.error) {
+                setLoginError("Incorrect username or password");
+            } else {
+                // Handle successful login
+                setLoginError("");
+                onClose();
+            }
+        } catch (err) {
+            console.error("Error during login:", err);
+            setLoginError("An unexpected error occurred");
+        }
     };
 
     const handleSignup = async (e) => {
-       
         e.preventDefault();
-        if (!username || !password || !confirmPassword) return false;
-        if (password !== confirmPassword) return false;
+        if (!username || !password || !confirmPassword) return;
+        if (password !== confirmPassword) return;
 
         const res = await helper.sendPost("/signup", { username, pass: password, pass2: confirmPassword });
         if (res) {
             setSelectAvatar(true);
         }
-        return false;
     };
-    
 
     return (
         <div className="modal is-active">
-            <div className="modal-background" onClick={() => {
-                if (!selectAvatar)
-                    onClose();
-                } 
-            }></div>
+            <div
+                className="modal-background"
+                onClick={() => {
+                    if (!selectAvatar) onClose();
+                }}
+            ></div>
             <div className="modal-card">
                 <header className="modal-card-head">
                     <p className="modal-card-title">{_title}</p>
-                    <button className="delete" aria-label="close" onClick={() => {
-                        if (!selectAvatar)
-                            onClose();
-                        }
-                    }>
-
-                    </button>
+                    <button
+                        className="delete"
+                        aria-label="close"
+                        onClick={() => {
+                            if (!selectAvatar) onClose();
+                        }}
+                    ></button>
                 </header>
                 <section className="modal-card-body">
                     <>
-                    {!selectAvatar ? 
-                    (
-                        <form onSubmit={_title === "Login" ? handleLogin : handleSignup}>
-                        <UsernameInput 
-                            username={username} 
-                            setUsername={setUsername} 
-                            validate={_title === "Signup"}
-                        />
-                        <PasswordInput
-                            password={password}
-                            setPassword={setPassword}
-                            confirmPassword={confirmPassword}
-                            setConfirmPassword={setConfirmPassword}
-                            showConfirm={_title === "Signup"}
-                        />
-
-                        <button className="button is-primary mt-3" type="submit">
-                            {_title}
-                        </button>
-                    </form>
-                    ) : 
-                    (
-                        <SelectAvatar 
-                            gridMin={'is-col-min-3'}
-                            forward={true}
-                            onClose={onClose}
-                        />
-                    )}
+                        {!selectAvatar ? (
+                            <form onSubmit={_title === "Login" ? handleLogin : handleSignup}>
+                                <UsernameInput
+                                    username={username}
+                                    setUsername={setUsername}
+                                    validate
+                                    isSignup={_title === "Signup"} // Pass isSignup based on the modal title
+                                />
+                                <PasswordInput
+                                    password={password}
+                                    setPassword={setPassword}
+                                    confirmPassword={confirmPassword}
+                                    setConfirmPassword={setConfirmPassword}
+                                    showConfirm={_title === "Signup"}
+                                />
+                                {_title === "Login" && loginError && (
+                                    <p className="help is-danger">{loginError}</p>
+                                )}
+                                <button className="button is-primary mt-3" type="submit">
+                                    {_title}
+                                </button>
+                            </form>
+                        ) : (
+                            <SelectAvatar
+                                gridMin={"is-col-min-3"}
+                                forward={true}
+                                onClose={onClose}
+                            />
+                        )}
                     </>
-                    
                 </section>
-                {!selectAvatar && <footer className="modal-card-foot">
-                    <button
-                        className="button is-text"
-                        onClick={() => setTitle(_title === "Login" ? "Signup" : "Login")}
-                    >
-                        {_title === "Login" ? "Don't have an account? Signup" : "Already have an account? Login"}
-                    </button>
-                </footer>}
-                
+                {!selectAvatar && (
+                    <footer className="modal-card-foot">
+                        <button
+                            className="button is-text"
+                            onClick={() => setTitle(_title === "Login" ? "Signup" : "Login")}
+                        >
+                            {_title === "Login"
+                                ? "Don't have an account? Signup"
+                                : "Already have an account? Login"}
+                        </button>
+                    </footer>
+                )}
             </div>
         </div>
     );
 };
 
 export default LoginModal;
+

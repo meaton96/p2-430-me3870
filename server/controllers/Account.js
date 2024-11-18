@@ -158,6 +158,42 @@ const getPremium = async (request, response) => {
   });
 }
 
+const changePassword = async (req, res) => {
+  const { currentPassword, newPassword, confirmPassword } = req.body;
+  const username = req.session.account.username; 
+
+  
+  if (!currentPassword || !newPassword || !confirmPassword) {
+    return res.status(400).json({ error: 'All fields are required' });
+  }
+
+  if (newPassword !== confirmPassword) {
+    return res.status(400).json({ error: 'New password and confirm password do not match' });
+  }
+
+  try {
+    Account.changePassword(username, currentPassword, newPassword, (err, updatedAccount) => {
+      if (err) {
+        console.error('Error changing password:', err);
+        return res.status(500).json({ error: `An error occurred: ${err.message}` });
+      }
+
+      if (!updatedAccount) {
+        return res.status(401).json({ error: 'Current password is incorrect or user not found' });
+      }
+
+      return res.status(200).json({ message: 'Password changed successfully' });
+    });
+  } catch (err) {
+    console.error('Unexpected error:', err);
+    return res.status(500).json({ error: `An unexpected error occurred: ${err.message}` });
+  }
+};
+
+
+
+
+
 
 module.exports = {
   loginPage,
@@ -170,4 +206,5 @@ module.exports = {
   getAvatar,
   setPremium,
   getPremium,
+  changePassword,
 };

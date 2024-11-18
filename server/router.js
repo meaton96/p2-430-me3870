@@ -10,6 +10,7 @@ const router = (app) => {
   app.post('/changeAvatar', mid.requiresLogin, controllers.Account.changeAvatar);
   app.post('/validateUsername', mid.requiresSecure, mid.requiresLogout, controllers.Account.validateUsername);
   app.get('/getPremium', mid.requiresLogin, controllers.Account.getPremium);
+  app.post('/changePassword', mid.requiresSecure, mid.requiresLogin, controllers.Account.changePassword);
   app.post('/setPremium', mid.requiresLogin, controllers.Account.setPremium);
 
   // Avatar routes

@@ -129,7 +129,7 @@ AccountSchema.statics.setPremium = async (_id, premium, callback) => {
     if (!doc) {
       return callback();
     }
-    console.log(doc);
+    //console.log(doc);
     return callback(null, doc.premium); 
   } catch (err) {
     return callback(err);
@@ -149,6 +149,34 @@ AccountSchema.statics.getPremium = async (_id, callback) => {
     return callback(err);
   }
 }
+
+// Change the password of an account by username
+AccountSchema.statics.changePassword = async (username, oldPassword, newPassword, callback) => {
+  try {
+    
+    const account = await AccountModel.findOne({ username }).exec();
+    if (!account) {
+      return callback(null, null); // User not found
+    }
+
+    const isMatch = await bcrypt.compare(oldPassword, account.password);
+    if (!isMatch) {
+      return callback(null, false); // Incorrect current password
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
+
+    account.password = hashedPassword;
+    await account.save();
+
+    // Successfully updated
+    return callback(null, account);
+  } catch (err) {
+    console.error('Error in changePassword:', err);
+    return callback(err);
+  }
+};
+
 
 
 

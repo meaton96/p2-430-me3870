@@ -1,42 +1,48 @@
 import React, { useState, useEffect } from "react";
-const helper = require("../utils/helper.js");
+import helper from "../utils/helper";
 
-const UsernameInput = ({ username, setUsername, validate }) => {
-    const [validUsername, setValidUsername] = useState(null); // null for no validation yet, true/false for results
+
+const UsernameInput = ({ username, setUsername, validate, isSignup }) => {
+    const [validUsername, setValidUsername] = useState(null); 
     const [validationMessage, setValidationMessage] = useState("");
 
     useEffect(() => {
         const validateUsername = async () => {
-			if (!username || !validate) {
-				setValidUsername(null);
-				setValidationMessage("");
-				return;
-			}
-			if (username.length < 3) {
-				setValidUsername(false);
-				setValidationMessage("Username must be at least 3 characters long");
-				return;
-			}
-		
-			try {
-				const res = await helper.sendPost("/validateUsername", { username });
-				if (res.exists !== undefined) {
-				setValidUsername(!res.exists);
-				setValidationMessage(res.exists ? "Username is already taken" : "Username is available");
-				} else {
-				console.error("Unexpected response format:", res);
-				setValidUsername(false);
-				setValidationMessage("Error validating username");
-				}
-			} catch (err) {
-				console.error("Error validating username:", err);
-				setValidUsername(false);
-				setValidationMessage("Error validating username");
-			}
+            if (!username) {
+                setValidUsername(null);
+                setValidationMessage("");
+                return;
+            }
+            if (username.length < 3) {
+                setValidUsername(false);
+                setValidationMessage("Username must be at least 3 characters long");
+                return;
+            }
+
+            try {
+                const res = await helper.sendPost("/validateUsername", { username });
+                if (res.exists !== undefined) {
+                    if (isSignup) {
+                        setValidUsername(!res.exists);
+                        setValidationMessage(res.exists ? "Username is already taken" : "Username is available");
+                    } else {
+                        setValidUsername(res.exists);
+                        setValidationMessage(res.exists ? "" : "Username does not exist");
+                    }
+                } else {
+                    console.error("Unexpected response format:", res);
+                    setValidUsername(false);
+                    setValidationMessage("Error validating username");
+                }
+            } catch (err) {
+                console.error("Error validating username:", err);
+                setValidUsername(false);
+                setValidationMessage("Error validating username");
+            }
         };
-      
+
         validateUsername();
-      }, [username, validate]);
+    }, [username, validate, isSignup]);
 
     return (
         <div className="field">
@@ -47,9 +53,7 @@ const UsernameInput = ({ username, setUsername, validate }) => {
                     type="text"
                     placeholder="Enter your username"
                     value={username}
-                    onChange={(e) => 
-                        setUsername(e.target.value)
-                    }
+                    onChange={(e) => setUsername(e.target.value)}
                 />
                 <span className="icon is-small is-left">
                     <i className="fas fa-user"></i>

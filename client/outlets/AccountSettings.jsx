@@ -8,7 +8,7 @@ import helper from "../utils/helper.js";
 const AccountSettings = ({ avatar, setAvatar }) => {
     const [premiumMode, setPremiumMode] = useState(false);
     const [changeAvatarModalActive, setChangeAvatarModalActive] = useState(false);
-    const [loading, setLoading] = useState(true); 
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const getPremiumMode = async () => {
@@ -21,7 +21,7 @@ const AccountSettings = ({ avatar, setAvatar }) => {
             } catch (err) {
                 console.error("Error getting premium mode:", err);
             } finally {
-                setLoading(false); 
+                setLoading(false);
             }
         };
         getPremiumMode();
@@ -30,18 +30,18 @@ const AccountSettings = ({ avatar, setAvatar }) => {
     const handlePremiumChange = async (premium) => {
         try {
             setPremiumMode(premium);
-    
+
             const res = await helper.sendPost("/setPremium", { premium });
-    
+
             if (res.premiumMode !== undefined) {
-                setPremiumMode(res.premiumMode); 
+                setPremiumMode(res.premiumMode);
             }
         } catch (err) {
             console.error("Error setting premium mode:", err);
             setPremiumMode(!premium);
         }
     };
-    
+
 
     return (
         <div>
@@ -49,26 +49,28 @@ const AccountSettings = ({ avatar, setAvatar }) => {
                 <h1 className="settings-title m-2 pt-3">Account Settings</h1>
             </div>
             <hr className="settings-hr" />
-            <div className="container">
-                {/* Avatar Section */}
-                <ChangeAvatarSection
-                    avatar={avatar}
-                    setAvatar={setAvatar}
-                    setChangeAvatarModalActive={setChangeAvatarModalActive}
-                />
-
-                {/* Premium Section */}
-                {loading ? (
-                    <p>Loading...</p>
-                ) : (
-                    <PremiumSection
-                        premiumMode={premiumMode}
-                        handlePremiumChange={handlePremiumChange}
+            <div className="settings-container">
+                <div className="container">
+                    {/* Avatar Section */}
+                    <ChangeAvatarSection
+                        avatar={avatar}
+                        setAvatar={setAvatar}
+                        setChangeAvatarModalActive={setChangeAvatarModalActive}
                     />
-                )}
 
-                {/* Security Settings Section */}
-                <SecuritySection />
+                    {/* Premium Section */}
+                    {loading ? (
+                        <p>Loading...</p>
+                    ) : (
+                        <PremiumSection
+                            premiumMode={premiumMode}
+                            handlePremiumChange={handlePremiumChange}
+                        />
+                    )}
+
+                    {/* Security Settings Section */}
+                    <SecuritySection />
+                </div>
             </div>
             {changeAvatarModalActive && (
                 <ChangeAvatarModal

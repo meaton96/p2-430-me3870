@@ -30,7 +30,12 @@ const SelectAvatar = ({gridMin, forward, onClose, setAvatar}) => {
         try {
             const res = await sendPost("/changeAvatar", { avatar: curAvatar.file });
             if (res.avatar) {
-                console.log("Avatar set to:", res.avatar);
+                if (setAvatar)
+                    setAvatar(curAvatar.file);
+                if (forward)
+                    window.location = '/app';
+                else
+                    onClose();
             }
         }
         catch (err) {
@@ -68,11 +73,7 @@ const SelectAvatar = ({gridMin, forward, onClose, setAvatar}) => {
             <div className="is-flex is-justify-content-center">
                 <button className="button is-primary" onClick={() => {
                     _setAvatar();
-                    setAvatar(curAvatar.file);
-                    if (forward)
-                        window.location = '/app';
-                    else
-                        onClose();
+                   
                 }}>
                     Select Avatar</button>
             </div>

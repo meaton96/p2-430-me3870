@@ -78,7 +78,7 @@ const LoginModal = ({ title, onClose }) => {
                     (
                         <SelectAvatar 
                             gridMin={'is-col-min-3'}
-                            forward={false}
+                            forward={true}
                             onClose={onClose}
                         />
                     )}

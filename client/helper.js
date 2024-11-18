@@ -1,52 +1,75 @@
-/* Takes in an error message. Sets the error message up in html, and
-   displays it to the user. Will be hidden by other events that could
-   end in an error.
-*/
+
 const handleError = (message) => {
-   // document.getElementById('errorMessage').textContent = message;
-   // document.getElementById('domoMessage').classList.remove('hidden');
    console.log(message);
   };
   
-  /* Sends post requests to the server using fetch. Will look for various
-     entries in the response JSON object, and will handle them appropriately.
-  */
-     const sendPost = async (url, data, handler) => {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-    
-      const result = await response.json();
-      // Hide any previous messages
-      // document.getElementById("domoMessage").classList.add("hidden");
-    
-      if (result.redirect) {
-        window.location = result.redirect;
-      }
-    
-      if (result.error) {
-        handleError(result.error);
-      }
-    
-      // Call the optional handler if provided
-      if (handler) {
-        handler(result);
-      }
-    
-      return result; // Return the result for async/await calls
-    };
-    
+const sendPost = async (url, data, handler) => {
+  console.log(data);
+  //console.log(JSON.stringify(data));
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  
 
-  const hideError = () => {
-   // document.querySelector('#domoMessage').classList.add('hidden');
+  const result = await response.json();
+  console.log(result);
+  // Hide any previous messages
+  // document.getElementById("domoMessage").classList.add("hidden");
+
+  if (result.redirect) {
+    window.location = result.redirect;
   }
 
-  module.exports = {
-    handleError,
-    sendPost,
-    hideError,
-  };
+  if (result.error) {
+    handleError(result.error);
+  }
+
+  // Call the optional handler if provided
+  if (handler) {
+    handler(result);
+  }
+
+  return result; // Return the result for async/await calls
+};
+
+const sendGet = async (url, handler) => {
+
+  const response = await fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    }
+  });
+
+  const result = await response.json();
+
+  if (result.redirect) {
+    window.location = result.redirect;
+  }
+  
+  if (result.error) {
+    handleError(result.error);
+  }
+
+  if (handler) {
+    handler(result);
+  }
+
+  return result;
+}
+    
+
+const hideError = () => {
+  // document.querySelector('#domoMessage').classList.add('hidden');
+}
+
+module.exports = {
+  handleError,
+  sendPost,
+  hideError,
+  sendGet,
+};

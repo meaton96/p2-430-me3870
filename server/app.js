@@ -36,6 +36,11 @@ redisClient.connect().then(() => {
   const app = express();
 
   app.use(helmet());
+  // app.use((req, res, next) => {
+  //   res.setHeader('Content-Security-Policy', "script-src 'self' 'nonce-abc123' https://accounts.google.com;");
+  //   next();
+  // });
+  
   app.use('/assets', express.static(path.resolve(`${__dirname}/../hosted`)));
   app.use(favicon(`${__dirname}/../hosted/img/favicon.png`));
   app.use(compression());

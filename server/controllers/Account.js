@@ -11,6 +11,37 @@ const logout = (req, res) => {
   res.redirect('/');
 };
 
+const setAvatar = async (request, response) => {
+
+  const username = `${request.body.username}`;
+  const avatar = `${request.body.avatar}`;
+//  console.log(username, avatar);
+  if (!username || !avatar) {
+    return response.status(400).json({ error: 'All fields are required' });
+  }
+
+  return Account.changeAvatar(username, avatar, (err) => {
+    if (err) {
+      console.log(err.message);
+      return response.status(500).json({ error: `An error occurred: ${err.message}` });
+    }
+    return response.status(200).json({ avatar });
+  });
+
+};
+
+const getDefaultAvatars = async (request, response) => {
+
+  const avatars = [
+    { name: 'default', file: '/assets/img/avatar-grey.png' },
+    { name: 'blue', file: '/assets/img/avatar-blue.png' },
+    { name: 'pink', file: '/assets/img/avatar-pink.png' },
+    { name: 'purple', file: '/assets/img/avatar-purple.png' },
+  ];
+
+  return response.status(200).json({ avatars });
+};
+
 const validateUsername = async (request, response) => {
 
   const username = `${request.body.username}`;
@@ -23,7 +54,7 @@ const validateUsername = async (request, response) => {
       console.log(err.message);
       return response.status(500).json({ error: `An error occurred: ${err.message}` });
     }
-    console.log(username, `exists: ${exists}`);
+   // console.log(username, `exists: ${exists}`);
     return response.status(200).json({ exists });
   });
 
@@ -42,7 +73,7 @@ const login = (request, response) => {
       return response.status(401).json({ error: 'Wrong username or password' });
     }
     request.session.account = Account.toAPI(account);
-    return response.json({ redirect: '/maker' }); //todo: update this to redirect to the correct page
+    return response.json({ redirect: '/app' }); 
   });
 };
 
@@ -63,7 +94,7 @@ const signup = async (request, response) => {
     const newAcc = new Account({ username, password: hash });
     await newAcc.save();
     request.session.account = Account.toAPI(newAcc);
-    return response.json({ redirect: '/maker' }); //todo: update this to redirect to the correct page
+    return response.status(201).json({ username });
   } catch (err) {
     if (err.code === 11000) {
       return response.status(400).json({ error: 'Username already in use.' });
@@ -78,4 +109,6 @@ module.exports = {
   logout,
   signup,
   validateUsername,
+  getDefaultAvatars,
+  changeAvatar: setAvatar,
 };

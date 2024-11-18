@@ -1,5 +1,6 @@
 const requiresLogin = (req, res, next) => {
   if (!req.session.account) {
+    console.log('requiresLogin failed');
     return res.redirect('/');
   }
   return next();
@@ -7,7 +8,7 @@ const requiresLogin = (req, res, next) => {
 
 const requiresLogout = (req, res, next) => {
   if (req.session.account) {
-    return res.redirect('/maker');
+    return res.redirect('/app');
   }
   return next();
 };

@@ -1,10 +1,116 @@
 :root {
-    --primary-color: #3498db;
-    --secondary-color: #2ecc71;
-    --background-color: #85ccde;
-    --text-color: #2c3e50;
+    --primary-color: #FF8C61; /* Warm Peach */
+    --secondary-color: #A8DADC; /* Fresh Mint */
+    --accent-color: #E63946; /* Tomato Red */
+    --background-color: #F8F5F2; /* Soft Beige */
+    --text-color-dark: #333533; /* Charcoal Grey */
+    --text-color-light: #FBFBFA; /* Muted White */
+    --highlight-color: #FFD166; /* Sunny Yellow */
+    --depth-color: #6A994E; /* Muted Olive */
+    /* --primary-color: #3498db; */
+    --hover-color: #FF8C61;
+    /* --background-color: #f4f7f9; */
+    --button-bg: white;
+    --button-hover-bg: #ecf0f1;
+    /* --text-color: #2c3e50; */
+}
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
-.has-background-color {
-    background-color: var(--background-color) !important;
+/*Navbar*/
+
+.nav-container {
+    width: 100%;
+    max-width: 25%;
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2rem;
+    height: 105vh;
+
+    border-right: 1px solid var(--secondary-color);
+    /* box-shadow: 2px 0 5px var(--depth-color); */
+}
+
+.avatar-container {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.avatar-image {
+    /* width: 80px;
+    height: 80px; */
+    border-radius: 50%;
+    border: 3px solid var(--primary-color);
+}
+
+.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 70%;
+}
+
+.nav-list li {
+    margin-bottom: 1rem;
+    /* text-align: right; */
+}
+
+.nav-list li button {
+    display: flex;
+    align-items: center;
+    /* justify-content: right; */
+    gap: 0.5rem;
+    background-color: var(--button-bg);
+    color: var(--text-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 25px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    /* text-align: right; */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    width: 90%;
+    margin-left: auto;
+}
+
+.nav-list li button:hover {
+    background-color: var(--hover-color);
+    color: white;
+    transform: scale(1.05);
+}
+
+.nav-list li button i {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+}
+
+.nav-list li button:hover i {
+    color: white;
+}
+
+/* Account Settings */
+
+.settings-title {
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    margin-left: 1rem;
+}
+.settings-hr {
+    height: 1px; /* Set the thickness */
+    background-color: var(--secondary-color); /* Set the color */
+    border: none; /* Remove any default borders */
+    margin: 1rem 0; /* Optional: Add space around it */
+}
+
+.column {
+    padding: 0 !important;
 }

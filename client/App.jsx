@@ -12,7 +12,7 @@ import Recipes from './outlets/Recipes.jsx';
 const App = () => {
 
     
-    const [currentPage, setCurrentPage] = useState('Feed');
+    const [currentPage, setCurrentPage] = useState('AccountSettings');
 
     const renderPage = () => {
         switch (currentPage) {
@@ -37,7 +37,7 @@ const App = () => {
                 {renderPage()}
             </div>
         </div>
-        <Footer />
+        {/* <Footer /> */}
         </>
     );
 };

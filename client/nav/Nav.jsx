@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import helper from "../helper";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHouse, faUser, faUtensils, faDoorClosed } from "@fortawesome/free-solid-svg-icons";
+
 
 const Nav = ({ setCurrentPage }) => {
     const [avatar, setAvatar] = useState("/assets/img/avatar-grey.png");
@@ -20,16 +23,37 @@ const Nav = ({ setCurrentPage }) => {
 
     return (
         <div
-            className="column is-one-quarter has-background-color is-flex is-flex-direction-column is-align-items-center pt-5"
-            style={{ minHeight: "100vh" }}
+            className="nav-container px-3"
         >
-            <img src={avatar} alt="avatar" className="is-rounded" style={{ width: "50%" }} />
+            <figure className="avatar-container image is-96x96">
+                <img src={avatar} alt="avatar" className="avatar-image" />
+            </figure>
 
-            <ul>
-                <li onClick={() => setCurrentPage("Feed")}>News Feed</li>
-                <li onClick={() => setCurrentPage("AccountSettings")}>Account Settings</li>
-                <li onClick={() => setCurrentPage("Pantry")}>My Pantry</li>
-                <li onClick={() => setCurrentPage("Recipes")}>My Recipes</li>
+            <ul className="nav-list">
+                <li>
+                    <button onClick={() => setCurrentPage("Feed")}>
+                    <FontAwesomeIcon icon={faHouse} />
+                     Home
+                    </button>
+                </li>
+                <li>
+                    <button onClick={() => setCurrentPage("AccountSettings")}>
+                    <FontAwesomeIcon icon={faUser} />
+                        Account Settings
+                    </button>
+                </li>
+                <li>
+                    <button onClick={() => setCurrentPage("Pantry")}>
+                    <FontAwesomeIcon icon={faDoorClosed} />
+                        My Pantry
+                    </button>
+                </li>
+                <li>
+                    <button onClick={() => setCurrentPage("Recipes")}>
+                    <FontAwesomeIcon icon={faUtensils} />
+                        My Recipes
+                    </button>
+                </li>
             </ul>
         </div>
     );

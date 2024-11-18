@@ -122,6 +122,41 @@ const getAvatar = async (request, response) => {
     return response.status(200).json({ avatar });
   });
 };
+const setPremium = async (request, response) => {
+
+  const id = `${request.session.account._id}`;
+  const premium = `${request.body.premium}`;
+  if (!id) {
+    return response.status(400).json({ error: 'id is required' });
+  }
+
+  return Account.setPremium(id, premium, (err, prem) => {
+    if (err) {
+      console.log(err.message);
+      return response.status(500).json({ error: `An error occurred: ${err.message}` });
+    }
+    return response.status(200).json({ prem });
+  });
+
+
+}
+
+const getPremium = async (request, response) => {
+  const id = `${request.session.account._id}`;
+
+  if (!id) {
+    return response.status(400).json({ error: 'id is required' });
+  }
+
+  return Account.getPremium(id, (err, prem) => {
+    if (err) {
+      console.log(err.message);
+      return response.status(500).json({ error: `An error occurred: ${err.message}` });
+    }
+    
+    return response.status(200).json({ premiumMode: prem });
+  });
+}
 
 
 module.exports = {
@@ -133,4 +168,6 @@ module.exports = {
   getDefaultAvatars,
   changeAvatar: setAvatar,
   getAvatar,
+  setPremium,
+  getPremium,
 };

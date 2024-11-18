@@ -1,9 +1,47 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ChangeAvatarModal from "../account-settings/ChangeAvatarModal.jsx";
+import ChangeAvatarSection from "../account-settings/ChangeAvatarSection.jsx";
+import PremiumSection from "../account-settings/PremiumSection.jsx";
+import SecuritySection from "../account-settings/SecuritySection.jsx";
+import helper from "../utils/helper.js";
 
 const AccountSettings = ({ avatar, setAvatar }) => {
     const [premiumMode, setPremiumMode] = useState(false);
     const [changeAvatarModalActive, setChangeAvatarModalActive] = useState(false);
+    const [loading, setLoading] = useState(true); 
+
+    useEffect(() => {
+        const getPremiumMode = async () => {
+            try {
+                const res = await helper.sendGet("/getPremium");
+
+                if (res.premiumMode !== undefined) {
+                    setPremiumMode(res.premiumMode);
+                }
+            } catch (err) {
+                console.error("Error getting premium mode:", err);
+            } finally {
+                setLoading(false); 
+            }
+        };
+        getPremiumMode();
+    }, []);
+
+    const handlePremiumChange = async (premium) => {
+        try {
+            setPremiumMode(premium);
+    
+            const res = await helper.sendPost("/setPremium", { premium });
+    
+            if (res.premiumMode !== undefined) {
+                setPremiumMode(res.premiumMode); 
+            }
+        } catch (err) {
+            console.error("Error setting premium mode:", err);
+            setPremiumMode(!premium);
+        }
+    };
+    
 
     return (
         <div>
@@ -13,71 +51,31 @@ const AccountSettings = ({ avatar, setAvatar }) => {
             <hr className="settings-hr" />
             <div className="container">
                 {/* Avatar Section */}
-                <section className="section">
-                    <div className="is-flex avatar-section">
-                        <div className="settings-avatar-frame">
-
-                            <img src={avatar} alt="avatar" className="settings-avatar" />
-
-                        </div>
-                        <div className="avatar-button-container">
-                            <button
-                                className="settings-avatar-button"
-                                onClick={() => setChangeAvatarModalActive(true)}
-                            >Change Avatar</button>
-                        </div>
-                    </div>
-                </section>
+                <ChangeAvatarSection
+                    avatar={avatar}
+                    setAvatar={setAvatar}
+                    setChangeAvatarModalActive={setChangeAvatarModalActive}
+                />
 
                 {/* Premium Section */}
-                <section className="section premium-section">
-                    <h2 className="premium-title">Premium Section</h2>
-                    <label className="toggle-container">
-                        <span>Enable Premium Mode</span>
-                        <input
-                            type="checkbox"
-                            checked={premiumMode}
-                            onChange={() => setPremiumMode(!premiumMode)}
-                        />
-                    </label>
-                </section>
+                {loading ? (
+                    <p>Loading...</p>
+                ) : (
+                    <PremiumSection
+                        premiumMode={premiumMode}
+                        handlePremiumChange={handlePremiumChange}
+                    />
+                )}
 
                 {/* Security Settings Section */}
-                <section className="section security-section">
-                    <h2 className="security-title">Security Settings</h2>
-                    <div className="field">
-                        <label className="label">Current Password</label>
-                        <div className="control">
-                            <input className="input" type="password" placeholder="Current Password" />
-                        </div>
-                    </div>
-                    <div className="field">
-                        <label className="label">New Password</label>
-                        <div className="control">
-                            <input className="input" type="password" placeholder="New Password" />
-                        </div>
-                    </div>
-                    <div className="field">
-                        <label className="label">Confirm New Password</label>
-                        <div className="control">
-                            <input
-                                className="input"
-                                type="password"
-                                placeholder="Confirm New Password"
-                            />
-                        </div>
-                    </div>
-                    <button className="settings-save-button">Save Changes</button>
-                </section>
+                <SecuritySection />
             </div>
-            {
-                changeAvatarModalActive &&
+            {changeAvatarModalActive && (
                 <ChangeAvatarModal
                     onClose={() => setChangeAvatarModalActive(false)}
                     setAvatar={setAvatar}
                 />
-            }
-
+            )}
         </div>
     );
 };

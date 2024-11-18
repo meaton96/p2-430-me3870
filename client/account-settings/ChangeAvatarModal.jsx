@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import SelectAvatar from "../login/SelectAvatar.jsx";
-import helper from "../helper.js";
+import helper from "../utils/helper.js";
 
 const ChangeAvatarModal = ({ onClose, setAvatar }) => {
 

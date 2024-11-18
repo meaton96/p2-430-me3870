@@ -40,7 +40,7 @@ const AccountSchema = new mongoose.Schema({
     default: '/assets/img/avatar-grey-small.png',
     required: true,
   },
-  previum: {
+  premium: {
     type: Boolean,
     default: false,
   },
@@ -82,6 +82,8 @@ AccountSchema.statics.authenticate = async (username, password, callback) => {
     return callback(err);
   }
 };
+//checks the database to see if a username is already taken
+//calls the callback with false if the username is not taken
 AccountSchema.statics.checkUsername = async (username, callback) => {
   try {
     const doc = await AccountModel.findOne({ username }).exec();
@@ -94,6 +96,7 @@ AccountSchema.statics.checkUsername = async (username, callback) => {
   }
 
 };
+//change an account avatar by account id
 AccountSchema.statics.changeAvatar = async (_id, avatar, callback) => {
   try {
     console.log(_id, avatar);
@@ -107,6 +110,7 @@ AccountSchema.statics.changeAvatar = async (_id, avatar, callback) => {
     return callback(err);
   }
 }
+//get the avatar of an account by account id
 AccountSchema.statics.getAvatar = async (_id, callback) => {
   try {
     const doc = await AccountModel.findOne({ _id }, 'avatar').exec(); // Fetch only the avatar field
@@ -118,9 +122,33 @@ AccountSchema.statics.getAvatar = async (_id, callback) => {
     return callback(err);
   }
 };
+//set the premium status of an account by account id
+AccountSchema.statics.setPremium = async (_id, premium, callback) => {
+  try {
+    const doc = await AccountModel.findOneAndUpdate({ _id }, { premium }).exec();
+    if (!doc) {
+      return callback();
+    }
+    console.log(doc);
+    return callback(null, doc.premium); 
+  } catch (err) {
+    return callback(err);
+  }
 
-
-
+}
+//get the premium status of an account by account id
+AccountSchema.statics.getPremium = async (_id, callback) => {
+  try {
+    const doc = await AccountModel.findOne({ _id }, 'premium').exec();
+    if (!doc) {
+      return callback(null, null);
+    }
+    
+    return callback(null, doc.premium);
+  } catch (err) {
+    return callback(err);
+  }
+}
 
 
 

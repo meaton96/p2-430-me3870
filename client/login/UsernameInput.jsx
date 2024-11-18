@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-const helper = require("../helper.js");
+const helper = require("../utils/helper.js");
 
 const UsernameInput = ({ username, setUsername, validate }) => {
     const [validUsername, setValidUsername] = useState(null); // null for no validation yet, true/false for results

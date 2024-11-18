@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import helper from "../helper";
+import helper from "../utils/helper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faUser, faUtensils, faDoorClosed } from "@fortawesome/free-solid-svg-icons";
 

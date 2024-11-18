@@ -4,7 +4,7 @@ const handleError = (message) => {
   };
   
 const sendPost = async (url, data, handler) => {
-  console.log(data);
+ // console.log(data);
   //console.log(JSON.stringify(data));
   const response = await fetch(url, {
     method: "POST",
@@ -16,7 +16,7 @@ const sendPost = async (url, data, handler) => {
   
 
   const result = await response.json();
-  console.log(result);
+ // console.log(result);
   // Hide any previous messages
   // document.getElementById("domoMessage").classList.add("hidden");
 
@@ -71,7 +71,7 @@ const getUserAvatar = async (username) => {
   const response  = await fetch(`/getAvatar/${username}`);
 
   const result = await response.json();
-  console.log(result);
+ // console.log(result);
   if (result.error) {
     console.log(result.error);
   }

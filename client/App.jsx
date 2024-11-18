@@ -1,4 +1,4 @@
-const helper = require('./helper');
+const helper = require('./utils/helper.js');
 const React = require('react');
 const { useState, useEffect } = React;
 const { createRoot } = require('react-dom/client');

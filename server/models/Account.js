@@ -45,6 +45,10 @@ const AccountSchema = new mongoose.Schema({
     default: defaultAvatars[0],
     required: true,
   },
+  previum: {
+    type: Boolean,
+    default: false,
+  },
   createdDate: {
     type: Date,
     default: Date.now,
@@ -107,6 +111,19 @@ AccountSchema.statics.changeAvatar = async (username, avatar, callback) => {
     return callback(err);
   }
 }
+AccountSchema.statics.getAvatar = async (_id, callback) => {
+  try {
+    const doc = await AccountModel.findOne({ _id }, 'avatar').exec(); // Fetch only the avatar field
+    if (!doc) {
+      return callback(null, null); // No user found
+    }
+    return callback(null, doc.avatar); // Return the avatar
+  } catch (err) {
+    return callback(err);
+  }
+};
+
+
 
 
 

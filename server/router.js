@@ -9,7 +9,11 @@ const router = (app) => {
   app.post('/signup', mid.requiresSecure, mid.requiresLogout, controllers.Account.signup);
   app.post('/changeAvatar', controllers.Account.changeAvatar);
   app.post('/validateUsername', mid.requiresSecure, mid.requiresLogout, controllers.Account.validateUsername);
+
+  // Avatar routes
   app.get('/getDefaultAvatars', controllers.Account.getDefaultAvatars);
+  app.get('/getAvatar', controllers.Account.getAvatar);
+
 
   // Domo routes
   // app.get('/getDomos', mid.requiresLogin, controllers.Domo.getDomos);

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import UsernameInput from "./UsernameInput.jsx";
 import PasswordInput from "./PasswordInput.jsx";
 import SelectAvatar from "./SelectAvatar.jsx";
-import helper from "./helper.js";
+import helper from "../helper.js";
 
 //Modal component to handle allowing the user to login or signup
 const LoginModal = ({ title, onClose }) => {

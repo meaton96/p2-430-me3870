@@ -61,6 +61,24 @@ const sendGet = async (url, handler) => {
 
   return result;
 }
+
+const getUserAvatar = async (username) => {
+
+  if (!username) {
+    return handleError('Username is required');
+  }
+
+  const response  = await fetch(`/getAvatar/${username}`);
+
+  const result = await response.json();
+  console.log(result);
+  if (result.error) {
+    console.log(result.error);
+  }
+  else {
+    return result.avatar;
+  }
+};
     
 
 const hideError = () => {
@@ -72,4 +90,5 @@ module.exports = {
   sendPost,
   hideError,
   sendGet,
+  getUserAvatar,
 };

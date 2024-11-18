@@ -102,6 +102,25 @@ const signup = async (request, response) => {
     return response.status(500).json({ error: `An error occurred: ${err.message}` });
   }
 };
+const getAvatar = async (request, response) => {
+  const id = `${request.session.account._id}`; 
+
+  if (!id) {
+    return response.status(400).json({ error: 'id is required' });
+  }
+
+  return Account.getAvatar(id, (err, avatar) => {
+    if (err) {
+      console.log(err.message);
+      return response.status(500).json({ error: `An error occurred: ${err.message}` });
+    }
+    if (!avatar) {
+      return response.status(404).json({ error: 'User not found' });
+    }
+    return response.status(200).json({ avatar });
+  });
+};
+
 
 module.exports = {
   loginPage,
@@ -111,4 +130,5 @@ module.exports = {
   validateUsername,
   getDefaultAvatars,
   changeAvatar: setAvatar,
+  getAvatar,
 };

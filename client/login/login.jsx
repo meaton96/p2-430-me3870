@@ -2,7 +2,7 @@
 const React = require('react');
 const { useState } = React;
 const { createRoot } = require('react-dom');
-import Footer from './Footer.jsx';
+import Footer from '../Footer.jsx';
 import LoginModal from './LoginModal.jsx';
 
 

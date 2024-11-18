@@ -13,14 +13,14 @@ const logout = (req, res) => {
 
 const setAvatar = async (request, response) => {
 
-  const username = `${request.body.username}`;
+  const id = `${request.session.account._id}`;
   const avatar = `${request.body.avatar}`;
 //  console.log(username, avatar);
-  if (!username || !avatar) {
+  if (!id || !avatar) {
     return response.status(400).json({ error: 'All fields are required' });
   }
 
-  return Account.changeAvatar(username, avatar, (err) => {
+  return Account.changeAvatar(id, avatar, (err) => {
     if (err) {
       console.log(err.message);
       return response.status(500).json({ error: `An error occurred: ${err.message}` });
@@ -33,10 +33,12 @@ const setAvatar = async (request, response) => {
 const getDefaultAvatars = async (request, response) => {
 
   const avatars = [
-    { name: 'default', file: '/assets/img/avatar-grey.png' },
-    { name: 'blue', file: '/assets/img/avatar-blue.png' },
-    { name: 'pink', file: '/assets/img/avatar-pink.png' },
-    { name: 'purple', file: '/assets/img/avatar-purple.png' },
+    { name: 'default', file: '/assets/img/avatar-grey-small.png' },
+    { name: 'blue', file: '/assets/img/avatar-blue-small.png' },
+    { name: 'pink', file: '/assets/img/avatar-pink-small.png' },
+    { name: 'purple', file: '/assets/img/avatar-purple-small.png' },
+    { name: 'green', file: '/assets/img/avatar-green-small.png' },
+    { name: 'brown', file: '/assets/img/avatar-brown-small.png' },
   ];
 
   return response.status(200).json({ avatars });

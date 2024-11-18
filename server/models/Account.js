@@ -7,12 +7,7 @@
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 
-const defaultAvatars = [
-  '/assets/img/avatar-grey.png',
-  '/assets/img/avatar-blue.png',
-  '/assets/img/avatar-punk.png',
-  '/assets/img/avatar-purple.png',
-]
+
 
 /* When generating a password hash, bcrypt (and most other password hash
    functions) use a "salt". The salt is simply extra data that gets hashed
@@ -42,7 +37,7 @@ const AccountSchema = new mongoose.Schema({
   },
   avatar: {
     type: String,
-    default: defaultAvatars[0],
+    default: '/assets/img/avatar-grey-small.png',
     required: true,
   },
   previum: {
@@ -99,9 +94,10 @@ AccountSchema.statics.checkUsername = async (username, callback) => {
   }
 
 };
-AccountSchema.statics.changeAvatar = async (username, avatar, callback) => {
+AccountSchema.statics.changeAvatar = async (_id, avatar, callback) => {
   try {
-    const doc = await AccountModel.findOneAndUpdate({ username }, { avatar }).exec();
+    console.log(_id, avatar);
+    const doc = await AccountModel.findOneAndUpdate({ _id }, { avatar }).exec();
     if (!doc) {
       return callback();
     }

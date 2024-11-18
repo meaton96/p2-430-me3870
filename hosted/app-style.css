@@ -23,14 +23,19 @@ body {
 }
 
 /*Navbar*/
-
+.nav-avatar {
+    width: 48%;
+    display: flex;
+    justify-content: space-between;
+    align-items: left;
+}
 .nav-container {
     width: 100%;
     max-width: 25%;
     background-color: var(--background-color);
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
     padding-top: 2rem;
     height: 105vh;
 
@@ -54,7 +59,7 @@ body {
     list-style: none;
     padding: 0;
     margin: 0;
-    width: 70%;
+    width: 55%;
 }
 
 .nav-list li {
@@ -96,8 +101,7 @@ body {
     color: white;
 }
 
-/* Account Settings */
-
+/* Avatar Section */
 .settings-title {
     font-weight: 600;
     font-size: 1.5rem;
@@ -114,3 +118,118 @@ body {
 .column {
     padding: 0 !important;
 }
+.avatar-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.settings-avatar-frame {
+    width: 12rem;
+    height: 12rem;
+    border: var(--primary-color) 2px solid;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.settings-avatar {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+
+.avatar-button-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.settings-avatar-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.settings-avatar-button:hover {
+    background-color: var(--accent-color);
+}
+
+.chose-avatar-image {
+    
+    transition: transform 0.2s ease;
+   
+    object-fit: cover; /* Keeps image aspect ratio intact */
+    cursor: pointer; /* Indicates clickable element */
+}
+
+.chose-avatar-image:hover {
+    border-radius: 50%; /* Circular border */
+    border: 3px solid var(--primary-color); /* Primary border */
+    transform: scale(1.1); /* Slightly grow the image on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Add a subtle shadow effect */
+}
+
+
+/* Premium Section */
+.premium-section {
+    margin-top: 2rem;
+}
+
+.premium-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.toggle-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-top: 1px solid var(--secondary-color);
+    border-bottom: 1px solid var(--secondary-color);
+}
+
+.toggle-container input[type="checkbox"] {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+/* Security Section */
+.security-section {
+    margin-top: 2rem;
+}
+
+.security-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.field {
+    margin-bottom: 1rem;
+}
+
+.settings-save-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.settings-save-button:hover {
+    background-color: var(--accent-color);
+}
+

@@ -7,7 +7,7 @@ const router = (app) => {
   app.post('/login', mid.requiresSecure, mid.requiresLogout, controllers.Account.login);
   app.get('/logout', mid.requiresLogin, controllers.Account.logout);
   app.post('/signup', mid.requiresSecure, mid.requiresLogout, controllers.Account.signup);
-  app.post('/changeAvatar', controllers.Account.changeAvatar);
+  app.post('/changeAvatar', mid.requiresLogin, controllers.Account.changeAvatar);
   app.post('/validateUsername', mid.requiresSecure, mid.requiresLogout, controllers.Account.validateUsername);
 
   // Avatar routes

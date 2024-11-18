@@ -11,6 +11,21 @@ import Recipes from './outlets/Recipes.jsx';
 
 const App = () => {
 
+    const [avatar, setAvatar] = useState("/assets/img/avatar-grey-small.png");
+
+    useEffect(() => {
+        const getAvatar = async () => {
+            try {
+                const res = await helper.sendGet("/getAvatar");
+                if (res.avatar) {
+                    setAvatar(res.avatar);
+                }
+            } catch (err) {
+                console.error("Error getting avatar:", err);
+            }
+        };
+        getAvatar();
+    }, [avatar]);
     
     const [currentPage, setCurrentPage] = useState('AccountSettings');
 
@@ -19,7 +34,11 @@ const App = () => {
             case "Feed":
                 return <Feed />;
             case "AccountSettings":
-                return <AccountSettings />;
+                return <AccountSettings 
+                            avatar={avatar}
+                            setAvatar={setAvatar}
+                        />;
+                
             case "Pantry":
                 return <Pantry />;
             case "Recipes":
@@ -32,7 +51,10 @@ const App = () => {
     return (
         <>
         <div className='columns'>
-            <Nav setCurrentPage={setCurrentPage} />
+            <Nav 
+                setCurrentPage={setCurrentPage} 
+                avatar={avatar}
+            />
             <div className='column is-three-quarters'>
                 {renderPage()}
             </div>

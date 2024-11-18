@@ -3,9 +3,9 @@ import { sendGet, sendPost } from "../helper";
 
 
 
-const SelectAvatar = ({ username  }) => {
+const SelectAvatar = ({gridMin, forward, onClose, setAvatar}) => {
     const [avatars, setAvatars] = useState([]);
-    const [curAvatar, setCurAvatar] = useState({ file: "/assets/img/avatar-grey.png" });
+    const [curAvatar, setCurAvatar] = useState({ file: "/assets/img/avatar-grey-small.png" });
 
     useEffect(() => {
         const getAvatars = async () => {
@@ -26,9 +26,9 @@ const SelectAvatar = ({ username  }) => {
 
     }, []);
 
-    const setAvatar = async () => {
+    const _setAvatar = async () => {
         try {
-            const res = await sendPost("/changeAvatar", { username, avatar: curAvatar.file });
+            const res = await sendPost("/changeAvatar", { avatar: curAvatar.file });
             if (res.avatar) {
                 console.log("Avatar set to:", res.avatar);
             }
@@ -50,20 +50,29 @@ const SelectAvatar = ({ username  }) => {
                 </div>
                 <div className="column is-half">
 
-                    <div className="grid is-col-min-1">
+                    <div className={`grid ${gridMin}`}>
                         {avatars.map((avatar) => (
                             <div key={avatar} className="cell">
-                                <figure className="image is-96x96">
-                                    <img src={avatar.file} alt={avatar.name} onClick={() => setCurAvatar(avatar)} />
-                                </figure>
+                                <button>
+                                    <img 
+                                        className="chose-avatar-image"
+                                        src={avatar.file} 
+                                        alt={avatar.name} 
+                                        onClick={() => setCurAvatar(avatar)} 
+                                    />
+                                </button>
                             </div>))}
                     </div>
                 </div>
             </div>
             <div className="is-flex is-justify-content-center">
                 <button className="button is-primary" onClick={() => {
-                    setAvatar();
-                     window.location = '/app';
+                    _setAvatar();
+                    setAvatar(curAvatar.file);
+                    if (forward)
+                        window.location = '/app';
+                    else
+                        onClose();
                 }}>
                     Select Avatar</button>
             </div>

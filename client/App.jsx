@@ -66,7 +66,7 @@ const App = () => {
     return (
         <Suspense fallback={<div>Loading...</div>}>
             <div className='columns '>
-                
+
                 <Nav
                     setCurrentPage={setCurrentPage}
                     avatar={avatar}

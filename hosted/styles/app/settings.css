@@ -165,3 +165,11 @@
 .settings-save-button:hover {
     background-color: var(--accent-color);
 }
+
+
+@media screen and (max-width: 768px) {
+    .has-text-centered-mobile {
+        text-align: center;
+    }
+    
+}

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkp2_430_me3870=self.webpackChunkp2_430_me3870||[]).push([[474],{474:(e,l,n)=>{n.r(l),n.d(l,{default:()=>u});var t=n(540);const u=function(){return t.createElement("div",null,t.createElement("h1",null,"Posts by people you are following"))}}}]);

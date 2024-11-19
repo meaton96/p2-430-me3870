@@ -1,6 +1,49 @@
 import React from "react";
+const { Suspense, lazy } = React;
+const Discover = lazy(() => import("../feeds/Discover.jsx"));
+const FollowingFeed = lazy(() => import("../feeds/FollowingFeed.jsx"));
+const MyPosts = lazy(() => import("../feeds/MyPosts.jsx"));
+
+
+const feeds = {
+    discover: 'discover',
+    following: 'following',
+    myPosts: 'myPosts'
+};
 
 const Feed = () => {
+
+    const [feed, setFeed] = React.useState('discover');
+
+
+    const getFeed = () => {
+        switch (feed) {
+            case feeds.discover:
+                return <Discover />;
+            case feeds.following:
+                return <FollowingFeed />;
+            case feeds.myPosts:
+                return <MyPosts />;
+            default:
+                return <Discover />;
+        }
+    }
+
+    const handleFeedChange = (feedIndex) => {
+        switch (feedIndex) {
+            case 0:
+                setFeed(feeds.discover);
+                break;
+            case 1:
+                setFeed(feeds.following);
+                break;
+            case 2:
+                setFeed(feeds.myPosts);
+                break;
+            default:
+                setFeed(feeds.discover);
+        }
+    }
 
     return (
         <div>
@@ -12,12 +55,32 @@ const Feed = () => {
                 </div>
                 <div class="tabs">
                     <ul>
-                        <li class="is-active"><a>Discover</a></li>
-                        <li><a>Following</a></li>
-                        <li><a>My Posts</a></li>
+                        <li
+                            class={(feed === feeds.discover ? "is-active" : "")}
+                            onClick={() => handleFeedChange(0)}
+                        >
+                            <a>Discover</a>
+                        </li>
+                        <li
+                            class={(feed === feeds.following ? "is-active" : "")}
+                            onClick={() => handleFeedChange(1)}
+                        >
+                            <a>Following</a>
+                        </li>
+                        <li
+                            class={(feed === feeds.myPosts ? "is-active" : "")}
+                            onClick={() => handleFeedChange(2)}
+                        >
+                            <a>My Posts</a>
+                        </li>
                     </ul>
                 </div>
             </header>
+            <Suspense fallback={<div>Loading...</div>}>
+                <div className="p-4">
+                    {getFeed()}
+                </div>
+            </Suspense>
         </div>
     );
 };

@@ -45,7 +45,7 @@ const AccountSettings = ({ avatar, setAvatar }) => {
 
     return (
         <div>
-            <div className="mt-2 ml-1">
+            <div className="mt-2 ml-1 has-text-centered-mobile">
                 <h1 className="settings-title m-2 pt-3">Account Settings</h1>
             </div>
             <hr className="settings-hr" />

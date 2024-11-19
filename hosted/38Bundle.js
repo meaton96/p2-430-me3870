@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkp2_430_me3870=self.webpackChunkp2_430_me3870||[]).push([[38],{38:(e,t,n)=>{n.r(t),n.d(t,{default:()=>s});var l=n(540);const s=function(){return l.createElement("div",null,l.createElement("h1",null,"Discover New Posts"))}}}]);

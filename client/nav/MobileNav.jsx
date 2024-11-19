@@ -48,6 +48,16 @@ const MobileNav = ({icons, setIsNavModalOpen, setCurrentPage, avatar}) => {
                         </button>
                     </li>
                     <li>
+                    <button
+                            onClick={() => {
+                                setCurrentPage("AccountSettings");
+                                setIsNavModalOpen(false);
+                            }}
+                        >
+                           <FontAwesomeIcon icon={icons.faGear}/>
+                        </button>
+                    </li>
+                    <li>
                         <button
                             onClick={() => {
                                 setCurrentPage("Pantry");

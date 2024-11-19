@@ -4,13 +4,10 @@ module.exports = {
     entry: {
         app: {
             import: './client/App.jsx',
-            dependOn: 'shared',
         },
         login: {
             import:'./client/login/login.jsx',
-            dependOn: 'shared',
         },
-        // battle: './client/battle.jsx',
     },
     module: {
         rules: [
@@ -35,9 +32,7 @@ module.exports = {
         filename: '[name]Bundle.js',
     },
     optimization: {
-        splitChunks: {
-            chunks: 'all', 
-        },
+        splitChunks: false,
     },
     devServer: {
         hot: true,

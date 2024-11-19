@@ -1,10 +1,12 @@
-
+const getCssVariable = (variableName) => {
+  return getComputedStyle(document.documentElement).getPropertyValue(variableName).trim();
+};
 const handleError = (message) => {
-   console.log(message);
-  };
-  
+  console.log(message);
+};
+
 const sendPost = async (url, data, handler) => {
- // console.log(data);
+  // console.log(data);
   //console.log(JSON.stringify(data));
   const response = await fetch(url, {
     method: "POST",
@@ -13,10 +15,10 @@ const sendPost = async (url, data, handler) => {
     },
     body: JSON.stringify(data),
   });
-  
+
 
   const result = await response.json();
- // console.log(result);
+  // console.log(result);
   // Hide any previous messages
   // document.getElementById("domoMessage").classList.add("hidden");
 
@@ -50,7 +52,7 @@ const sendGet = async (url, handler) => {
   if (result.redirect) {
     window.location = result.redirect;
   }
-  
+
   if (result.error) {
     handleError(result.error);
   }
@@ -61,7 +63,7 @@ const sendGet = async (url, handler) => {
 
   return result;
 }
-    
+
 
 const hideError = () => {
   // document.querySelector('#domoMessage').classList.add('hidden');
@@ -72,4 +74,5 @@ module.exports = {
   sendPost,
   hideError,
   sendGet,
+  getCssVariable,
 };

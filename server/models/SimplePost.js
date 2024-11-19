@@ -32,7 +32,7 @@ const SimplePostSchema = new mongoose.Schema({
 
 SimplePostSchema.statics.toAPI = (doc) => ({
     content: doc.content,
-    author: doc.owner,
+    author: doc.author,
     _id: doc._id,
 });
 

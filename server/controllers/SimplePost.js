@@ -7,16 +7,19 @@ const MAX_CHAR = 300;
 const makePost = async (req, res) => {
 
     if (!req.body.content) {
-        return res.status(400).json({ error: 'content is required' });
+        return res.status(400).json({ error: 'content and author are required' });
     }
     else if (req.body.content.length > MAX_CHAR) {
         return res.status(400).json({ error: 'content is too long' });
     }
 
+    const username = req.session.account.username;
+
     const postData = {
         content: req.body.content,
         visibility: req.body.visibility || 'public',
         owner: req.session.account._id,
+        author: `${username}`,
     };
 
     try {

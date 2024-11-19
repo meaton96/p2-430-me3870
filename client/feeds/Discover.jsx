@@ -28,8 +28,7 @@ const Discover = () => {
 
     return (
         <div>
-            <h1>Discover New Posts</h1>
-            <div className="is-flex flex-direction-column is-justify-content-center">
+            <div className="is-flex is-flex-direction-column is-justify-content-center">
                 {
                     posts.length > 0 ? posts.map((post) => (
                         <div key={post._id} className="card">

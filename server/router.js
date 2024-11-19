@@ -17,7 +17,8 @@ const router = (app) => {
   
   // Avatar routes
   app.get('/getDefaultAvatars', controllers.Account.getDefaultAvatars);
-  app.get('/getAvatar', controllers.Account.getAvatar);
+  app.get('/getAvatar', mid.requiresLogin, controllers.Account.getUserAvatar);
+  app.get('/getAvatar/:id', controllers.Account.getAvatarById);
 
   //simple post routes (twitter)
   app.post('/simplePost', mid.requiresLogin, controllers.SimplePost.makePost);

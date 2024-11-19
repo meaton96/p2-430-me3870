@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
+import { UserContext } from "../utils/UserContext.js";
 import ChangeAvatarModal from "../account-settings/ChangeAvatarModal.jsx";
 import ChangeAvatarSection from "../account-settings/ChangeAvatarSection.jsx";
 import PremiumSection from "../account-settings/PremiumSection.jsx";
@@ -6,25 +7,12 @@ import SecuritySection from "../account-settings/SecuritySection.jsx";
 import helper from "../utils/helper.js";
 
 const AccountSettings = ({ avatar, setAvatar }) => {
+    const { username } = useContext(UserContext);
     const [premiumMode, setPremiumMode] = useState(false);
     const [changeAvatarModalActive, setChangeAvatarModalActive] = useState(false);
     const [loading, setLoading] = useState(true);
-    const [username, setUsername] = useState("");
 
-    useEffect(() => {
-        const getUsername = async () => {
-            try {
-                const res = await helper.sendGet("/getUsername");
-                console.log(res);
-                if (res.username !== undefined) {
-                    setUsername(res.username);
-                }
-            } catch (err) {
-                console.error("Error getting username:", err);
-            }
-        };
-        getUsername();
-    }, []);
+    
 
     useEffect(() => {
         const getPremiumMode = async () => {
@@ -68,7 +56,7 @@ const AccountSettings = ({ avatar, setAvatar }) => {
             <div className="settings-container">
 
                 <div className="container">
-                    <section className="section py-0">
+                    <section className="section pb-0">
                         <h1 className="settings-title">{username}</h1>
                     </section>
 

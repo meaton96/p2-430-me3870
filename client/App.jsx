@@ -11,6 +11,7 @@ const Pantry = React.lazy(() => import('./outlets/Pantry.jsx'));
 const Recipes = React.lazy(() => import('./outlets/Recipes.jsx'));
 const NewPostModal = React.lazy(() => import('./new-post/NewPostModal.jsx'));
 const Profile = React.lazy(() => import('./outlets/Profile.jsx'));
+import { UserProvider } from './utils/UserContext.js';
 
 const App = () => {
 
@@ -35,6 +36,7 @@ const App = () => {
     const handlePost = async (post) => {
         try {
             const res = await helper.sendPost("/simplePost", post);
+
             console.log(res);
         }
         catch (err) {
@@ -89,9 +91,19 @@ const App = () => {
     );
 };
 
+const Root = () => {
+    return (
+        <UserProvider>
+            <App />
+        </UserProvider>
+    );
+}
+
 const init = () => {
     const root = createRoot(document.querySelector('#app'));
-    root.render(<App />);
+    root.render(
+        <Root/>
+    );
 }
 
 window.onload = init;

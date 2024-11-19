@@ -104,9 +104,9 @@ const signup = async (request, response) => {
     return response.status(500).json({ error: `An error occurred: ${err.message}` });
   }
 };
-const getAvatar = async (request, response) => {
-  const id = `${request.session.account._id}`;
 
+
+const _getAvatarById = async (id, response) => {
   if (!id) {
     return response.status(400).json({ error: 'id is required' });
   }
@@ -121,6 +121,21 @@ const getAvatar = async (request, response) => {
     }
     return response.status(200).json({ avatar });
   });
+
+};
+const getUserAvatar = async (request, response) => {
+  const id = `${request.session.account._id}`;
+
+  return _getAvatarById(id, response);
+
+};
+const getAvatarById = async (request, response) => {
+
+  if (!request.params.id) {
+    return response.status(400).json({ error: 'id is required' });
+  }
+  return _getAvatarById(request.params.id, response);
+
 };
 const setPremium = async (request, response) => {
 
@@ -192,7 +207,7 @@ const changePassword = async (req, res) => {
 
 const getUsername = async (req, res) => {
   const id = req.params.id || req.session.account._id;
-  console.log(id);
+
   if (!id) {
     return res.status(400).json({ error: 'id is required' });
   }
@@ -220,9 +235,10 @@ module.exports = {
   validateUsername,
   getDefaultAvatars,
   changeAvatar: setAvatar,
-  getAvatar,
+  getUserAvatar,
   setPremium,
   getPremium,
   changePassword,
   getUsername,
+  getAvatarById,
 };

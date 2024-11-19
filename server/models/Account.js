@@ -67,10 +67,10 @@ AccountSchema.statics.getUsername = async (_id, callback) => {
     
     const doc = await AccountModel.findOne({ _id }, 'username').exec();
     if (!doc) {
-      console.log(doc);
+      
       return callback(null, null);
     }
-    console.log(doc);
+    
     return callback(null, doc.username);
 
   }

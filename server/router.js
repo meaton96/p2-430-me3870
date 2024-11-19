@@ -17,6 +17,9 @@ const router = (app) => {
   app.get('/getDefaultAvatars', controllers.Account.getDefaultAvatars);
   app.get('/getAvatar', controllers.Account.getAvatar);
 
+  //simple post routes (twitter)
+  app.post('/simplePost', mid.requiresLogin, controllers.SimplePost.makePost);
+
 
   // Domo routes
   // app.get('/getDomos', mid.requiresLogin, controllers.Domo.getDomos);

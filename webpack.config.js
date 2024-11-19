@@ -2,8 +2,14 @@ const path = require('path');
 
 module.exports = {
     entry: {
-        app: './client/App.jsx',
-        login: './client/login/login.jsx',
+        app: {
+            import: './client/App.jsx',
+            dependOn: 'shared',
+        },
+        login: {
+            import:'./client/login/login.jsx',
+            dependOn: 'shared',
+        },
         // battle: './client/battle.jsx',
     },
     module: {
@@ -27,6 +33,11 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'hosted'),
         filename: '[name]Bundle.js',
+    },
+    optimization: {
+        splitChunks: {
+            chunks: 'all', 
+        },
     },
     devServer: {
         hot: true,

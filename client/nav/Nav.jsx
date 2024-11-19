@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import helper from "../utils/helper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse, faUser, faUtensils, faDoorClosed } from "@fortawesome/free-solid-svg-icons";
+import { faHouse, faUser, faUtensils, faDoorClosed, faGear, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
 
-const Nav = ({ avatar, setCurrentPage }) => {
-    
+const Nav = ({ avatar, setCurrentPage, setNewPostModalActive }) => {
+
 
     return (
         <div
@@ -25,7 +25,7 @@ const Nav = ({ avatar, setCurrentPage }) => {
                 </li>
                 <li>
                     <button onClick={() => setCurrentPage("AccountSettings")}>
-                        <FontAwesomeIcon icon={faUser} />
+                        <FontAwesomeIcon icon={faGear} />
                         Account Settings
                     </button>
                 </li>
@@ -39,6 +39,12 @@ const Nav = ({ avatar, setCurrentPage }) => {
                     <button onClick={() => setCurrentPage("Recipes")}>
                         <FontAwesomeIcon icon={faUtensils} />
                         My Recipes
+                    </button>
+                </li>
+                <li>
+                    <button className="post-btn" onClick={() => setNewPostModalActive(true)}>
+                        <FontAwesomeIcon icon={faPenToSquare} />
+                        New Post
                     </button>
                 </li>
             </ul>

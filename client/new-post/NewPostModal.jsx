@@ -1,0 +1,101 @@
+import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLock } from "@fortawesome/free-solid-svg-icons";
+
+const MAX_CHAR = 300;
+
+const NewPostModal = ({ isActive, onClose, onPost, avatar }) => {
+    const [postText, setPostText] = useState("");
+    // const [isPrivate, setIsPrivate] = useState(false);
+    const [charactersRemaining, setCharactersRemaining] = useState(MAX_CHAR);
+    const [visibility, setVisibility] = useState("public");
+
+    const handlePost = () => {
+        if (!postText.trim()) return;
+        onPost({ text: postText, visibility });
+        setPostText("");
+        setVisibility("public");
+        onClose();
+    };
+
+    return (
+        <div className={`modal ${isActive ? "is-active" : ""}`}>
+
+
+            <div className="modal-background"></div>
+            <div className="modal-card">
+                <header className="modal-card-head">
+                    <div className="modal-btn-container">
+                        <button className="button is-text modal-cancel-btn" onClick={onClose}>
+                            Cancel
+                        </button>
+                        <button className="button modal-post-btn" onClick={handlePost}>
+                            Post
+                        </button>
+                    </div>
+
+                </header>
+                <section className="modal-card-body">
+                    <div className="columns">
+                        <div className="column is-narrow">
+                            <figure className="image is-96x96">
+                                <img src={avatar} alt="avatar" />
+                            </figure>
+                        </div>
+                        <div className="column">
+                            <div className="field">
+                                <div className="control">
+                                    <textarea
+                                        className="textarea"
+                                        placeholder="What's on your mind?"
+                                        value={postText}
+                                        onChange={(e) => {
+                                            const inputText = e.target.value.slice(0, MAX_CHAR);
+                                            setCharactersRemaining(MAX_CHAR - inputText.length);
+                                            setPostText(inputText);
+                                        }}
+                                        maxLength={MAX_CHAR}
+                                    ></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="field modal-visibility-dropdown">
+                        <label className="label">
+                            <div>
+                                Visibility
+                            </div>
+                            <div className="control ml-2">
+                                <div className="select">
+                                    <select
+                                        name="visibility"
+                                        value={visibility}
+                                        onChange={(e) => setVisibility(e.target.value)}
+                                    >
+                                        <option value="public">Public</option>
+                                        <option value="private">Private</option>
+                                        <option value="followers-only">Followers Only</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                </section>
+                <footer className="modal-card-foot">
+                    <div className="modal-btn-container">
+                        <div className="modal-foot-left">
+
+                        </div>
+                        <div className="modal-foot-right">
+                            {charactersRemaining}
+                        </div>
+
+                    </div>
+                </footer>
+            </div>
+        </div>
+    );
+};
+
+export default NewPostModal;

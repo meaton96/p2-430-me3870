@@ -1,17 +1,21 @@
-const helper = require('./utils/helper.js');
 const React = require('react');
-const { useState, useEffect } = React;
+const { useState, useEffect, Suspense } = React;
 const { createRoot } = require('react-dom/client');
-import Footer from './Footer.jsx';
-import Nav from './nav/Nav.jsx';
-import AccountSettings from './outlets/AccountSettings.jsx';
-import Feed from './outlets/Feed.jsx';
-import Pantry from './outlets/Pantry.jsx';
-import Recipes from './outlets/Recipes.jsx';
+const helper = require('./utils/helper.js');
+
+const Footer = React.lazy(() => import('./Footer.jsx'));
+const Nav = React.lazy(() => import('./nav/Nav.jsx'));
+const AccountSettings = React.lazy(() => import('./outlets/AccountSettings.jsx'));
+const Feed = React.lazy(() => import('./outlets/Feed.jsx'));
+const Pantry = React.lazy(() => import('./outlets/Pantry.jsx'));
+const Recipes = React.lazy(() => import('./outlets/Recipes.jsx'));
+const NewPostModal = React.lazy(() => import('./new-post/NewPostModal.jsx'));
 
 const App = () => {
 
     const [avatar, setAvatar] = useState("/assets/img/avatar-grey-small.png");
+    const [newPostModalActive, setNewPostModalActive] = useState(false);
+    const [currentPage, setCurrentPage] = useState('AccountSettings');
 
     useEffect(() => {
         const getAvatar = async () => {
@@ -26,19 +30,22 @@ const App = () => {
         };
         getAvatar();
     }, [avatar]);
-    
-    const [currentPage, setCurrentPage] = useState('AccountSettings');
+
+    const handlePost = (post) => {
+        console.log("New Post:", post);
+    };
 
     const renderPage = () => {
         switch (currentPage) {
             case "Feed":
                 return <Feed />;
             case "AccountSettings":
-                return <AccountSettings 
-                            avatar={avatar}
-                            setAvatar={setAvatar}
-                        />;
-                
+                return <AccountSettings
+                    avatar={avatar}
+                    setAvatar={setAvatar}
+                    setNewPostModalActive={setNewPostModalActive}
+                />;
+
             case "Pantry":
                 return <Pantry />;
             case "Recipes":
@@ -49,18 +56,27 @@ const App = () => {
     };
 
     return (
-        <>
-        <div className='columns'>
-            <Nav 
-                setCurrentPage={setCurrentPage} 
-                avatar={avatar}
-            />
-            <div className='column is-three-quarters'>
-                {renderPage()}
+        <Suspense fallback={<div>Loading...</div>}>
+            <div className='columns'>
+                <Nav
+                    setCurrentPage={setCurrentPage}
+                    avatar={avatar}
+                    setNewPostModalActive={setNewPostModalActive}
+                />
+                <div className='column is-three-quarters'>
+                    {renderPage()}
+                </div>
+                {
+                    <NewPostModal
+                        isActive={newPostModalActive}
+                        onClose={() => setNewPostModalActive(false)}
+                        onPost={handlePost}
+                        avatar={avatar}
+                    />
+                }
             </div>
-        </div>
-        {/* <Footer /> */}
-        </>
+            {/* <Footer /> */}
+        </Suspense>
     );
 };
 

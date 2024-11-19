@@ -44,6 +44,9 @@ const AccountSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  followers: [{ type: mongoose.Schema.ObjectId, ref: 'Account' }],
+  following: [{ type: mongoose.Schema.ObjectId, ref: 'Account' }],
+  feed: [{ type: mongoose.Schema.ObjectId, ref: 'SimplePost' }],
   createdDate: {
     type: Date,
     default: Date.now,
@@ -58,7 +61,86 @@ AccountSchema.statics.toAPI = (doc) => ({
 
 // Helper function to hash a password
 AccountSchema.statics.generateHash = (password) => bcrypt.hash(password, saltRounds);
+/**
+ * Helper to add a follower to the account
+ */
+AccountSchema.statics.addFollower = async function (accountId, followerId) {
+  try {
+    const account = await this.findById(accountId).exec();
+    if (!account.followers.includes(followerId)) {
+      account.followers.push(followerId);
+      await account.save();
+    }
+  } catch (err) {
+    throw new Error(`Error adding follower: ${err.message}`);
+  }
+};
 
+/**
+ * Helper to remove a follower from the account
+ */
+AccountSchema.statics.removeFollower = async function (accountId, followerId) {
+  try {
+    const account = await this.findById(accountId).exec();
+    account.followers = account.followers.filter((id) => !id.equals(followerId));
+    await account.save();
+  } catch (err) {
+    throw new Error(`Error removing follower: ${err.message}`);
+  }
+};
+
+/**
+ * Helper to add an account to the following list
+ */
+AccountSchema.statics.addFollowing = async function (accountId, followingId) {
+  try {
+    const account = await this.findById(accountId).exec();
+    if (!account.following.includes(followingId)) {
+      account.following.push(followingId);
+      await account.save();
+    }
+  } catch (err) {
+    throw new Error(`Error adding to following list: ${err.message}`);
+  }
+};
+
+/**
+ * Helper to remove an account from the following list
+ */
+AccountSchema.statics.removeFollowing = async function (accountId, followingId) {
+  try {
+    const account = await this.findById(accountId).exec();
+    account.following = account.following.filter((id) => !id.equals(followingId));
+    await account.save();
+  } catch (err) {
+    throw new Error(`Error removing from following list: ${err.message}`);
+  }
+};
+
+/**
+ * Check if an account is a follower
+ */
+AccountSchema.statics.isFollower = async function (accountId, followerId) {
+  try {
+    const account = await this.findById(accountId).exec();
+    return account.followers.some((id) => id.equals(followerId));
+  } catch (err) {
+    throw new Error(`Error checking follower status: ${err.message}`);
+  }
+};
+
+
+/**
+ * Check if an account is a friend
+ */
+AccountSchema.statics.isFriend = async function (accountId, friendId) {
+  try {
+    const account = await this.findById(accountId).exec();
+    return account.friends.some((id) => id.equals(friendId));
+  } catch (err) {
+    throw new Error(`Error checking friendship status: ${err.message}`);
+  }
+};
 /* Helper function for authenticating a password against one already in the
    database. Essentially when a user logs in, we need to verify that the password
    they entered matches the one in the database. Since the database stores hashed
@@ -130,7 +212,7 @@ AccountSchema.statics.setPremium = async (_id, premium, callback) => {
       return callback();
     }
     //console.log(doc);
-    return callback(null, doc.premium); 
+    return callback(null, doc.premium);
   } catch (err) {
     return callback(err);
   }
@@ -143,7 +225,7 @@ AccountSchema.statics.getPremium = async (_id, callback) => {
     if (!doc) {
       return callback(null, null);
     }
-    
+
     return callback(null, doc.premium);
   } catch (err) {
     return callback(err);
@@ -153,7 +235,7 @@ AccountSchema.statics.getPremium = async (_id, callback) => {
 // Change the password of an account by username
 AccountSchema.statics.changePassword = async (username, oldPassword, newPassword, callback) => {
   try {
-    
+
     const account = await AccountModel.findOne({ username }).exec();
     if (!account) {
       return callback(null, null); // User not found

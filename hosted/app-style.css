@@ -1,6 +1,6 @@
 :root {
     --primary-color: #FF8C61; /* Warm Peach */
-    --secondary-color: #A8DADC; /* Fresh Mint */
+    --secondary-color: #273F50; 
     --accent-color: #E63946; /* Tomato Red */
     --background-color: #F8F5F2; /* Soft Beige */
     --text-color-dark: #333533; /* Charcoal Grey */
@@ -86,11 +86,20 @@ body {
     width: 90%;
     margin-left: auto;
 }
+.post-btn {
+    margin-top: 4rem;
+    background-color: var(--primary-color) !important;
+    color: white !important;
+}
 
 .nav-list li button:hover {
+    
     background-color: var(--hover-color);
     color: white;
     transform: scale(1.05);
+}
+.post-btn:hover {
+    background-color: var(--accent-color) !important;
 }
 
 .nav-list li button i {
@@ -154,7 +163,7 @@ body {
     color: white;
     border: none;
     padding: 0.5rem 1rem;
-    border-radius: 8px;
+    border-radius: 20px;
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -243,7 +252,7 @@ body {
     color: white;
     border: none;
     padding: 0.5rem 1rem;
-    border-radius: 8px;
+    border-radius: 20px;
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -253,3 +262,98 @@ body {
     background-color: var(--accent-color);
 }
 
+
+/* Modals */
+
+.modal-card-head {
+    padding: 1rem 1rem;
+    background-color: var(--secondary-color);
+    box-shadow: none;
+}
+.modal-card {
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    border: var(--highlight-color) 1px solid;
+}
+
+.modal-card-body {
+    background-color: var(--secondary-color);
+    border-bottom: var(--highlight-color) 1px solid;
+    padding: 3rem 1rem 0rem 3rem;
+}
+.modal-card-body textarea {
+    background-color: var(--secondary-color);
+    width: 100%;
+    height: 10rem;
+    resize: none;
+    border: none;
+    box-shadow: none;
+}
+.modal-card-body textarea:hover, 
+.modal-card-body textarea:focus, 
+.modal-card-body textarea:active {
+    background-color: var(--secondary-color) !important; 
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important; 
+    color: var(--text-color-light) !important;
+}
+
+
+.modal-card-foot {
+    color: var(--text-color-light);
+    padding: .5rem .5rem;
+    background-color: var(--secondary-color);
+}
+.modal-post-btn {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+    border-radius: 20px;
+}
+.modal-post-btn:hover {
+    background-color: var(--accent-color) !important;
+}
+.modal-cancel-btn {
+    text-decoration-line: none;
+    border-radius: 20px;
+    color: var(--text-color-light);
+}
+.modal-cancel-btn:hover {
+    background-color: var(--accent-color) !important;
+    
+}
+
+.modal-btn-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .1rem 1rem;
+    width: 100%;
+}
+.modal-visibility-dropdown label{
+    color: var(--text-color-light) !important;
+    display: flex;
+    align-items: center;
+}
+.modal-btn-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+}
+.select select{
+    background-color: #315065;
+    border: none;
+    outline: none;
+    color: var(--text-color-light);
+}
+.select select:hover {
+    background-color: #446f8c !important;
+}
+
+.select select:hover, .select select:focus, .select select:active {
+    background-color: #315065 !important;
+    border: none !important;
+    outline: none !important;
+    color: var(--text-color-light) !important;
+}

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import SelectAvatar from "../login/SelectAvatar.jsx";
 import helper from "../utils/helper.js";
 
-const ChangeAvatarModal = ({ onClose, setAvatar }) => {
+const ChangeAvatarModal = ({ onClose, setAvatar, avatar }) => {
 
     return (
         <div className="modal is-active">
@@ -19,6 +19,7 @@ const ChangeAvatarModal = ({ onClose, setAvatar }) => {
                         forward={false}
                         onClose={onClose}
                         setAvatar={setAvatar}
+                        avatar={avatar}
                     />
                 </section>
             </div>

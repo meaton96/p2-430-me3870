@@ -76,6 +76,7 @@ const AccountSettings = ({ avatar, setAvatar }) => {
                 <ChangeAvatarModal
                     onClose={() => setChangeAvatarModalActive(false)}
                     setAvatar={setAvatar}
+                    avatar={avatar}
                 />
             )}
         </div>

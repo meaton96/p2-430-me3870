@@ -3,9 +3,9 @@ import { sendGet, sendPost } from "../utils/helper";
 
 
 
-const SelectAvatar = ({gridMin, forward, onClose, setAvatar}) => {
+const SelectAvatar = ({gridMin, forward, onClose, setAvatar, avatar}) => {
     const [avatars, setAvatars] = useState([]);
-    const [curAvatar, setCurAvatar] = useState({ file: "/assets/img/avatar-grey-small.png" });
+    const [curAvatar, setCurAvatar] = useState(avatar? {file:avatar} :  { file: "/assets/img/avatar-grey-small.png" });
 
     useEffect(() => {
         const getAvatars = async () => {

@@ -6,7 +6,7 @@ const Feed = () => {
         <div>
             <header className="feed-header">
                 <div className="is-flex is-justify-content-center py-5">
-                    <figure className="image is-64x64">
+                    <figure className="image is-48x48">
                         <img src="/assets/img/logo-120p.png" alt="logo" />
                     </figure>
                 </div>

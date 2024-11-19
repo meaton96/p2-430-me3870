@@ -70,9 +70,6 @@
     margin-left: auto;
 }
 
-
-
-
 .post-btn {
     margin-top: 4rem;
     background-color: var(--primary-color) !important;
@@ -98,8 +95,79 @@
 .nav-list li button:hover i {
     color: white;
 }
+
 .is-pointer {
     cursor: pointer;
+}
+
+.hamburger {
+    display: none;
+}
+/* Mobile Modal Navigation */
+.nav-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.nav-modal-content {
+    width: 75%; /* Matches desktop nav width */
+    max-width: 160px;
+    background-color: var(--background-color);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-right: 1px solid var(--secondary-color);
+    padding-top: 1rem;
+    position: relative;
+    overflow-y: auto;
+}
+
+.close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--text-color-dark);
+    cursor: pointer;
+}
+
+.nav-avatar .avatar-container {
+    max-width: 48px; /* Smaller avatar */
+    max-height: 48px;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+}
+
+.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem;
+    width: 100%;
+}
+
+.nav-list li {
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+
+
+.nav-list li button:hover {
+    background-color: var(--hover-color);
+    color: white;
+    transform: scale(1.05);
 }
 
 @media screen and (max-width: 1740px) {
@@ -128,7 +196,6 @@
     }
 }
 
-/* For screens 1100px and below */
 @media screen and (max-width: 1100px) {
     .nav-list li button {
         padding: 0.5rem;
@@ -163,4 +230,23 @@
     .hide-on-large-desktop {
         display: block;
     }
+}
+
+@media screen and (max-width: 768px) {
+    .hamburger {
+        display: block;
+        position: absolute;
+        left: 1rem;
+        top: 1rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--primary-color);
+    }
+    
+}
+@media screen and (min-width: 768px) {
+    .nav-modal {
+        display: none;
+    }
+    
 }

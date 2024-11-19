@@ -65,13 +65,14 @@ const App = () => {
 
     return (
         <Suspense fallback={<div>Loading...</div>}>
-            <div className='columns'>
+            <div className='columns '>
+                
                 <Nav
                     setCurrentPage={setCurrentPage}
                     avatar={avatar}
                     setNewPostModalActive={setNewPostModalActive}
                 />
-                <div className='column is-three-quarters'>
+                <div className='column is-three-quarters is-full-height'>
                     {renderPage()}
                 </div>
                 {

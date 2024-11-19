@@ -48,18 +48,22 @@ const FeedPost = ({ post }) => {
     //console.log(post);
     return (
         <div className="post-container px-4 py-1 my-1">
+
             <div className="is-flex">
                 <div className="is-narrow mr-1">
                     <figure className="image is-48x48">
                         <img src={avatar} alt='avatar' />
                     </figure>
                 </div>
-                <div className="">
-                    <div className=""><span className="has-text-weight-bold">@{post.author}</span> - {age}</div>
-                    <div className="">{post.content}</div>
+                <div className="is-flex-grow-1">
+                    <div >
+                        <div className=""><span className="has-text-weight-bold">@{post.author}</span> - {age}</div>
+                        <div className="">{post.content}</div>
+                    </div>
+                    <FeedPostFooter post={post} />
                 </div>
+
             </div>
-            <FeedPostFooter post={post} />
         </div>
     );
 };

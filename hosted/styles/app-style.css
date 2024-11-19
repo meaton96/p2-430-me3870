@@ -41,8 +41,10 @@ body {
 }
 
 .avatar-container {
+    max-width: 96px;
+    max-height: 96px;
     margin-bottom: 2rem;
-    text-align: center;
+    
 }
 
 .avatar-image {
@@ -85,50 +87,7 @@ body {
     margin-left: auto;
 }
 
-@media screen and (max-width: 1740px) {
-    .nav-list {
-        width: 65%;
-    }
-}
-@media screen and (max-width: 1450px) {
-    .nav-list {
-        width: 75%;
-    }
-}
-@media screen and (max-width: 1300px) {
-    .nav-list {
-        width: 85%;
-    }
-    .nav-list li button {
-        padding: 0.75rem .75rem;
-    }
-    .nav-container {
-        max-width: 33%;
-    }
-}
-/* For screens 1100px and below */
-@media screen and (max-width: 1100px) {
-    .nav-list li button {
-        padding: 0.5rem; /* Adjust padding to fit icons nicely */
-        justify-content: center; /* Center the icons in the buttons */
-        border-radius: 50%;
-        width: 50px; /* Set a fixed width for the buttons */
-        height: 50px; /* Set a fixed height for the buttons */
-    }
 
-    .hide-at-1100 {
-        display: none; /* Hides the text spans */
-    }
-
-    .nav-container {
-        max-width: 15%; /* Reduce navbar width for smaller screens */
-        padding-top: 1rem; /* Adjust padding */
-    }
-
-    .avatar-container {
-        display: none; /* Optionally hide the avatar for a cleaner look */
-    }
-}
 
 
 .post-btn {
@@ -420,3 +379,51 @@ body {
 
 
 
+@media screen and (max-width: 1740px) {
+    .nav-list {
+        width: 65%;
+    }
+}
+@media screen and (max-width: 1500px) {
+    .nav-list {
+        width: 75%;
+    }
+}
+@media screen and (max-width: 1300px) {
+    .nav-list {
+        width: 85%;
+    }
+    .nav-list li button {
+        padding: 0.75rem .75rem;
+    }
+    .nav-container {
+        max-width: 33%;
+    }
+}
+/* For screens 1100px and below */
+@media screen and (max-width: 1100px) {
+    .nav-list li button {
+        padding: 0.5rem; 
+        justify-content: center;
+        border-radius: 50%;
+        width: 50px; 
+        height: 50px; 
+    }
+
+    .hide-at-1100 {
+        display: none; 
+    }
+
+    .nav-container {
+        max-width: 15%; 
+        padding-top: 1rem; 
+    }
+
+    .avatar-container {
+        width: 50px; 
+        height: 50px; 
+    }
+    .post-btn {
+        margin-top: 0rem;
+    }
+}

@@ -11,10 +11,12 @@ const Nav = ({ avatar, setCurrentPage, setNewPostModalActive }) => {
         <div
             className="nav-container px-3"
         >
-            <div className="nav-avatar">
-                <figure className="avatar-container image is-96x96">
-                    <img src={avatar} alt="avatar" className="avatar-image" />
-                </figure>
+            <div className="nav-avatar is-flex">
+                <div>
+                    <figure className="avatar-container">
+                        <img src={avatar} alt="avatar" className="avatar-image" />
+                    </figure>
+                </div>
             </div>
             <ul className="nav-list">
                 <li>

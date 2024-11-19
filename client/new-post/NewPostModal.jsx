@@ -23,9 +23,9 @@ const NewPostModal = ({ isActive, onClose, onPost, avatar }) => {
 
 
             <div className="modal-background"></div>
-            <div className="modal-card">
-                <header className="modal-card-head">
-                    <div className="modal-btn-container">
+            <div className="modal-card post-modal-card">
+                <header className="modal-card-head post-modal-card-head">
+                    <div className="post-modal-btn-container">
                         <button className="button is-text modal-cancel-btn" onClick={onClose}>
                             Cancel
                         </button>
@@ -35,7 +35,7 @@ const NewPostModal = ({ isActive, onClose, onPost, avatar }) => {
                     </div>
 
                 </header>
-                <section className="modal-card-body">
+                <section className="modal-card-body post-modal-card-body">
                     <div className="columns">
                         <div className="column is-narrow">
                             <figure className="image is-96x96">
@@ -60,11 +60,11 @@ const NewPostModal = ({ isActive, onClose, onPost, avatar }) => {
                             </div>
                         </div>
                     </div>
-                    <div className="field modal-visibility-dropdown">
+                    <div className="field post-modal-visibility-dropdown">
                         <label className="label">
                             <div className="mx-1 px-1 is-flex">
                                 <div>Visibility</div>
-                                <div className="mx-1 icon-container">
+                                <div className="mx-1 post-icon-container">
                                     <span>
                                         {visibility === 'private' && <FontAwesomeIcon icon={faLock} />}
                                         {visibility === 'public' && <FontAwesomeIcon icon={faGlobe} />}
@@ -73,7 +73,7 @@ const NewPostModal = ({ isActive, onClose, onPost, avatar }) => {
                                 </div>
                             </div>
                             <div className="control ml-2">
-                                <div className="select">
+                                <div className="select post-select">
                                     <select
                                         name="visibility"
                                         value={visibility}
@@ -90,8 +90,8 @@ const NewPostModal = ({ isActive, onClose, onPost, avatar }) => {
 
 
                 </section>
-                <footer className="modal-card-foot">
-                    <div className="modal-btn-container">
+                <footer className="modal-card-foot post-modal-card-foot">
+                    <div className="post-modal-btn-container">
                         <div className="modal-foot-left">
 
                         </div>

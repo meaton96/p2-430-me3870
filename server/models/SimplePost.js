@@ -34,6 +34,8 @@ SimplePostSchema.statics.toAPI = (doc) => ({
     content: doc.content,
     author: doc.author,
     _id: doc._id,
+    visibility: doc.visibility,
+    createdDate: doc.createdDate,
 });
 
 SimplePostSchema.statics.findByOwner = async (ownerId, limit = 10, skip = 0) => {

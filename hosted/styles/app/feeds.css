@@ -6,3 +6,7 @@
     width: 100%;
     
 }
+
+.post-container {
+    border-bottom: var(--secondary-color) 1px solid;
+}

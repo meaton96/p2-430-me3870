@@ -221,6 +221,18 @@ AccountSchema.statics.getAvatar = async (_id, callback) => {
     return callback(err);
   }
 };
+//get the avatar of an account by account id
+AccountSchema.statics.getAvatarByUsername = async (username, callback) => {
+  try {
+    const doc = await AccountModel.findOne({ username }, 'avatar').exec(); // Fetch only the avatar field
+    if (!doc) {
+      return callback(null, null); // No user found
+    }
+    return callback(null, doc.avatar); // Return the avatar
+  } catch (err) {
+    return callback(err);
+  }
+};
 //set the premium status of an account by account id
 AccountSchema.statics.setPremium = async (_id, premium, callback) => {
   try {

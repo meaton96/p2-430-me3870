@@ -19,7 +19,7 @@ const Discover = () => {
             } catch (err) {
                 console.error("Error getting posts:", err);
             } finally {
-                console.log("Posts loaded.");
+               // console.log("Posts loaded.");
                 setLoading(false);
             }
         };

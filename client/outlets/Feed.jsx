@@ -77,7 +77,7 @@ const Feed = () => {
                 </div>
             </header>
             <Suspense fallback={<div>Loading...</div>}>
-                <div className="p-4">
+                <div className="">
                     {getFeed()}
                 </div>
             </Suspense>

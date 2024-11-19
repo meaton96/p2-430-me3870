@@ -123,6 +123,22 @@ const _getAvatarById = async (id, response) => {
   });
 
 };
+const getAvatarByUsername = async (request, response) => {
+
+  if (!request.params.username) {
+    return response.status(400).json({ error: 'username is required' });  
+  }
+  return Account.getAvatarByUsername(request.params.username, (err, avatar) => {
+    if (err) {
+      console.log(err.message);
+      return response.status(500).json({ error: `An error occurred: ${err.message}` });
+    }
+    if (!avatar) {
+      return response.status(404).json({ error: 'User not found' });
+    }
+    return response.status(200).json({ avatar });
+  });
+};
 const getUserAvatar = async (request, response) => {
   const id = `${request.session.account._id}`;
 
@@ -241,4 +257,5 @@ module.exports = {
   changePassword,
   getUsername,
   getAvatarById,
+  getAvatarByUsername,
 };

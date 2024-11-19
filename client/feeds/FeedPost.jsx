@@ -1,12 +1,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import FeedPostFooter from "./FeedPostFooter.jsx";
 
 const FeedPost = ({ post }) => {
 
-    const [avatar, setAvatar] = React.useState(`/assets/img/avatar-grey-small.png`);
+    const [avatar, setAvatar] = useState(`/assets/img/avatar-grey-small.png`);
 
     useEffect(() => {
-        const getUserAvatar =  async () => {
+        const getUserAvatar = async () => {
             try {
                 const res = await fetch(`/getAvatarByUsername/${post.author}`);
                 const resJson = await res.json();
@@ -25,7 +26,7 @@ const FeedPost = ({ post }) => {
         const now = new Date();
         const createdDate = new Date(createdAt);
 
-       // console.log(now, createdDate);  
+        // console.log(now, createdDate);  
 
         const diffInSeconds = Math.floor((now - createdDate) / 1000);
 
@@ -46,17 +47,19 @@ const FeedPost = ({ post }) => {
     const age = calculateAge(post.createdDate);
     //console.log(post);
     return (
-        <div className="post-container is-flex px-3 py-1">
-            <div className="is-narrow">
-                <figure className="image is-48x48">
-                    <img src={avatar} alt='avatar' />
-                </figure>
+        <div className="post-container px-4 py-1 my-1">
+            <div className="is-flex">
+                <div className="is-narrow mr-1">
+                    <figure className="image is-48x48">
+                        <img src={avatar} alt='avatar' />
+                    </figure>
+                </div>
+                <div className="">
+                    <div className=""><span className="has-text-weight-bold">@{post.author}</span> - {age}</div>
+                    <div className="">{post.content}</div>
+                </div>
             </div>
-            <div className="">
-                <div className="p-1"><span className="has-text-weight-bold">@{post.author}</span> - {age}</div>
-
-                <div className="p-2 ">{post.content}</div>
-            </div>
+            <FeedPostFooter post={post} />
         </div>
     );
 };

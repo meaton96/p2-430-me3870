@@ -1,4 +1,5 @@
 import React from "react";
+
 const { Suspense, lazy } = React;
 const Discover = lazy(() => import("../feeds/Discover.jsx"));
 const FollowingFeed = lazy(() => import("../feeds/FollowingFeed.jsx"));

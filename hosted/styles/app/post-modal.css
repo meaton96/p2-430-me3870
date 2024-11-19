@@ -1,0 +1,122 @@
+
+.post-modal-card-head {
+    padding: 1rem 1rem;
+    background-color: var(--secondary-color);
+    box-shadow: none;
+}
+
+.post-modal-card {
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    border: var(--highlight-color) 1px solid;
+}
+
+.post-modal-card-body {
+    background-color: var(--secondary-color);
+    border-bottom: var(--highlight-color) 1px solid;
+    padding: 3rem 1rem 0rem 3rem;
+}
+
+.post-modal-card-body textarea {
+    background-color: var(--secondary-color);
+    width: 100%;
+    height: 10rem;
+    resize: none;
+    border: none;
+    box-shadow: none;
+}
+
+.post-modal-card-body textarea:hover,
+.post-modal-card-body textarea:focus,
+.post-modal-card-body textarea:active {
+    background-color: var(--secondary-color) !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    color: var(--text-color-light) !important;
+}
+
+
+.post-modal-card-foot {
+    color: var(--text-color-light);
+    padding: .5rem .5rem;
+    background-color: var(--secondary-color);
+}
+
+.modal-post-btn {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+    border-radius: 20px;
+}
+
+.modal-post-btn:hover {
+    background-color: var(--accent-color) !important;
+}
+
+.modal-cancel-btn {
+    text-decoration-line: none;
+    border-radius: 20px;
+    color: var(--text-color-light);
+}
+
+.modal-cancel-btn:hover {
+    background-color: var(--accent-color) !important;
+
+}
+
+.post-modal-btn-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .1rem 1rem;
+    width: 100%;
+}
+
+.post-modal-visibility-dropdown label {
+    color: var(--text-color-light) !important;
+    display: flex;
+    align-items: center;
+}
+
+.post-modal-btn-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+}
+
+.post-select select {
+    background-color: #315065;
+    border: none;
+    outline: none;
+    color: var(--text-color-light);
+}
+
+
+.post-select select:hover,
+.select select:focus,
+.select select:active {
+    background-color: #315065 !important;
+    border: none !important;
+    outline: none !important;
+    color: var(--text-color-light) !important;
+}
+
+.post-select select:hover {
+    background-color: #446f8c !important;
+}
+
+.post-icon-container {
+    width: 20px;
+    text-align: center;
+    display: inline-block;
+}
+
+.feed-header .tabs {
+    --bulma-tabs-border-bottom-color: var(--secondary-color);
+    --bulma-tabs-link-color: var(--text-color-dark);
+    --bulma-tabs-link-hover-color: var(--primary-color);
+    --bulma-tabs-link-active-color: var(--primary-color);
+    --bulma-tabs-link-active-border-bottom-color: var(--accent-color);
+    --bulma-tabs-boxed-link-active-background-color: var(--background-color);
+}

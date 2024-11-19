@@ -1,0 +1,167 @@
+/* Avatar Section */
+.settings-title {
+    color: var(--text-color-dark);
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    margin-left: 1rem;
+}
+
+.settings-hr {
+    height: 1px;
+    /* Set the thickness */
+    background-color: var(--secondary-color);
+    /* Set the color */
+    border: none;
+    /* Remove any default borders */
+    margin: 1rem 0;
+    /* Optional: Add space around it */
+}
+
+.column {
+    padding: 0 !important;
+}
+
+.avatar-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.settings-avatar-frame {
+    width: 12rem;
+    height: 12rem;
+    border: var(--primary-color) 2px solid;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.settings-avatar {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+
+.avatar-button-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.settings-avatar-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.settings-avatar-button:hover {
+    background-color: var(--accent-color);
+}
+
+.settings-container {
+    width: 60%;
+    display: flex;
+    align-items: start;
+}
+
+.chose-avatar-image {
+
+    transition: transform 0.2s ease;
+
+    object-fit: cover;
+    /* Keeps image aspect ratio intact */
+    cursor: pointer;
+    /* Indicates clickable element */
+}
+
+.chose-avatar-image:hover {
+    border-radius: 50%;
+    /* Circular border */
+    border: 3px solid var(--primary-color);
+    /* Primary border */
+    transform: scale(1.1);
+    /* Slightly grow the image on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    /* Add a subtle shadow effect */
+}
+
+
+/* Premium Section */
+.premium-section {
+    margin-top: 2rem;
+}
+
+.premium-title {
+    color: var(--text-color-dark);
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.toggle-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+
+}
+
+.toggle-container input[type="checkbox"] {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+/* Security Section */
+.security-section {
+    margin-top: 2rem;
+
+}
+
+.security-title {
+    color: var(--text-color-dark);
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.field {
+    margin-bottom: 1rem;
+}
+
+.label {
+    color: var(--text-color-dark) !important;
+}
+
+.input {
+    background-color: var(--background-color) !important;
+    color: var(--text-color-dark) !important;
+    border: 1px solid var(--secondary-color) !important;
+
+}
+
+.input::placeholder {
+    color: #494a49 !important;
+}
+
+.settings-save-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.settings-save-button:hover {
+    background-color: var(--accent-color);
+}

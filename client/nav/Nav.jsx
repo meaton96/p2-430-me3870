@@ -11,18 +11,35 @@ const Nav = ({ avatar, setCurrentPage, setNewPostModalActive }) => {
         <div
             className="nav-container px-3"
         >
-            <div className="nav-avatar is-flex">
+            <div className="nav-avatar is-flex hide-at-1100">
                 <div>
                     <figure className="avatar-container">
-                        <img src={avatar} alt="avatar" className="avatar-image" />
+                        <img 
+                            src={avatar} 
+                            alt="avatar" 
+                            className="avatar-image is-pointer" 
+                            onClick={() => setCurrentPage("Profile")}
+                        />
                     </figure>
                 </div>
             </div>
             <ul className="nav-list">
+                <li className="hide-on-large-desktop ">
+                    <button onClick={() => setCurrentPage("Profile")} className="nav-avatar-btn">
+                        <img src={avatar} alt="avatar" className="avatar-image" />
+                        {/* <FontAwesomeIcon icon={faUser} /> */}
+                    </button>
+                </li>
                 <li>
                     <button onClick={() => setCurrentPage("Feed")}>
                         <FontAwesomeIcon icon={faHouse} />
                         <span className="hide-at-1100">Home</span>
+                    </button>
+                </li>
+                <li>
+                    <button onClick={() => setCurrentPage("Profile")}>
+                        <FontAwesomeIcon icon={faUser} />
+                        <span className="hide-at-1100">My Profile</span>
                     </button>
                 </li>
                 <li>

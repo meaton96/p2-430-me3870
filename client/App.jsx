@@ -10,6 +10,7 @@ const Feed = React.lazy(() => import('./outlets/Feed.jsx'));
 const Pantry = React.lazy(() => import('./outlets/Pantry.jsx'));
 const Recipes = React.lazy(() => import('./outlets/Recipes.jsx'));
 const NewPostModal = React.lazy(() => import('./new-post/NewPostModal.jsx'));
+const Profile = React.lazy(() => import('./outlets/Profile.jsx'));
 
 const App = () => {
 
@@ -51,11 +52,12 @@ const App = () => {
                     setAvatar={setAvatar}
                     setNewPostModalActive={setNewPostModalActive}
                 />;
-
             case "Pantry":
                 return <Pantry />;
             case "Recipes":
                 return <Recipes />;
+            case "Profile":
+                return <Profile />;
             default:
                 return <Feed />;
         }

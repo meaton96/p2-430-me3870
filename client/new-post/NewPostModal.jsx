@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLock } from "@fortawesome/free-solid-svg-icons";
+import { faLock, faGlobe, faUsers } from "@fortawesome/free-solid-svg-icons";
 
 const MAX_CHAR = 300;
 
@@ -12,7 +12,7 @@ const NewPostModal = ({ isActive, onClose, onPost, avatar }) => {
 
     const handlePost = () => {
         if (!postText.trim()) return;
-        onPost({ text: postText, visibility });
+        onPost({ content: postText, visibility });
         setPostText("");
         setVisibility("public");
         onClose();
@@ -62,8 +62,15 @@ const NewPostModal = ({ isActive, onClose, onPost, avatar }) => {
                     </div>
                     <div className="field modal-visibility-dropdown">
                         <label className="label">
-                            <div>
-                                Visibility
+                            <div className="mx-1 px-1 is-flex">
+                                <div>Visibility</div>
+                                <div className="mx-1 icon-container">
+                                    <span>
+                                        {visibility === 'private' && <FontAwesomeIcon icon={faLock} />}
+                                        {visibility === 'public' && <FontAwesomeIcon icon={faGlobe} />}
+                                        {visibility === 'followers-only' && <FontAwesomeIcon icon={faUsers} />}
+                                    </span>
+                                </div>
                             </div>
                             <div className="control ml-2">
                                 <div className="select">
@@ -80,6 +87,7 @@ const NewPostModal = ({ isActive, onClose, onPost, avatar }) => {
                             </div>
                         </label>
                     </div>
+
 
                 </section>
                 <footer className="modal-card-foot">

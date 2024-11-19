@@ -3,7 +3,7 @@ const { useState, useEffect, Suspense } = React;
 const { createRoot } = require('react-dom/client');
 const helper = require('./utils/helper.js');
 
-const Footer = React.lazy(() => import('./Footer.jsx'));
+// const Footer = React.lazy(() => import('./Footer.jsx'));
 const Nav = React.lazy(() => import('./nav/Nav.jsx'));
 const AccountSettings = React.lazy(() => import('./outlets/AccountSettings.jsx'));
 const Feed = React.lazy(() => import('./outlets/Feed.jsx'));
@@ -31,8 +31,14 @@ const App = () => {
         getAvatar();
     }, [avatar]);
 
-    const handlePost = (post) => {
-        console.log("New Post:", post);
+    const handlePost = async (post) => {
+        try {
+            const res = await helper.sendPost("/simplePost", post);
+            console.log(res);
+        }
+        catch (err) {
+            console.error("Error posting:", err);
+        }
     };
 
     const renderPage = () => {

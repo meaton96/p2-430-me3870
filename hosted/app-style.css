@@ -347,13 +347,19 @@ body {
     outline: none;
     color: var(--text-color-light);
 }
-.select select:hover {
-    background-color: #446f8c !important;
-}
+
 
 .select select:hover, .select select:focus, .select select:active {
     background-color: #315065 !important;
     border: none !important;
     outline: none !important;
     color: var(--text-color-light) !important;
+}
+.select select:hover {
+    background-color: #446f8c !important;
+}
+.icon-container {
+    width: 20px; 
+    text-align: center; 
+    display: inline-block;
 }

@@ -15,7 +15,7 @@ const makePost = async (req, res) => {
 
     const postData = {
         content: req.body.content,
-        private: req.body.private || false,
+        visibility: req.body.visibility || 'public',
         owner: req.session.account._id,
     };
 

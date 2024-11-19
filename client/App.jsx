@@ -15,7 +15,7 @@ const App = () => {
 
     const [avatar, setAvatar] = useState("/assets/img/avatar-grey-small.png");
     const [newPostModalActive, setNewPostModalActive] = useState(false);
-    const [currentPage, setCurrentPage] = useState('AccountSettings');
+    const [currentPage, setCurrentPage] = useState('Feed');
 
     useEffect(() => {
         const getAvatar = async () => {

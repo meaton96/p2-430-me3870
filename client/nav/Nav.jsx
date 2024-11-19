@@ -20,31 +20,31 @@ const Nav = ({ avatar, setCurrentPage, setNewPostModalActive }) => {
                 <li>
                     <button onClick={() => setCurrentPage("Feed")}>
                         <FontAwesomeIcon icon={faHouse} />
-                        Home
+                        <span className="hide-at-1100">Home</span>
                     </button>
                 </li>
                 <li>
                     <button onClick={() => setCurrentPage("AccountSettings")}>
                         <FontAwesomeIcon icon={faGear} />
-                        Account Settings
+                        <span className="hide-at-1100">Account Settings</span>
                     </button>
                 </li>
                 <li>
                     <button onClick={() => setCurrentPage("Pantry")}>
                         <FontAwesomeIcon icon={faDoorClosed} />
-                        My Pantry
+                        <span className="hide-at-1100">My Pantry</span>
                     </button>
                 </li>
                 <li>
                     <button onClick={() => setCurrentPage("Recipes")}>
                         <FontAwesomeIcon icon={faUtensils} />
-                        My Recipes
+                        <span className="hide-at-1100">My Recipes</span>
                     </button>
                 </li>
                 <li>
                     <button className="post-btn" onClick={() => setNewPostModalActive(true)}>
                         <FontAwesomeIcon icon={faPenToSquare} />
-                        New Post
+                        <span className="hide-at-1100">New Post</span>
                     </button>
                 </li>
             </ul>

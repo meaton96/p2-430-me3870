@@ -7,12 +7,9 @@
     --text-color-light: #FBFBFA; /* Muted White */
     --highlight-color: #FFD166; /* Sunny Yellow */
     --depth-color: #6A994E; /* Muted Olive */
-    /* --primary-color: #3498db; */
     --hover-color: #FF8C61;
-    /* --background-color: #f4f7f9; */
     --button-bg: white;
     --button-hover-bg: #ecf0f1;
-    /* --text-color: #2c3e50; */
 }
 body {
     font-family: 'Roboto', sans-serif;
@@ -62,6 +59,7 @@ body {
     width: 55%;
 }
 
+
 .nav-list li {
     margin-bottom: 1rem;
     /* text-align: right; */
@@ -86,6 +84,53 @@ body {
     width: 90%;
     margin-left: auto;
 }
+
+@media screen and (max-width: 1740px) {
+    .nav-list {
+        width: 65%;
+    }
+}
+@media screen and (max-width: 1450px) {
+    .nav-list {
+        width: 75%;
+    }
+}
+@media screen and (max-width: 1300px) {
+    .nav-list {
+        width: 85%;
+    }
+    .nav-list li button {
+        padding: 0.75rem .75rem;
+    }
+    .nav-container {
+        max-width: 33%;
+    }
+}
+/* For screens 1100px and below */
+@media screen and (max-width: 1100px) {
+    .nav-list li button {
+        padding: 0.5rem; /* Adjust padding to fit icons nicely */
+        justify-content: center; /* Center the icons in the buttons */
+        border-radius: 50%;
+        width: 50px; /* Set a fixed width for the buttons */
+        height: 50px; /* Set a fixed height for the buttons */
+    }
+
+    .hide-at-1100 {
+        display: none; /* Hides the text spans */
+    }
+
+    .nav-container {
+        max-width: 15%; /* Reduce navbar width for smaller screens */
+        padding-top: 1rem; /* Adjust padding */
+    }
+
+    .avatar-container {
+        display: none; /* Optionally hide the avatar for a cleaner look */
+    }
+}
+
+
 .post-btn {
     margin-top: 4rem;
     background-color: var(--primary-color) !important;
@@ -363,3 +408,15 @@ body {
     text-align: center; 
     display: inline-block;
 }
+
+.feed-header .tabs {
+    --bulma-tabs-border-bottom-color: var(--secondary-color); 
+    --bulma-tabs-link-color: var(--text-color-dark); 
+    --bulma-tabs-link-hover-color: var(--primary-color); 
+    --bulma-tabs-link-active-color: var(--primary-color);
+    --bulma-tabs-link-active-border-bottom-color: var(--accent-color); 
+    --bulma-tabs-boxed-link-active-background-color: var(--background-color); 
+}
+
+
+

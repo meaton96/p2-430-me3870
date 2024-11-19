@@ -9,13 +9,9 @@
 
 .settings-hr {
     height: 1px;
-    /* Set the thickness */
     background-color: var(--secondary-color);
-    /* Set the color */
     border: none;
-    /* Remove any default borders */
     margin: 1rem 0;
-    /* Optional: Add space around it */
 }
 
 .column {
@@ -77,20 +73,14 @@
     transition: transform 0.2s ease;
 
     object-fit: cover;
-    /* Keeps image aspect ratio intact */
     cursor: pointer;
-    /* Indicates clickable element */
 }
 
 .chose-avatar-image:hover {
     border-radius: 50%;
-    /* Circular border */
     border: 3px solid var(--primary-color);
-    /* Primary border */
     transform: scale(1.1);
-    /* Slightly grow the image on hover */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    /* Add a subtle shadow effect */
 }
 
 
@@ -141,7 +131,7 @@
 }
 
 .input {
-    background-color: var(--background-color) !important;
+    background-color: #fff !important;
     color: var(--text-color-dark) !important;
     border: 1px solid var(--secondary-color) !important;
 

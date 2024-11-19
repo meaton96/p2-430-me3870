@@ -1,28 +1,40 @@
 import React, { useState } from "react";
-import helper from '../utils/helper';
+import PasswordInput from "../login/PasswordInput.jsx";
+import helper from "../utils/helper";
 
 const SecuritySection = () => {
     // States for each password field
-    const [currentPassword, setCurrentPassword] = useState('');
-    const [newPassword, setNewPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
+    const [currentPassword, setCurrentPassword] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+
 
     // Function to handle password change
     const changePassword = async () => {
         try {
-            const res = await helper.sendPost('/changePassword', {
+            if (!newPassword || newPassword.length < 8 || !/\d/.test(newPassword) || !/[A-Z]/.test(newPassword)) {
+                window.alert("New password does not meet the required criteria.");
+                return;
+            }
+
+            if (newPassword !== confirmPassword) {
+                window.alert("Passwords do not match.");
+                return;
+            }
+
+            const res = await helper.sendPost("/changePassword", {
                 currentPassword,
                 newPassword,
                 confirmPassword,
             });
 
             if (res.message) {
-                console.log(res.message); // Password changed successfully
+                window.alert("Password changed successfully");
             } else if (res.error) {
-                console.error('Error:', res.error); // Handle error message from server
+                window.alert("Password incorrect. Please try again.");
             }
         } catch (err) {
-            console.error('Error changing password:', err);
+            console.error("Error changing password:", err);
         }
     };
 
@@ -45,39 +57,20 @@ const SecuritySection = () => {
             </div>
 
             {/* New Password Field */}
-            <div className="field">
-                <label className="label">New Password</label>
-                <div className="control">
-                    <input
-                        className="input"
-                        type="password"
-                        placeholder="New Password"
-                        value={newPassword}
-                        onChange={(e) => setNewPassword(e.target.value)}
-                    />
-                </div>
-            </div>
-
-            {/* Confirm New Password Field */}
-            <div className="field">
-                <label className="label">Confirm New Password</label>
-                <div className="control">
-                    <input
-                        className="input"
-                        type="password"
-                        placeholder="Confirm New Password"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                    />
-                </div>
-            </div>
+            <PasswordInput
+                password={newPassword}
+                setPassword={setNewPassword}
+                confirmPassword={confirmPassword}
+                setConfirmPassword={setConfirmPassword}
+                showConfirm={true}
+            />
 
             {/* Save Changes Button */}
             <button
                 className="settings-save-button"
                 onClick={changePassword}
             >
-                Save Changes
+                Update Password
             </button>
         </section>
     );

@@ -28,7 +28,29 @@ const makePost = async (req, res) => {
         return res.status(500).json({ error: 'An error occurred' });
     }
 }
+const getPublicPosts = async (req, res) => {
+    const { limit = 10, skip = 0 } = req.query;
+
+    try {
+        const parsedLimit = parseInt(limit, 10);
+        const parsedSkip = parseInt(skip, 10);
+
+        if (isNaN(parsedLimit) || isNaN(parsedSkip)) {
+            return res.status(400).json({ error: 'Invalid pagination parameters' });
+        }
+
+        const posts = await SimplePost.find({ visibility: 'public' })
+            .sort({ createdDate: -1 })
+            .skip(parsedSkip)
+            .limit(parsedLimit);
+
+        return res.status(200).json(posts.map(SimplePost.toAPI));
+    } catch (err) {
+        return res.status(500).json({ error: 'An error occurred while fetching posts' });
+    }
+};
 
 module.exports = {
     makePost,
+    getPublicPosts,
 }

@@ -14,6 +14,10 @@ const SimplePostSchema = new mongoose.Schema({
         ref: 'Account',
         index: true,
     },
+    author: {
+        type: String,
+        required: true,
+    },
     visibility: {
         type: String,
         enum: ['public', 'private', 'followers-only'],
@@ -28,6 +32,7 @@ const SimplePostSchema = new mongoose.Schema({
 
 SimplePostSchema.statics.toAPI = (doc) => ({
     content: doc.content,
+    author: doc.owner,
     _id: doc._id,
 });
 

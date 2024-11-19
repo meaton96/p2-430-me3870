@@ -12,14 +12,16 @@ const router = (app) => {
   app.get('/getPremium', mid.requiresLogin, controllers.Account.getPremium);
   app.post('/changePassword', mid.requiresSecure, mid.requiresLogin, controllers.Account.changePassword);
   app.post('/setPremium', mid.requiresLogin, controllers.Account.setPremium);
-
+  app.get('/getUsername/:id', controllers.Account.getUsername);
+  app.get('/getUsername', controllers.Account.getUsername);
+  
   // Avatar routes
   app.get('/getDefaultAvatars', controllers.Account.getDefaultAvatars);
   app.get('/getAvatar', controllers.Account.getAvatar);
 
   //simple post routes (twitter)
   app.post('/simplePost', mid.requiresLogin, controllers.SimplePost.makePost);
-
+  app.get('/simplePublicPosts', controllers.SimplePost.getPublicPosts);
 
   // Domo routes
   // app.get('/getDomos', mid.requiresLogin, controllers.Domo.getDomos);

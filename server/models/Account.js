@@ -61,6 +61,23 @@ AccountSchema.statics.toAPI = (doc) => ({
 
 // Helper function to hash a password
 AccountSchema.statics.generateHash = (password) => bcrypt.hash(password, saltRounds);
+
+AccountSchema.statics.getUsername = async (_id, callback) => {
+  try {
+    
+    const doc = await AccountModel.findOne({ _id }, 'username').exec();
+    if (!doc) {
+      console.log(doc);
+      return callback(null, null);
+    }
+    console.log(doc);
+    return callback(null, doc.username);
+
+  }
+  catch (err) {
+    return callback(err);
+  }
+}
 /**
  * Helper to add a follower to the account
  */

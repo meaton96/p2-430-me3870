@@ -15,7 +15,7 @@ const setAvatar = async (request, response) => {
 
   const id = `${request.session.account._id}`;
   const avatar = `${request.body.avatar}`;
-//  console.log(username, avatar);
+  //  console.log(username, avatar);
   if (!id || !avatar) {
     return response.status(400).json({ error: 'All fields are required' });
   }
@@ -47,7 +47,7 @@ const getDefaultAvatars = async (request, response) => {
 const validateUsername = async (request, response) => {
 
   const username = `${request.body.username}`;
-  
+
   if (!username) {
     return response.status(400).json({ error: 'Username is required' });
   }
@@ -56,7 +56,7 @@ const validateUsername = async (request, response) => {
       console.log(err.message);
       return response.status(500).json({ error: `An error occurred: ${err.message}` });
     }
-   // console.log(username, `exists: ${exists}`);
+    // console.log(username, `exists: ${exists}`);
     return response.status(200).json({ exists });
   });
 
@@ -75,7 +75,7 @@ const login = (request, response) => {
       return response.status(401).json({ error: 'Wrong username or password' });
     }
     request.session.account = Account.toAPI(account);
-    return response.json({ redirect: '/app' }); 
+    return response.json({ redirect: '/app' });
   });
 };
 
@@ -105,7 +105,7 @@ const signup = async (request, response) => {
   }
 };
 const getAvatar = async (request, response) => {
-  const id = `${request.session.account._id}`; 
+  const id = `${request.session.account._id}`;
 
   if (!id) {
     return response.status(400).json({ error: 'id is required' });
@@ -153,16 +153,16 @@ const getPremium = async (request, response) => {
       console.log(err.message);
       return response.status(500).json({ error: `An error occurred: ${err.message}` });
     }
-    
+
     return response.status(200).json({ premiumMode: prem });
   });
 }
 
 const changePassword = async (req, res) => {
   const { currentPassword, newPassword, confirmPassword } = req.body;
-  const username = req.session.account.username; 
+  const username = req.session.account.username;
 
-  
+
   if (!currentPassword || !newPassword || !confirmPassword) {
     return res.status(400).json({ error: 'All fields are required' });
   }
@@ -190,6 +190,23 @@ const changePassword = async (req, res) => {
   }
 };
 
+const getUsername = async (req, res) => {
+  const id = req.params.id || req.session.account._id;
+  console.log(id);
+  if (!id) {
+    return res.status(400).json({ error: 'id is required' });
+  }
+  return Account.getUsername(id, (err, username) => {
+    if (err) {
+      console.log(err.message);
+      return res.status(500).json({ error: `An error occurred: ${err.message}` });
+    }
+    if (!username) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    return res.status(200).json({ username });
+  });
+}
 
 
 
@@ -207,4 +224,5 @@ module.exports = {
   setPremium,
   getPremium,
   changePassword,
+  getUsername,
 };

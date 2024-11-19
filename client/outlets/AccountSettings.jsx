@@ -9,6 +9,22 @@ const AccountSettings = ({ avatar, setAvatar }) => {
     const [premiumMode, setPremiumMode] = useState(false);
     const [changeAvatarModalActive, setChangeAvatarModalActive] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [username, setUsername] = useState("");
+
+    useEffect(() => {
+        const getUsername = async () => {
+            try {
+                const res = await helper.sendGet("/getUsername");
+                console.log(res);
+                if (res.username !== undefined) {
+                    setUsername(res.username);
+                }
+            } catch (err) {
+                console.error("Error getting username:", err);
+            }
+        };
+        getUsername();
+    }, []);
 
     useEffect(() => {
         const getPremiumMode = async () => {
@@ -50,7 +66,12 @@ const AccountSettings = ({ avatar, setAvatar }) => {
             </div>
             <hr className="settings-hr" />
             <div className="settings-container">
+
                 <div className="container">
+                    <section className="section py-0">
+                        <h1 className="settings-title">{username}</h1>
+                    </section>
+
                     {/* Avatar Section */}
                     <ChangeAvatarSection
                         avatar={avatar}

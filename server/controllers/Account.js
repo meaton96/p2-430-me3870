@@ -15,7 +15,6 @@ const setAvatar = async (request, response) => {
 
   const id = `${request.session.account._id}`;
   const avatar = `${request.body.avatar}`;
-  //  console.log(username, avatar);
   if (!id || !avatar) {
     return response.status(400).json({ error: 'All fields are required' });
   }
@@ -56,7 +55,6 @@ const validateUsername = async (request, response) => {
       console.log(err.message);
       return response.status(500).json({ error: `An error occurred: ${err.message}` });
     }
-    // console.log(username, `exists: ${exists}`);
     return response.status(200).json({ exists });
   });
 

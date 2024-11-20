@@ -1,6 +1,7 @@
 const models = require('../models');
 
 const { SimplePost } = models;
+const { Likes } = models;
 
 const MAX_CHAR = 300;
 
@@ -31,12 +32,32 @@ const makePost = async (req, res) => {
         return res.status(500).json({ error: 'An error occurred' });
     }
 }
+
+const addLikeInfoToGetPost = async (req, post) => {
+
+    const likes = await Likes.getLikesForPost(post._id);
+
+    const hasLiked = req.session.account._id ?
+        await Likes.hasUserLikedPost(post._id, req.session.account._id) :
+        false;
+
+
+    return {
+        ...SimplePost.toAPI(post),
+        likesCount: likes.length,
+        likes,
+        hasLiked,
+    };
+};
+
+
 const getPublicPosts = async (req, res) => {
     const { limit = 10, skip = 0 } = req.query;
 
     try {
         const parsedLimit = parseInt(limit, 10);
         const parsedSkip = parseInt(skip, 10);
+
 
         if (isNaN(parsedLimit) || isNaN(parsedSkip)) {
             return res.status(400).json({ error: 'Invalid pagination parameters' });
@@ -47,13 +68,87 @@ const getPublicPosts = async (req, res) => {
             .skip(parsedSkip)
             .limit(parsedLimit);
 
-        return res.status(200).json(posts.map(SimplePost.toAPI));
+
+        const postsWithLikeInfo = await Promise.all(
+            posts.map((post) => addLikeInfoToGetPost(req, post))
+        );
+        //console.log(postsWithLikeInfo);
+        return res.status(200).json(postsWithLikeInfo);
     } catch (err) {
         return res.status(500).json({ error: 'An error occurred while fetching posts' });
     }
 };
 
+
+const getNumLikesForPost = async (req, res) => {
+    const { postId } = req.params;
+    //  console.log(req.query);
+    if (!postId) {
+        return res.status(400).json({ error: 'postId is required' });
+    }
+
+    try {
+        const likes = await Likes.countLikesForPost(postId);
+        return res.status(200).json(likes);
+    } catch (err) {
+        return res.status(500).json({ error: 'An error occurred while fetching likes' });
+    }
+}
+
+const addLikeToPost = async (req, res) => {
+    const { postId } = req.body;
+    if (!postId) {
+        return res.status(400).json({ error: 'postId is required' });
+    }
+
+    try {
+        const newLike = await Likes.addLike(postId, req.session.account._id);
+        return res.status(201).json({ newLike });
+    } catch (err) {
+        return res.status(500).json({ error: 'An error occurred while adding like' });
+    }
+}
+
+const removeLikeFromPost = async (req, res) => {
+
+    const { postId } = req.body;
+    if (!postId) {
+        return res.status(400).json({ error: 'postId is required' });
+    }
+
+    try {
+        await Likes.removeLike(postId, req.session.account._id);
+        console.log('removed like');
+        return res.status(200).json({postId});
+    } catch (err) {
+        return res.status(500).json({ error: 'An error occurred while removing like' });
+    }
+};
+
+const hasUserLikedPost = async (req, res) => {
+    const { postId } = req.params;
+    const userId = req.session.account._id;
+
+    if (!postId) {
+        return res.status(400).json({ error: 'postId is required' });
+    }
+
+    try {
+        const hasLiked = await Likes.hasUserLikedPost(postId, userId);
+        return res.status(200).json({ hasLiked });
+    } catch (err) {
+        console.error(`Error checking like for post ${postId} and user ${userId}:`, err);
+        return res.status(500).json({ error: 'An error occurred while checking like status' });
+    }
+};
+
+
+
 module.exports = {
     makePost,
     getPublicPosts,
+    getNumLikesForPost,
+    addLikeToPost,
+    hasUserLikedPost,
+    removeLikeFromPost,
 }

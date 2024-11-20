@@ -24,6 +24,10 @@ const router = (app) => {
   //simple post routes (twitter)
   app.post('/simplePost', mid.requiresLogin, controllers.SimplePost.makePost);
   app.get('/simplePublicPosts', controllers.SimplePost.getPublicPosts);
+  app.get('/getNumLikesForPost/:postId', controllers.SimplePost.getNumLikesForPost);
+  app.post('/addLike', mid.requiresLogin, controllers.SimplePost.addLikeToPost);
+  app.post('/removeLike', mid.requiresLogin, controllers.SimplePost.removeLikeFromPost);
+  app.get('/simplePost/:postId/has-liked', mid.requiresLogin, controllers.SimplePost.hasUserLikedPost);
 
   // Domo routes
   // app.get('/getDomos', mid.requiresLogin, controllers.Domo.getDomos);

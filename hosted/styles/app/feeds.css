@@ -10,3 +10,29 @@
 .post-container {
     border-bottom: var(--secondary-color) 1px solid;
 }
+
+.feed-post-footer button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    color: var(--text-color);
+    transition: color 0.3s, background-color 0.3s;
+}
+
+.feed-post-footer button span {
+    margin-right: 0.5rem;
+}
+
+/* Highlight effect */
+.feed-post-footer button.highlighted {
+    color: var(--accent-color);
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Liked state for the like button */
+.feed-post-footer button.like-button.liked {
+    color: var(--accent-color);
+}

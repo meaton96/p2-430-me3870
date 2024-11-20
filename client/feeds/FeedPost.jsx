@@ -26,7 +26,7 @@ const FeedPost = ({ post }) => {
         const now = new Date();
         const createdDate = new Date(createdAt);
 
-        // console.log(now, createdDate);  
+       
 
         const diffInSeconds = Math.floor((now - createdDate) / 1000);
 
@@ -45,7 +45,7 @@ const FeedPost = ({ post }) => {
     };
 
     const age = calculateAge(post.createdDate);
-    //console.log(post);
+
     return (
         <div className="post-container px-4 py-1 my-1">
 

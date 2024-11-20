@@ -12,14 +12,12 @@ const Discover = () => {
             try {
                 const res = await fetch("/simplePublicPosts");
                 const resJson = await res.json();
-
                 if (resJson) {
                     setPosts(resJson);
                 }
             } catch (err) {
                 console.error("Error getting posts:", err);
             } finally {
-               // console.log("Posts loaded.");
                 setLoading(false);
             }
         };

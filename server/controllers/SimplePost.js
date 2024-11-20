@@ -243,7 +243,6 @@ const getPostsForUser = async (req, res) => {
     const postsWithInfo = await Promise.all(
       posts.map((post) => addLikeAndShareInfoToGetPost(req, post)),
     );
-    console.log(postsWithInfo);
     return res.status(200).json(postsWithInfo);
   } catch (err) {
     console.error('Error fetching posts for user:', err);

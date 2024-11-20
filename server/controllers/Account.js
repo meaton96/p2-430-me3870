@@ -49,6 +49,8 @@ const validateUsername = async (request, response) => {
   if (!username) {
     return response.status(400).json({ error: 'Username is required' });
   }
+
+
   return Account.checkUsername(username, (err, exists) => {
     if (err) {
       console.log(err.message);
@@ -57,6 +59,30 @@ const validateUsername = async (request, response) => {
     return response.status(200).json({ exists });
   });
 };
+
+const checkProfaneUsername = async (request, response) => {
+
+  const username = `${request.body.username}`;
+
+  if (!username) {
+    return response.status(400).json({ error: 'Username is required' });
+  }
+
+  const url = `https://api.apiverve.com/v1/usernameprofanity?username=${username}`;
+
+  //profanity filter
+  //https://docs.apiverve.com/api/usernameprofanity
+  const res = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': process.env.USERNAME_API_KEY
+    }
+  });
+
+  return res.json();
+};
+
 // Login the user
 const login = (request, response) => {
   const username = `${request.body.username}`;
@@ -75,6 +101,8 @@ const login = (request, response) => {
   });
 };
 
+
+
 // Signup the user
 const signup = async (request, response) => {
   const username = `${request.body.username}`;
@@ -87,6 +115,32 @@ const signup = async (request, response) => {
   if (password !== password2) {
     return response.status(400).json({ error: 'Passwords do not match' });
   }
+
+  const url = `https://api.apiverve.com/v1/usernameprofanity?username=${username}`;
+
+  //profanity filter
+  //https://docs.apiverve.com/api/usernameprofanity
+  const res = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': process.env.USERNAME_API_KEY
+    }
+  });
+
+  const data = await res.json();
+  //console.log(data);
+  if (data.status === 'ok') {
+    if (data.data.isProfane) {
+      return response.status(400).json({ error: `profanity` });
+    }
+  }
+  else {
+    return response.status(500).json({ error: `Profanity filter error: ${data.message}` });
+  }
+
+  //console.log("username is ok");
+
 
   try {
     const hash = await Account.generateHash(password);

@@ -2,9 +2,20 @@ import React, { useState, useEffect } from "react";
 import helper from "../utils/helper";
 
 
-const UsernameInput = ({ username, setUsername, validate, isSignup }) => {
-    const [validUsername, setValidUsername] = useState(null); 
-    const [validationMessage, setValidationMessage] = useState("");
+const UsernameInput = ({
+    username,
+    setUsername,
+    validate,
+    isSignup,
+    validationMessage,
+    setValidationMessage,
+    validUsername,
+    setValidUsername
+}) => {
+    
+
+
+
 
     useEffect(() => {
         const validateUsername = async () => {
@@ -18,7 +29,7 @@ const UsernameInput = ({ username, setUsername, validate, isSignup }) => {
                 setValidationMessage("Username must be at least 3 characters long");
                 return;
             }
-    
+
             try {
                 const res = await helper.sendPost("/validateUsername", { username });
                 if (res.exists !== undefined) {
@@ -40,10 +51,10 @@ const UsernameInput = ({ username, setUsername, validate, isSignup }) => {
                 setValidationMessage("Error validating username");
             }
         };
-    
+
         validateUsername();
     }, [username, validate, isSignup]);
-    
+
 
     return (
         <div className="field">

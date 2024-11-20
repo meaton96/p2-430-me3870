@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import UsernameInput from "./UsernameInput.jsx";
 import PasswordInput from "./PasswordInput.jsx";
 import SelectAvatar from "./SelectAvatar.jsx";
+import { ClipLoader } from "react-spinners"; // Import spinner
 import helper from "../utils/helper.js";
+
 
 //Modal component to handle allowing the user to login or signup
 const LoginModal = ({ title, onClose }) => {
@@ -11,19 +13,17 @@ const LoginModal = ({ title, onClose }) => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [_title, setTitle] = useState(title);
     const [selectAvatar, setSelectAvatar] = useState(false);
-    const [loginError, setLoginError] = useState(""); 
+    const [loginError, setLoginError] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+    const [validationMessage, setValidationMessage] = useState("");
+    const [validUsername, setValidUsername] = useState(null);
 
     //Function to handle the login process
     const handleLogin = async (e) => {
         e.preventDefault();
-        if (!username ) {
+        if (!username) return;
+        if (!password) return;
 
-            return;
-        }
-        if (!password) {
-            return;
-        }
-        
         try {
             const res = await helper.sendPost("/login", { username, pass: password });
             if (res.error) {
@@ -44,9 +44,21 @@ const LoginModal = ({ title, onClose }) => {
         if (!username || !password || !confirmPassword) return;
         if (password !== confirmPassword) return;
 
-        const res = await helper.sendPost("/signup", { username, pass: password, pass2: confirmPassword });
-        if (res) {
-            setSelectAvatar(true);
+        setIsLoading(true);
+        try {
+            const res = await helper.sendPost("/signup", { username, pass: password, pass2: confirmPassword });
+            if (res.status === 200) {
+                setSelectAvatar(true);
+            } else {
+                if (res.error) {
+                    setValidUsername(false);
+                    setValidationMessage("profanity is not allowed");
+                }
+            }
+        } catch (err) {
+            setValidationMessage("something happened");
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -77,7 +89,11 @@ const LoginModal = ({ title, onClose }) => {
                                     username={username}
                                     setUsername={setUsername}
                                     validate
-                                    isSignup={_title === "Signup"} 
+                                    isSignup={_title === "Signup"}
+                                    validationMessage={validationMessage}
+                                    setValidationMessage={setValidationMessage}
+                                    validUsername={validUsername}
+                                    setValidUsername={setValidUsername}
                                 />
                                 <PasswordInput
                                     password={password}
@@ -89,9 +105,15 @@ const LoginModal = ({ title, onClose }) => {
                                 {_title === "Login" && loginError && (
                                     <p className="help is-danger">{loginError}</p>
                                 )}
-                                <button className="button modal-login-btn mt-3" type="submit">
-                                    {_title}
-                                </button>
+                                {isLoading ? (
+                                    <div className="spinner-container">
+                                        <ClipLoader color={helper.getCssVariable('--primary-color')} size={30} />
+                                    </div>
+                                ) : (
+                                    <button className="button modal-login-btn mt-3" type="submit">
+                                        {_title}
+                                    </button>
+                                )}
                             </form>
                         ) : (
                             <SelectAvatar
@@ -120,4 +142,3 @@ const LoginModal = ({ title, onClose }) => {
 };
 
 export default LoginModal;
-

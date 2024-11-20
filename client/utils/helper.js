@@ -1,7 +1,10 @@
+
+
 const getCssVariable = (variableName) => {
   return getComputedStyle(document.documentElement).getPropertyValue(variableName).trim();
 };
 const handleError = (message) => {
+
   console.log(message);
 };
 

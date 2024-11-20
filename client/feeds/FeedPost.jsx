@@ -46,8 +46,7 @@ const FeedPost = ({ post }) => {
     const age = calculateAge(post.createdDate);
     
     return (
-        <div className="post-container px-4 py-1 my-1">
-
+        <div className="post-container px-4 py-1">
             <div className="is-flex">
                 <div className="is-narrow mr-1">
                     <figure className="image is-48x48">

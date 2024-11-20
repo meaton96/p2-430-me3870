@@ -32,6 +32,7 @@ const UsernameInput = ({
 
             try {
                 const res = await helper.sendPost("/validateUsername", { username });
+                //console.log(res);
                 if (res.exists !== undefined) {
                     if (isSignup) {
                         setValidUsername(!res.exists);

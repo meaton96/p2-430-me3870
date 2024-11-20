@@ -1,16 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useState, useEffect } from "react";
 import { ClipLoader } from "react-spinners";
 import FeedPost from "./FeedPost.jsx";
 import { getCssVariable } from "../utils/helper.js";
 
-const Discover = () => {
+
+const SimplePostFeed = ({ endpoint }) => {
+
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const res = await fetch("/simplePublicPosts");
+                const res = await fetch(endpoint);
                 const resJson = await res.json();
                 if (resJson) {
                     setPosts(resJson);
@@ -41,6 +44,6 @@ const Discover = () => {
             </div>
         </div>
     );
-};
+}
 
-export default Discover;
+export default SimplePostFeed;

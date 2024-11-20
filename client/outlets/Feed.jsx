@@ -1,9 +1,8 @@
 import React from "react";
 
 const { Suspense, lazy } = React;
-const Discover = lazy(() => import("../feeds/Discover.jsx"));
 const FollowingFeed = lazy(() => import("../feeds/FollowingFeed.jsx"));
-const MyPosts = lazy(() => import("../feeds/MyPosts.jsx"));
+const SimplePostFeed = lazy(() => import("../feeds/SimplePostFeed.jsx"));
 
 
 const feeds = {
@@ -20,13 +19,22 @@ const Feed = () => {
     const getFeed = () => {
         switch (feed) {
             case feeds.discover:
-                return <Discover />;
+                return <SimplePostFeed
+                    key="discover"
+                    endpoint={'/simplePublicPosts'}
+                />;
             case feeds.following:
                 return <FollowingFeed />;
             case feeds.myPosts:
-                return <MyPosts />;
+                return <SimplePostFeed
+                    key="myPosts"
+                    endpoint={'/getPostsForCurrentUser'}
+                />;
             default:
-                return <Discover />;
+                return <SimplePostFeed
+                    key="discover"
+                    endpoint={'/simplePublicPosts'}
+                />;
         }
     }
 

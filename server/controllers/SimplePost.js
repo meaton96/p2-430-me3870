@@ -222,6 +222,80 @@ const hasUserSharedPost = async (req, res) => {
     }
 };
 
+
+
+const getPostsForUser = async (req, res) => {
+    const { userId } = req.params;
+    const { limit = 10, skip = 0 } = req.query;
+
+    if (!userId) {
+        return res.status(400).json({ error: 'userId is required' });
+    }
+
+    try {
+        const parsedLimit = parseInt(limit, 10);
+        const parsedSkip = parseInt(skip, 10);
+
+        if (isNaN(parsedLimit) || isNaN(parsedSkip)) {
+            return res.status(400).json({ error: 'Invalid pagination parameters' });
+        }
+
+        const posts = await SimplePost.findByOwner(userId, parsedLimit, parsedSkip);
+
+        const postsWithInfo = await Promise.all(
+            posts.map((post) => addLikeAndShareInfoToGetPost(req, post))
+        );
+        console.log(postsWithInfo); 
+        return res.status(200).json(postsWithInfo);
+    } catch (err) {
+        console.error("Error fetching posts for user:", err);
+        return res.status(500).json({ error: 'An error occurred while fetching posts' });
+    }
+};
+const getPostsForCurrentUser = async (req, res) => {
+
+    req.params.userId = req.session.account._id;
+    return await getPostsForUser(req, res);
+
+};
+
+const getPostsForUserByVisibility = async (req, res) => {
+    const { userId, visibility } = req.params;
+    const { limit = 10, skip = 0 } = req.query;
+
+    if (!userId || !visibility) {
+        return res.status(400).json({ error: 'userId and visibility are required' });
+    }
+
+    if (!['public', 'private', 'followers-only'].includes(visibility)) {
+        return res.status(400).json({ error: 'Invalid visibility value' });
+    }
+
+    try {
+        const parsedLimit = parseInt(limit, 10);
+        const parsedSkip = parseInt(skip, 10);
+
+        if (isNaN(parsedLimit) || isNaN(parsedSkip)) {
+            return res.status(400).json({ error: 'Invalid pagination parameters' });
+        }
+
+        const posts = await SimplePost.find({ owner: userId, visibility })
+            .sort({ createdDate: -1 })
+            .skip(parsedSkip)
+            .limit(parsedLimit);
+
+        const postsWithInfo = await Promise.all(
+            posts.map((post) => addLikeAndShareInfoToGetPost(req, post))
+        );
+
+        return res.status(200).json(postsWithInfo);
+    } catch (err) {
+        console.error("Error fetching posts for user by visibility:", err);
+        return res.status(500).json({ error: 'An error occurred while fetching posts' });
+    }
+};
+
+
 module.exports = {
     makePost,
     getPublicPosts,
@@ -233,4 +307,7 @@ module.exports = {
     addShareToPost,
     hasUserSharedPost,
     removeShareFromPost,
+    getPostsForUser,
+    getPostsForUserByVisibility,
+    getPostsForCurrentUser,
 };

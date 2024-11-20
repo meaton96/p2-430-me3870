@@ -25,6 +25,12 @@ const router = (app) => {
   app.post('/simplePost', mid.requiresLogin, controllers.SimplePost.makePost);
   app.get('/simplePublicPosts', controllers.SimplePost.getPublicPosts);
   app.get('/getNumLikesForPost/:postId', controllers.SimplePost.getNumLikesForPost);
+  app.get('/getPostsForCurrentUser', mid.requiresLogin, controllers.SimplePost.getPostsForCurrentUser);
+  app.get('/getPostsForUser/:userId', controllers.SimplePost.getPostsForUser);
+  app.get('/getPostsForUserByVisibility/:userId/:visibility', controllers.SimplePost.getPostsForUserByVisibility);
+
+
+
   //post likes
   app.post('/addLike', mid.requiresLogin, controllers.SimplePost.addLikeToPost);
   app.post('/removeLike', mid.requiresLogin, controllers.SimplePost.removeLikeFromPost);

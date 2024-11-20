@@ -13,6 +13,53 @@ const FeedPostFooter = ({ post }) => {
     const [liked, setLiked] = useState(post.hasLiked || false);
     const [shared, setShared] = useState(post.hasShared || false);
 
+    useEffect(() => {
+
+        const getHasLiked = async () => {
+            try {
+                const data = await helper.sendGet(`/simplePost/${post._id}/has-liked/`);
+                if (data) {
+                    setLiked(data.hasLiked);
+                }
+            } catch (err) {
+                console.error("Error getting hasLiked:", err);
+            }
+        }
+        getHasLiked();
+    }, []);
+    useEffect(() => {
+
+        const getLikes = async () => {
+            try {
+                const data = await helper.sendGet(`/getNumLikesForPost/${post._id}`);
+                //console.log(data);
+                if (data) {
+                    setLikes(data);
+
+                }
+            } catch (err) {
+                console.error("Error getting likes:", err);
+            }
+        }
+        getLikes();
+    }, []);
+
+    useEffect(() => {
+        const getShares = async () => {
+            try {
+                const data = await helper.sendGet(`/getNumSharesForPost/${post._id}`);
+                //console.log(data);
+                if (data) {
+                    setShares(data);
+                }
+            } catch (err) {
+                console.error("Error getting shares:", err);
+            }
+        }
+        getShares();
+    }, []);
+
+
     // Function to like or unlike a post
     const toggleLike = () => {
         if (liked) {

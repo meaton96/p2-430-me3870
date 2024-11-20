@@ -44,6 +44,9 @@ const makePost = async (req, res) => {
 };
 
 const addLikeAndShareInfoToGetPost = async (req, post) => {
+
+  return SimplePost.toAPI(post);
+  
   const likes = await Likes.getLikesForPost(post._id);
   const shares = await Shares.getSharesForPost(post._id);
 
@@ -288,6 +291,26 @@ const getPostsForUserByVisibility = async (req, res) => {
   }
 };
 
+const getPost = async (req, res) => {
+  const { postId } = req.params;
+
+  if (!postId) {
+    return res.status(400).json({ error: 'postId is required' });
+  }
+
+  try {
+    const post = await SimplePost.findById(postId);
+    if (!post) {
+      return res.status(404).json({ error: 'Post not found' });
+    }
+
+    const postWithInfo = await addLikeAndShareInfoToGetPost(req, post);
+    return res.status(200).json(postWithInfo);
+  } catch (err) {
+    return res.status(500).json({ error: 'An error occurred while fetching post' });
+  }
+}
+
 module.exports = {
   makePost,
   getPublicPosts,
@@ -302,4 +325,5 @@ module.exports = {
   getPostsForUser,
   getPostsForUserByVisibility,
   getPostsForCurrentUser,
+  getPost,
 };

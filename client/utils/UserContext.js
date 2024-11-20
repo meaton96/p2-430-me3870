@@ -25,7 +25,7 @@ export const UserProvider = ({ children }) => {
     const handleBackButtonClicked = () => {
         console.log("Back button clicked");
         setIsBackButtonActive(false);
-
+        window.history.back();
     };
 
     // useEffect(() => {

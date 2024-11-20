@@ -4,12 +4,13 @@ import { ClipLoader } from "react-spinners";
 import FeedPost from "./FeedPost.jsx";
 import { getCssVariable } from "../utils/helper.js";
 
-
+// Component to display a feed of posts
 const SimplePostFeed = ({ endpoint }) => {
 
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    // Fetch posts from the server
     useEffect(() => {
         const fetchPosts = async () => {
             try {

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PasswordInput from "../login/PasswordInput.jsx";
 import helper from "../utils/helper";
 
+// Section in the account settings page to change the password
 const SecuritySection = () => {
     // States for each password field
     const [currentPassword, setCurrentPassword] = useState("");
@@ -10,6 +11,7 @@ const SecuritySection = () => {
 
 
     // Function to handle password change
+    //client side validation for password change and requirements
     const changePassword = async () => {
         try {
             if (!newPassword || newPassword.length < 8 || !/\d/.test(newPassword) || !/[A-Z]/.test(newPassword)) {

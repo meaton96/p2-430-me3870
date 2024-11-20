@@ -1,6 +1,7 @@
 import React from "react";
 
-const ChangeAvatarSection = ({ avatar, setAvatar, setChangeAvatarModalActive }) => {
+//section in the account settings page to change the avatar
+const ChangeAvatarSection = ({ avatar, setChangeAvatarModalActive }) => {
 
     return (
         <section className="section">

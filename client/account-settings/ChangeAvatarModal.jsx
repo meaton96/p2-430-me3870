@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import SelectAvatar from "../login/SelectAvatar.jsx";
-import helper from "../utils/helper.js";
 
+// modal to change the avatar on the account settings page
 const ChangeAvatarModal = ({ onClose, setAvatar, avatar }) => {
 
     return (
@@ -14,6 +14,7 @@ const ChangeAvatarModal = ({ onClose, setAvatar, avatar }) => {
                     </button>
                 </header>
                 <section className="modal-card-body">
+                    
                     <SelectAvatar
                         gridMin={'is-col-min-3'}
                         forward={false}

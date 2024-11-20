@@ -4,6 +4,8 @@ import { faRepeat, faComment, faHeart as faHeartSolid } from "@fortawesome/free-
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import helper from "../utils/helper";
 
+// Component for the footer of each post in the feed
+//displays comments, likes, and shares buttons
 const FeedPostFooter = ({ post }) => {
     const [likes, setLikes] = useState(post.likesCount || 0);
     const [shares, setShares] = useState(post.sharesCount || 0);
@@ -11,6 +13,7 @@ const FeedPostFooter = ({ post }) => {
     const [liked, setLiked] = useState(post.hasLiked || false);
     const [shared, setShared] = useState(post.hasShared || false);
 
+    // Function to like or unlike a post
     const toggleLike = () => {
         if (liked) {
             unLikePost();
@@ -19,6 +22,7 @@ const FeedPostFooter = ({ post }) => {
         }
     };
 
+    // Function to share or unshare a post
     const toggleShare = () => {
         if (shared) {
             unSharePost();
@@ -27,6 +31,7 @@ const FeedPostFooter = ({ post }) => {
         }
     };
 
+    // Function to unlike a post
     const unLikePost = async () => {
         try {
             setLiked(false);
@@ -40,6 +45,7 @@ const FeedPostFooter = ({ post }) => {
         }
     };
 
+    // Function to like a post
     const likePost = async () => {
         try {
             setLiked(true);
@@ -53,6 +59,7 @@ const FeedPostFooter = ({ post }) => {
         }
     };
 
+    // Function to unshare a post
     const unSharePost = async () => {
         try {
             setShared(false);
@@ -66,6 +73,7 @@ const FeedPostFooter = ({ post }) => {
         }
     };
 
+    // Function to share a post
     const sharePost = async () => {
         
         try {
@@ -83,10 +91,6 @@ const FeedPostFooter = ({ post }) => {
         }
     };
 
-    // const handleHighlight = () => {
-    //     setHighlighted(true);
-    //     //setTimeout(() => setHighlighted(false), 300);
-    // };
 
     return (
         <div className="feed-post-footer is-flex is-justify-content-space-between is-fullwidth my-2">

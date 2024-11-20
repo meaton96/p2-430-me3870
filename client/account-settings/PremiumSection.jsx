@@ -1,5 +1,6 @@
 import React from "react";
 
+// section in the account settings page to enable premium mode
 const PremiumSection = ({ premiumMode, handlePremiumChange }) => {
 
     return (

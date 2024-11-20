@@ -2,10 +2,12 @@ import React from "react";
 import { useState, useEffect } from "react";
 import FeedPostFooter from "./FeedPostFooter.jsx";
 
+// Component for each post in the feed
 const FeedPost = ({ post }) => {
 
     const [avatar, setAvatar] = useState(`/assets/img/avatar-grey-small.png`);
 
+    // Get the avatar of the post author
     useEffect(() => {
         const getUserAvatar = async () => {
             try {
@@ -21,13 +23,10 @@ const FeedPost = ({ post }) => {
         getUserAvatar();
     }, []);
 
+    // Function to calculate the age of the post
     const calculateAge = (createdAt) => {
-
         const now = new Date();
         const createdDate = new Date(createdAt);
-
-        
-
         const diffInSeconds = Math.floor((now - createdDate) / 1000);
 
         if (diffInSeconds < 60) {

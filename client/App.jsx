@@ -3,7 +3,6 @@ const { useState, useEffect, Suspense } = React;
 const { createRoot } = require('react-dom/client');
 const helper = require('./utils/helper.js');
 
-// const Footer = React.lazy(() => import('./Footer.jsx'));
 const Nav = React.lazy(() => import('./nav/Nav.jsx'));
 const AccountSettings = React.lazy(() => import('./outlets/AccountSettings.jsx'));
 const Feed = React.lazy(() => import('./outlets/Feed.jsx'));

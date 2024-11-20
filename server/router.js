@@ -25,9 +25,15 @@ const router = (app) => {
   app.post('/simplePost', mid.requiresLogin, controllers.SimplePost.makePost);
   app.get('/simplePublicPosts', controllers.SimplePost.getPublicPosts);
   app.get('/getNumLikesForPost/:postId', controllers.SimplePost.getNumLikesForPost);
+  //post likes
   app.post('/addLike', mid.requiresLogin, controllers.SimplePost.addLikeToPost);
   app.post('/removeLike', mid.requiresLogin, controllers.SimplePost.removeLikeFromPost);
   app.get('/simplePost/:postId/has-liked', mid.requiresLogin, controllers.SimplePost.hasUserLikedPost);
+  //post shares
+  app.get('/getNumSharesForPost/:postId', controllers.SimplePost.getNumSharesForPost);
+  app.post('/addShare', mid.requiresLogin, controllers.SimplePost.addShareToPost);
+  app.post('/removeShare', mid.requiresLogin, controllers.SimplePost.removeShareFromPost);
+  app.get('/simplePost/:postId/has-shared', mid.requiresLogin, controllers.SimplePost.hasUserSharedPost);
 
   // Domo routes
   // app.get('/getDomos', mid.requiresLogin, controllers.Domo.getDomos);

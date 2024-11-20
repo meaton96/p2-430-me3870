@@ -20,6 +20,12 @@
     font-size: 1rem;
     color: var(--text-color);
     transition: color 0.3s, background-color 0.3s;
+    border-radius: 20px;
+    padding: 0.25rem;
+}
+.feed-post-footer button:hover {
+    color: var(--primary-color);
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 .feed-post-footer button span {
@@ -34,5 +40,8 @@
 
 /* Liked state for the like button */
 .feed-post-footer button.like-button.liked {
-    color: var(--accent-color);
+    color: var(--primary-color);
+}
+.feed-post-footer button.repeat-button.shared {
+    color: var(--primary-color);
 }

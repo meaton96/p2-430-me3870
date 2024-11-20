@@ -6,17 +6,25 @@ import helper from "../utils/helper";
 
 const FeedPostFooter = ({ post }) => {
     const [likes, setLikes] = useState(post.likesCount || 0);
+    const [shares, setShares] = useState(post.sharesCount || 0); 
     const [highlighted, setHighlighted] = useState(false);
     const [liked, setLiked] = useState(post.hasLiked || false);
+    const [shared, setShared] = useState(post.hasShared || false); 
 
     const toggleLike = () => {
-
         if (liked) {
             unLikePost();
         } else {
             likePost();
         }
+    };
 
+    const toggleShare = () => {
+        if (shared) {
+            unSharePost();
+        } else {
+            sharePost();
+        }
     };
 
     const unLikePost = async () => {
@@ -24,8 +32,7 @@ const FeedPostFooter = ({ post }) => {
             setLiked(false);
             const res = await helper.sendPost("/removeLike", { postId: post._id });
             if (res.postId) {
-                setLikes(liked ? likes - 1 : likes + 1);
-                console.log("unliked");
+                setLikes(liked ? likes - 1 : likes);
             }
         } catch (err) {
             setLiked(true);
@@ -38,19 +45,43 @@ const FeedPostFooter = ({ post }) => {
             setLiked(true);
             const res = await helper.sendPost("/addLike", { postId: post._id });
             if (res.newLike) {
-                setLikes(liked ? likes - 1 : likes + 1);
-                console.log("liked");
+                setLikes(liked ? likes : likes + 1);
             }
-            console.log(res);
         } catch (err) {
             setLiked(false);
             console.error("Error liking post:", err);
         }
     };
 
+    const unSharePost = async () => {
+        try {
+            setShared(false);
+            const res = await helper.sendPost("/removeShare", { postId: post._id });
+            if (res.postId) {
+                setShares(shared ? shares - 1 : shares);
+            }
+        } catch (err) {
+            setShared(true);
+            console.error("Error unsharing post:", err);
+        }
+    };
+
+    const sharePost = async () => {
+        try {
+            setShared(true);
+            const res = await helper.sendPost("/addShare", { postId: post._id });
+            if (res.newShare) {
+                setShares(shared ? shares : shares + 1);
+            }
+        } catch (err) {
+            setShared(false);
+            console.error("Error sharing post:", err);
+        }
+    };
+
     const handleHighlight = () => {
         setHighlighted(true);
-        setTimeout(() => setHighlighted(false), 300); // Remove highlight after 300ms
+        setTimeout(() => setHighlighted(false), 300);
     };
 
     return (
@@ -65,30 +96,29 @@ const FeedPostFooter = ({ post }) => {
                 0
             </button>
             <button
-                className={`repeat-button ${highlighted ? "highlighted" : ""}`}
+                className={`repeat-button ${shared ? "shared" : ""} ${highlighted ? "highlighted" : ""}`}
+                onClick={toggleShare}
                 onMouseDown={handleHighlight}
             >
                 <span className="mx-1">
                     <FontAwesomeIcon icon={faRepeat} />
                 </span>
-                0
+                {shares}
             </button>
             <button
                 className={`like-button ${liked ? "liked" : ""} ${highlighted ? "highlighted" : ""}`}
                 onClick={toggleLike}
                 onMouseDown={handleHighlight}
             >
-                {
-                    liked ?
-                        <span className="mx-1">
-                            <FontAwesomeIcon icon={faHeartSolid} />
-                        </span>
-                        :
-                        <span className="mx-1">
-                            <FontAwesomeIcon icon={faHeart} />
-                        </span>
-                }
-
+                {liked ? (
+                    <span className="mx-1">
+                        <FontAwesomeIcon icon={faHeartSolid} />
+                    </span>
+                ) : (
+                    <span className="mx-1">
+                        <FontAwesomeIcon icon={faHeart} />
+                    </span>
+                )}
                 {likes}
             </button>
         </div>

@@ -44,8 +44,7 @@ const makePost = async (req, res) => {
 };
 
 const addLikeAndShareInfoToGetPost = async (req, post) => {
-
-  const likes = await Likes.getLikesForPost(post._id); 
+  const likes = await Likes.getLikesForPost(post._id);
   const shares = await Shares.getSharesForPost(post._id);
 
   const hasLiked = req.session.account._id
@@ -82,7 +81,6 @@ const getPublicPosts = async (req, res) => {
       .sort({ createdDate: -1 })
       .skip(parsedSkip)
       .limit(parsedLimit);
-
 
     const postsWithInfo = await Promise.all(
       posts.map((post) => addLikeAndShareInfoToGetPost(req, post)),

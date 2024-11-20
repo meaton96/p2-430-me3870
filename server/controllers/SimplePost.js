@@ -190,7 +190,6 @@ const addShareToPost = async (req, res) => {
     }
 };
 
-
 const removeShareFromPost = async (req, res) => {
     const { postId } = req.body;
     if (!postId) {
@@ -221,8 +220,6 @@ const hasUserSharedPost = async (req, res) => {
         return res.status(500).json({ error: 'An error occurred while checking share status' });
     }
 };
-
-
 
 const getPostsForUser = async (req, res) => {
     const { userId } = req.params;

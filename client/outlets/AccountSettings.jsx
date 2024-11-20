@@ -14,6 +14,7 @@ const AccountSettings = ({ avatar, setAvatar }) => {
 
 
 
+    // Get premium mode on load
     useEffect(() => {
         const getPremiumMode = async () => {
             try {
@@ -31,6 +32,7 @@ const AccountSettings = ({ avatar, setAvatar }) => {
         getPremiumMode();
     }, []);
 
+    // Handle premium mode change
     const handlePremiumChange = async (premium) => {
         try {
             setPremiumMode(premium);
@@ -46,10 +48,12 @@ const AccountSettings = ({ avatar, setAvatar }) => {
         }
     };
 
+    // Handle signout
     const handleSignout = async () => {
         try {
             const res = await helper.sendGet("/logout");
-            if (res.success) {
+            console.log(res);
+            if (res.status === 200) {
                 window.location = "/";
             }
         } catch (err) {

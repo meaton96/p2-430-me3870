@@ -39,7 +39,7 @@ const SecuritySection = () => {
             console.error("Error changing password:", err);
         }
     };
-
+    
     return (
         <section className="section security-section">
             <h2 className="security-title">Security Settings</h2>

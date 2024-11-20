@@ -7,9 +7,9 @@ const loginPage = (req, res) => {
 };
 
 const logout = (req, res) => {
-  console.log("logging out");
+  
   req.session.destroy();
-  res.redirect('/');
+  return res.status(200).json({ redirect: '/' });
 };
 
 const setAvatar = async (request, response) => {

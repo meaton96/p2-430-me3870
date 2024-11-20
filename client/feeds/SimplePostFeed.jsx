@@ -27,7 +27,7 @@ const SimplePostFeed = ({ endpoint }) => {
         };
         fetchPosts();
     }, []);
-
+    
     return (
         <div>
             <div className="is-flex is-flex-direction-column is-justify-content-center">

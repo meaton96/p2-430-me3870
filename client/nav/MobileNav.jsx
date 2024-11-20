@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
-const MobileNav = ({icons, setIsNavModalOpen, setCurrentPage, avatar}) => {
+const MobileNav = ({icons, setIsNavModalOpen, handlePageChange, avatar}) => {
 
     return (
         <div className="nav-modal" onClick={() => setIsNavModalOpen(false)}>
@@ -20,7 +20,7 @@ const MobileNav = ({icons, setIsNavModalOpen, setCurrentPage, avatar}) => {
                             alt="avatar"
                             className="avatar-image"
                             onClick={() => {
-                                setCurrentPage("Profile");
+                                handlePageChange("Profile");
                                 setIsNavModalOpen(false);
                             }}
                         />
@@ -30,7 +30,7 @@ const MobileNav = ({icons, setIsNavModalOpen, setCurrentPage, avatar}) => {
                     <li>
                         <button
                             onClick={() => {
-                                setCurrentPage("Feed");
+                                handlePageChange("Feed");
                                 setIsNavModalOpen(false);
                             }}
                         >
@@ -40,7 +40,7 @@ const MobileNav = ({icons, setIsNavModalOpen, setCurrentPage, avatar}) => {
                     <li>
                         <button
                             onClick={() => {
-                                setCurrentPage("Profile");
+                                handlePageChange("Profile");
                                 setIsNavModalOpen(false);
                             }}
                         >
@@ -50,7 +50,7 @@ const MobileNav = ({icons, setIsNavModalOpen, setCurrentPage, avatar}) => {
                     <li>
                     <button
                             onClick={() => {
-                                setCurrentPage("AccountSettings");
+                                handlePageChange("AccountSettings");
                                 setIsNavModalOpen(false);
                             }}
                         >
@@ -60,7 +60,7 @@ const MobileNav = ({icons, setIsNavModalOpen, setCurrentPage, avatar}) => {
                     <li>
                         <button
                             onClick={() => {
-                                setCurrentPage("Pantry");
+                                handlePageChange("Pantry");
                                 setIsNavModalOpen(false);
                             }}
                         >
@@ -70,7 +70,7 @@ const MobileNav = ({icons, setIsNavModalOpen, setCurrentPage, avatar}) => {
                     <li>
                         <button
                             onClick={() => {
-                                setCurrentPage("Recipes");
+                                handlePageChange("Recipes");
                                 setIsNavModalOpen(false);
                             }}
                         >

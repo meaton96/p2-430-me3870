@@ -4,7 +4,7 @@ import { faBars, faHouse, faUser, faUtensils, faDoorClosed, faGear, faPenToSquar
 import DesktopNav from "./DesktopNav.jsx";
 import MobileNav from "./MobileNav.jsx";
 
-const Nav = ({ avatar, setCurrentPage, setNewPostModalActive }) => {
+const Nav = ({ avatar, handlePageChange, setNewPostModalActive }) => {
     const [isNavModalOpen, setIsNavModalOpen] = useState(false);
     const icons = {
         faHouse,
@@ -27,7 +27,7 @@ const Nav = ({ avatar, setCurrentPage, setNewPostModalActive }) => {
 
             {/* Desktop Navigation */}
             <DesktopNav
-                setCurrentPage={setCurrentPage}
+                handlePageChange={handlePageChange}
                 avatar={avatar}
                 setNewPostModalActive={setNewPostModalActive}
                 icons={icons}
@@ -38,7 +38,7 @@ const Nav = ({ avatar, setCurrentPage, setNewPostModalActive }) => {
             <MobileNav  
                 icons={icons} 
                 setIsNavModalOpen={setIsNavModalOpen} 
-                setCurrentPage={setCurrentPage}
+                handlePageChange={handlePageChange}
                 avatar={avatar}
             /> 
             }

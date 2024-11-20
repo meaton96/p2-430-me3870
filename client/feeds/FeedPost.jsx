@@ -1,11 +1,20 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useContext } from "react";
+import { UserContext } from '../utils/UserContext.js';
 import FeedPostFooter from "./FeedPostFooter.jsx";
 
 // Component for each post in the feed
 const FeedPost = ({ post }) => {
 
     const [avatar, setAvatar] = useState(`/assets/img/avatar-grey-small.png`);
+
+    const { setIsBackButtonActive } = useContext(UserContext);
+
+    const handlePostClick = () => {
+        console.log("Post clicked");
+        setIsBackButtonActive(true);
+    }
 
     // Get the avatar of the post author
     useEffect(() => {
@@ -44,16 +53,17 @@ const FeedPost = ({ post }) => {
     };
 
     const age = calculateAge(post.createdDate);
-    
+
     return (
-        <div className="post-container px-4 py-1">
-            <div className="is-flex">
+        <div className="post-container px-4 py-1" onClick={handlePostClick}>
+
+            <div className="is-flex" >
                 <div className="is-narrow mr-1">
                     <figure className="image is-48x48">
                         <img src={avatar} alt='avatar' />
                     </figure>
                 </div>
-                <div className="is-flex-grow-1">
+                <div className="is-flex-grow-1 " >
                     <div >
                         <div className=""><span className="has-text-weight-bold">@{post.author}</span> - {age}</div>
                         <div className="">

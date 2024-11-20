@@ -1,5 +1,5 @@
 const React = require('react');
-const { useState, useEffect, Suspense } = React;
+const { useState, useEffect, Suspense, useContext } = React;
 const { createRoot } = require('react-dom/client');
 const helper = require('./utils/helper.js');
 
@@ -10,13 +10,18 @@ const Pantry = React.lazy(() => import('./outlets/Pantry.jsx'));
 const Recipes = React.lazy(() => import('./outlets/Recipes.jsx'));
 const NewPostModal = React.lazy(() => import('./new-post/NewPostModal.jsx'));
 const Profile = React.lazy(() => import('./outlets/Profile.jsx'));
-import { UserProvider } from './utils/UserContext.js';
+import { UserProvider, UserContext } from './utils/UserContext.js';
+
 
 const App = () => {
 
     const [avatar, setAvatar] = useState("/assets/img/avatar-grey-small.png");
     const [newPostModalActive, setNewPostModalActive] = useState(false);
     const [currentPage, setCurrentPage] = useState('Feed');
+
+     const { changeBasePage } = useContext(UserContext);
+    
+   
 
     useEffect(() => {
         const getAvatar = async () => {
@@ -30,17 +35,20 @@ const App = () => {
             }
         };
         getAvatar();
-    }, [avatar]);
+    }, []);
 
     const handlePost = async (post) => {
         try {
             const res = await helper.sendPost("/simplePost", post);
-
-            
         }
         catch (err) {
             console.error("Error posting:", err);
         }
+    };
+    const handlePageChange = (page) => {
+        //console.log("Page change to:", page);
+        changeBasePage(page);
+        setCurrentPage(page);
     };
 
     const renderPage = () => {
@@ -64,12 +72,14 @@ const App = () => {
         }
     };
 
+    changeBasePage(currentPage);
+
     return (
         <Suspense fallback={<div>Loading...</div>}>
             <div className='columns '>
 
                 <Nav
-                    setCurrentPage={setCurrentPage}
+                    handlePageChange={handlePageChange}
                     avatar={avatar}
                     setNewPostModalActive={setNewPostModalActive}
                 />

@@ -1,8 +1,10 @@
 import React from "react";
-
+import { useContext } from "react";
+import { UserProvider } from "../utils/UserContext.js";
 const { Suspense, lazy } = React;
 const FollowingFeed = lazy(() => import("../feeds/FollowingFeed.jsx"));
 const SimplePostFeed = lazy(() => import("../feeds/SimplePostFeed.jsx"));
+
 
 
 const feeds = {
@@ -15,6 +17,9 @@ const Feed = () => {
 
     const [feed, setFeed] = React.useState('discover');
 
+    // const { addBreadcrumb, removeBreadcrumb } = useContext(UserProvider);
+    const addBreadcrumb = (a) => { };
+    const removeBreadcrumb = () => { };
 
     const getFeed = () => {
         switch (feed) {
@@ -41,18 +46,27 @@ const Feed = () => {
     const handleFeedChange = (feedIndex) => {
         switch (feedIndex) {
             case 0:
+                removeBreadcrumb();
+                addBreadcrumb("discover");
                 setFeed(feeds.discover);
                 break;
             case 1:
+                removeBreadcrumb();
+                addBreadcrumb("following");
                 setFeed(feeds.following);
                 break;
             case 2:
+                removeBreadcrumb();
+                addBreadcrumb("myPosts");
                 setFeed(feeds.myPosts);
                 break;
             default:
+                removeBreadcrumb();
+                addBreadcrumb("discover");
                 setFeed(feeds.discover);
         }
     }
+    addBreadcrumb("discover");
 
     return (
         <div>

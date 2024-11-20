@@ -45,7 +45,7 @@ const FeedPost = ({ post }) => {
     };
 
     const age = calculateAge(post.createdDate);
-    console.log(post.content);
+    
     return (
         <div className="post-container px-4 py-1 my-1">
 

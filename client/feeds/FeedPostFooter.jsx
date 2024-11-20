@@ -36,7 +36,7 @@ const FeedPostFooter = ({ post }) => {
             }
         } catch (err) {
             setLiked(true);
-            console.error("Error unliking post:", err);
+           // console.error("Error unliking post:", err);
         }
     };
 
@@ -49,7 +49,7 @@ const FeedPostFooter = ({ post }) => {
             }
         } catch (err) {
             setLiked(false);
-            console.error("Error liking post:", err);
+          //  console.error("Error liking post:", err);
         }
     };
 
@@ -62,20 +62,24 @@ const FeedPostFooter = ({ post }) => {
             }
         } catch (err) {
             setShared(true);
-            console.error("Error unsharing post:", err);
+          //  console.error("Error unsharing post:", err);
         }
     };
 
     const sharePost = async () => {
+        
         try {
             setShared(true);
             const res = await helper.sendPost("/addShare", { postId: post._id });
             if (res.newShare) {
                 setShares(shared ? shares : shares + 1);
             }
+            else {
+                setShared(false);
+            }
         } catch (err) {
             setShared(false);
-            console.error("Error sharing post:", err);
+           // console.error("Error sharing post:", err);
         }
     };
 

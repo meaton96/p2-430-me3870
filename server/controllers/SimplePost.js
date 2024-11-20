@@ -173,12 +173,23 @@ const addShareToPost = async (req, res) => {
     }
 
     try {
+        const post = await SimplePost.findById(postId);
+        if (!post) {
+            return res.status(404).json({ error: 'Post not found' });
+        }
+
+        if (post.owner.toString() === req.session.account._id) {
+            return res.status(400).json({ error: 'You cannot share your own post' });
+        }
+
         const newShare = await Shares.addShare(postId, req.session.account._id);
         return res.status(201).json({ newShare });
     } catch (err) {
+        console.error("Error in addShareToPost:", err);
         return res.status(500).json({ error: 'An error occurred while adding share' });
     }
 };
+
 
 const removeShareFromPost = async (req, res) => {
     const { postId } = req.body;

@@ -5,6 +5,7 @@
     "no-plusplus": "off",
     "import/extensions": "off",
     "global-require": "off",
-    "no-console": "off"
+    "no-console": "off",
+    "func-names": "off"
   }
 }

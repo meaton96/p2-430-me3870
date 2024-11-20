@@ -32,7 +32,7 @@ const SimplePostSchema = new mongoose.Schema({
   },
 
 });
-const SimplePostModel = mongoose.model('SimplePost', SimplePostSchema);
+
 SimplePostSchema.statics.toAPI = (doc) => ({
   content: doc.content,
   author: doc.author,
@@ -45,11 +45,11 @@ SimplePostSchema.statics.findByOwner = async (
   ownerId,
   limit = 10,
   skip = 0,
-) => SimplePostModel.find(
+) => this.find(
   { owner: ownerId },
 )
   .sort({ createdDate: -1 })
   .skip(skip)
   .limit(limit);
-
+const SimplePostModel = mongoose.model('SimplePost', SimplePostSchema);
 module.exports = SimplePostModel;

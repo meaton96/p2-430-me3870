@@ -68,6 +68,18 @@ const sendGet = async (url, handler) => {
   return result;
 }
 
+const fetchUsername = async () => {
+  try {
+      const res = await sendGet("/getUsername");
+      if (res.username) {
+          return res.username;
+      }
+  } catch (err) {
+      console.error("Error fetching username:", err);
+  }
+  return "";
+};
+
 
 const hideError = () => {
   // document.querySelector('#domoMessage').classList.add('hidden');
@@ -79,4 +91,5 @@ module.exports = {
   hideError,
   sendGet,
   getCssVariable,
+  fetchUsername,
 };

@@ -1,12 +1,20 @@
-import React from "react";
+import React from 'react';
+import { Routes, Route, useParams } from 'react-router-dom';
+import PostView from './PostView.jsx';
 
 const Profile = () => {
+    const { username } = useParams();
 
     return (
-        <div className="pt-5 mt-5">
-            <h1>My profile</h1>
+        <div>
+            <Routes>
+                <Route path="/" element={<ProfileDetails />} />
+                <Route path="post/:postId" element={<PostView />} />
+            </Routes>
         </div>
     );
 };
+
+const ProfileDetails = () => <p>Profile details go here...</p>;
 
 export default Profile;

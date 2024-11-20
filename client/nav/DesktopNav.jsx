@@ -7,6 +7,8 @@ import NavButton from "./NavButton.jsx";
 
 const DesktopNav = ({ avatar, setNewPostModalActive, icons }) => {
     const { isBackButtonActive, handleBackButtonClicked, breadcrumbs } = useContext(UserContext);
+    
+
 
     return (
         <div className={`nav-container px-3 is-hidden-mobile`}>
@@ -42,7 +44,7 @@ const DesktopNav = ({ avatar, setNewPostModalActive, icons }) => {
                 <NavButton
                     icon={icons.faUser}
                     text="My Profile"
-                    to="/profile"
+                    to={`/profile`}
                 />
                 <NavButton
                     icon={icons.faGear}

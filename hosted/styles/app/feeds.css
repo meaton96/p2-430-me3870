@@ -50,3 +50,7 @@
 .feed-post-footer button.repeat-button.shared {
     color: var(--primary-color);
 }
+
+.feed-parent .post-link {
+    color: var(--text-color-dark);
+}

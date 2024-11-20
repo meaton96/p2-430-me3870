@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkkitchen_sync=self.webpackChunkkitchen_sync||[]).push([[749],{749:(e,n,t)=>{t.r(n),t.d(n,{default:()=>s});var c=t(540),l=t(767);const s=function(){var e=(0,l.g)(),n=e.username,t=e.postId;return c.createElement("div",null,c.createElement("h1",null,"Post by ",n),c.createElement("p",null,"Post ID: ",t))}}}]);

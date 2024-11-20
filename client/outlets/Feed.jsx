@@ -100,7 +100,7 @@ const Feed = () => {
                 </div>
             </header>
             <Suspense fallback={<div>Loading...</div>}>
-                <div className="">
+                <div className="feed-parent">
                     {getFeed()}
                 </div>
             </Suspense>

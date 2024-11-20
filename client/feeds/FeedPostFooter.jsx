@@ -6,10 +6,10 @@ import helper from "../utils/helper";
 
 const FeedPostFooter = ({ post }) => {
     const [likes, setLikes] = useState(post.likesCount || 0);
-    const [shares, setShares] = useState(post.sharesCount || 0); 
+    const [shares, setShares] = useState(post.sharesCount || 0);
     const [highlighted, setHighlighted] = useState(false);
     const [liked, setLiked] = useState(post.hasLiked || false);
-    const [shared, setShared] = useState(post.hasShared || false); 
+    const [shared, setShared] = useState(post.hasShared || false);
 
     const toggleLike = () => {
         if (liked) {
@@ -79,16 +79,16 @@ const FeedPostFooter = ({ post }) => {
         }
     };
 
-    const handleHighlight = () => {
-        setHighlighted(true);
-        setTimeout(() => setHighlighted(false), 300);
-    };
+    // const handleHighlight = () => {
+    //     setHighlighted(true);
+    //     //setTimeout(() => setHighlighted(false), 300);
+    // };
 
     return (
         <div className="feed-post-footer is-flex is-justify-content-space-between is-fullwidth my-2">
             <button
                 className={`comment-button ${highlighted ? "highlighted" : ""}`}
-                onMouseDown={handleHighlight}
+
             >
                 <span className="mx-1">
                     <FontAwesomeIcon icon={faComment} />
@@ -98,7 +98,7 @@ const FeedPostFooter = ({ post }) => {
             <button
                 className={`repeat-button ${shared ? "shared" : ""} ${highlighted ? "highlighted" : ""}`}
                 onClick={toggleShare}
-                onMouseDown={handleHighlight}
+
             >
                 <span className="mx-1">
                     <FontAwesomeIcon icon={faRepeat} />
@@ -108,7 +108,7 @@ const FeedPostFooter = ({ post }) => {
             <button
                 className={`like-button ${liked ? "liked" : ""} ${highlighted ? "highlighted" : ""}`}
                 onClick={toggleLike}
-                onMouseDown={handleHighlight}
+
             >
                 {liked ? (
                     <span className="mx-1">

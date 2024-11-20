@@ -26,7 +26,7 @@ const FeedPost = ({ post }) => {
         const now = new Date();
         const createdDate = new Date(createdAt);
 
-       
+        
 
         const diffInSeconds = Math.floor((now - createdDate) / 1000);
 
@@ -45,7 +45,7 @@ const FeedPost = ({ post }) => {
     };
 
     const age = calculateAge(post.createdDate);
-
+    console.log(post.content);
     return (
         <div className="post-container px-4 py-1 my-1">
 
@@ -58,7 +58,17 @@ const FeedPost = ({ post }) => {
                 <div className="is-flex-grow-1">
                     <div >
                         <div className=""><span className="has-text-weight-bold">@{post.author}</span> - {age}</div>
-                        <div className="">{post.content}</div>
+                        <div className="">
+                            {
+                                post.content.split('\n').map((line, index) => {
+                                    return (
+                                        <span key={index}>
+                                            {line}
+                                            <br />
+                                        </span>
+                                    );
+                                })
+                            }</div>
                     </div>
                     <FeedPostFooter post={post} />
                 </div>

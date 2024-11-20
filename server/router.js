@@ -21,7 +21,7 @@ const router = (app) => {
   app.get('/getAvatar/:id', controllers.Account.getAvatarById);
   app.get('/getAvatarByUsername/:username', controllers.Account.getAvatarByUsername);
 
-  // simple post routes (twitter)
+  // Simple post routes
   app.post('/simplePost', mid.requiresLogin, controllers.SimplePost.makePost);
   app.get('/simplePublicPosts', controllers.SimplePost.getPublicPosts);
   app.get('/getNumLikesForPost/:postId', controllers.SimplePost.getNumLikesForPost);
@@ -29,25 +29,19 @@ const router = (app) => {
   app.get('/getPostsForUser/:userId', controllers.SimplePost.getPostsForUser);
   app.get('/getPostsForUserByVisibility/:userId/:visibility', controllers.SimplePost.getPostsForUserByVisibility);
 
-  // post likes
+  // Post likes
   app.post('/addLike', mid.requiresLogin, controllers.SimplePost.addLikeToPost);
   app.post('/removeLike', mid.requiresLogin, controllers.SimplePost.removeLikeFromPost);
   app.get('/simplePost/:postId/has-liked', mid.requiresLogin, controllers.SimplePost.hasUserLikedPost);
-  // post shares
+
+  // Post shares
   app.get('/getNumSharesForPost/:postId', controllers.SimplePost.getNumSharesForPost);
   app.post('/addShare', mid.requiresLogin, controllers.SimplePost.addShareToPost);
   app.post('/removeShare', mid.requiresLogin, controllers.SimplePost.removeShareFromPost);
   app.get('/simplePost/:postId/has-shared', mid.requiresLogin, controllers.SimplePost.hasUserSharedPost);
 
-  // Domo routes
-  // app.get('/getDomos', mid.requiresLogin, controllers.Domo.getDomos);
-  // app.delete('/domo', mid.requiresLogin, controllers.Domo.deleteDomo);
-  app.get('/app', mid.requiresLogin, controllers.App.appPage);
-  // app.post('/makeRandom', mid.requiresLogin, controllers.Domo.makeRandomDomo);
-
-  // Page routes
-  // app.get('/maker', mid.requiresLogin, controllers.Domo.makerPage);
-  // app.get('/battle', mid.requiresLogin, controllers.Domo.battlePage);
+  // Serve the app for authenticated users
+  app.get('/app*', mid.requiresLogin, controllers.App.appPage);
 
   // Root route: Redirect based on login state
   app.get('/', mid.requiresSecure, (req, res) => {
@@ -56,6 +50,9 @@ const router = (app) => {
     }
     return res.redirect('/login');
   });
+
+  // Catch-all route for client-side routing
+  app.get('*', mid.requiresSecure, mid.requiresLogin, controllers.App.appPage);
 };
 
 module.exports = router;

@@ -45,7 +45,7 @@
     /* text-align: right; */
 }
 
-.nav-list li button {
+.nav-list li a, .nav-list li button {
     color: var(--text-color-dark);
     display: flex;
     align-items: center;
@@ -71,7 +71,7 @@
     color: white !important;
 }
 
-.nav-list li button:hover {
+.nav-list li a:hover, .nav-list li button:hover {
 
     background-color: var(--hover-color);
     color: white;
@@ -82,12 +82,12 @@
     background-color: var(--accent-color) !important;
 }
 
-.nav-list li button i {
+.nav-list li a i, .nav-list li button i {
     font-size: 1.2rem;
     color: var(--primary-color);
 }
 
-.nav-list li button:hover i {
+.nav-list li a:hover i, .nav-list li button:hover i {
     color: white;
 }
 
@@ -158,7 +158,7 @@
 
 
 
-.nav-list li button:hover {
+.nav-list li a:hover, .nav-list li button:hover {
     background-color: var(--hover-color);
     color: white;
     transform: scale(1.05);
@@ -199,7 +199,7 @@
         width: 85%;
     }
 
-    .nav-list li button {
+    .nav-list li a, .nav-list li button {
         padding: 0.75rem .75rem;
     }
 
@@ -209,7 +209,7 @@
 }
 
 @media screen and (max-width: 1100px) {
-    .nav-list li button {
+    .nav-list li a, .nav-list li button {
         padding: 0.5rem;
         justify-content: center;
         border-radius: 50%;
@@ -217,7 +217,7 @@
         height: 50px;
     }
 
-    .nav-list li button.nav-avatar-btn {
+    .nav-list li, .nav-list li button, a.nav-avatar-btn {
         padding: 0rem;
     }
 

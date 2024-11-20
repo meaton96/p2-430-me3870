@@ -25,11 +25,24 @@ const makePost = async (req, res) => {
     try {
         const newPost = new SimplePost(postData);
         await newPost.save();
+
+        const likeData = {
+            postId: newPost._id,
+            userId: req.session.account._id,
+        };
+
+        try {
+            await Likes.addLike(likeData.postId, likeData.userId);
+        } catch (likeErr) {
+            console.error("Error automatically liking the post:", likeErr);
+        }
+
         return res.status(201).json(SimplePost.toAPI(newPost));
     } catch (err) {
         return res.status(500).json({ error: 'An error occurred' });
     }
 };
+
 
 const addLikeAndShareInfoToGetPost = async (req, post) => {
     const likes = await Likes.getLikesForPost(post._id);

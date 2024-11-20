@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "../utils/UserContext.js";
 import ChangeAvatarModal from "../account-settings/ChangeAvatarModal.jsx";
 import ChangeAvatarSection from "../account-settings/ChangeAvatarSection.jsx";
@@ -12,7 +12,7 @@ const AccountSettings = ({ avatar, setAvatar }) => {
     const [changeAvatarModalActive, setChangeAvatarModalActive] = useState(false);
     const [loading, setLoading] = useState(true);
 
-    
+
 
     useEffect(() => {
         const getPremiumMode = async () => {
@@ -43,6 +43,17 @@ const AccountSettings = ({ avatar, setAvatar }) => {
         } catch (err) {
             console.error("Error setting premium mode:", err);
             setPremiumMode(!premium);
+        }
+    };
+
+    const handleSignout = async () => {
+        try {
+            const res = await helper.sendGet("/logout");
+            if (res.success) {
+                window.location = "/";
+            }
+        } catch (err) {
+            console.error("Error signing out:", err);
         }
     };
 
@@ -88,6 +99,12 @@ const AccountSettings = ({ avatar, setAvatar }) => {
                     avatar={avatar}
                 />
             )}
+            <hr className="settings-hr" />
+            <div className="">
+                <button className="sign-out-btn" onClick={handleSignout}>
+                    Sign out
+                </button>
+            </div>
         </div>
     );
 };

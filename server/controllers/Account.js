@@ -7,6 +7,7 @@ const loginPage = (req, res) => {
 };
 
 const logout = (req, res) => {
+  console.log("logging out");
   req.session.destroy();
   res.redirect('/');
 };

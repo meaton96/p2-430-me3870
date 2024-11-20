@@ -37,7 +37,7 @@ const App = () => {
         try {
             const res = await helper.sendPost("/simplePost", post);
 
-            console.log(res);
+            
         }
         catch (err) {
             console.error("Error posting:", err);

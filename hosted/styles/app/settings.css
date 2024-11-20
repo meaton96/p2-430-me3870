@@ -156,6 +156,19 @@
     background-color: var(--accent-color);
 }
 
+.sign-out-btn {
+    width: 100%;
+    text-align: left;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    
+    &:hover {
+        background-color: var(--accent-color);
+        color: white;
+    }
+}
+
 
 @media screen and (max-width: 768px) {
     .has-text-centered-mobile {

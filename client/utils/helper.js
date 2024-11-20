@@ -18,6 +18,7 @@ const sendPost = async (url, data, handler) => {
 
 
   const result = await response.json();
+  //console.log(result);
   // console.log(result);
   // Hide any previous messages
   // document.getElementById("domoMessage").classList.add("hidden");

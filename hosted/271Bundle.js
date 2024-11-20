@@ -1,1 +1,1 @@
-"use strict";(self.webpackChunkp2_430_me3870=self.webpackChunkp2_430_me3870||[]).push([[271],{271:(e,n,t)=>{t.r(n),t.d(n,{default:()=>u});var l=t(540);const u=function(){return l.createElement("div",null,l.createElement("h1",null,"My Recipes"))}}}]);
+"use strict";(self.webpackChunkkitchen_sync=self.webpackChunkkitchen_sync||[]).push([[271],{271:(e,n,c)=>{c.r(n),c.d(n,{default:()=>l});var t=c(540);const l=function(){return t.createElement("div",null,t.createElement("h1",null,"My Recipes"))}}}]);

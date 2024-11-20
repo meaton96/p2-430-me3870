@@ -7,8 +7,6 @@
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 
-
-
 /* When generating a password hash, bcrypt (and most other password hash
    functions) use a "salt". The salt is simply extra data that gets hashed
    along with the password. The addition of the salt makes it more difficult
@@ -64,24 +62,20 @@ AccountSchema.statics.generateHash = (password) => bcrypt.hash(password, saltRou
 
 AccountSchema.statics.getUsername = async (_id, callback) => {
   try {
-    
     const doc = await AccountModel.findOne({ _id }, 'username').exec();
     if (!doc) {
-      
       return callback(null, null);
     }
-    
-    return callback(null, doc.username);
 
-  }
-  catch (err) {
+    return callback(null, doc.username);
+  } catch (err) {
     return callback(err);
   }
-}
+};
 /**
  * Helper to add a follower to the account
  */
-AccountSchema.statics.addFollower = async function (accountId, followerId) {
+AccountSchema.statics.addFollower = async (accountId, followerId) => {
   try {
     const account = await this.findById(accountId).exec();
     if (!account.followers.includes(followerId)) {
@@ -96,7 +90,7 @@ AccountSchema.statics.addFollower = async function (accountId, followerId) {
 /**
  * Helper to remove a follower from the account
  */
-AccountSchema.statics.removeFollower = async function (accountId, followerId) {
+AccountSchema.statics.removeFollower = async (accountId, followerId) => {
   try {
     const account = await this.findById(accountId).exec();
     account.followers = account.followers.filter((id) => !id.equals(followerId));
@@ -109,7 +103,7 @@ AccountSchema.statics.removeFollower = async function (accountId, followerId) {
 /**
  * Helper to add an account to the following list
  */
-AccountSchema.statics.addFollowing = async function (accountId, followingId) {
+AccountSchema.statics.addFollowing = async (accountId, followingId) => {
   try {
     const account = await this.findById(accountId).exec();
     if (!account.following.includes(followingId)) {
@@ -124,7 +118,7 @@ AccountSchema.statics.addFollowing = async function (accountId, followingId) {
 /**
  * Helper to remove an account from the following list
  */
-AccountSchema.statics.removeFollowing = async function (accountId, followingId) {
+AccountSchema.statics.removeFollowing = async (accountId, followingId) => {
   try {
     const account = await this.findById(accountId).exec();
     account.following = account.following.filter((id) => !id.equals(followingId));
@@ -137,7 +131,7 @@ AccountSchema.statics.removeFollowing = async function (accountId, followingId) 
 /**
  * Check if an account is a follower
  */
-AccountSchema.statics.isFollower = async function (accountId, followerId) {
+AccountSchema.statics.isFollower = async (accountId, followerId) => {
   try {
     const account = await this.findById(accountId).exec();
     return account.followers.some((id) => id.equals(followerId));
@@ -146,11 +140,10 @@ AccountSchema.statics.isFollower = async function (accountId, followerId) {
   }
 };
 
-
 /**
  * Check if an account is a friend
  */
-AccountSchema.statics.isFriend = async function (accountId, friendId) {
+AccountSchema.statics.isFriend = async (accountId, friendId) => {
   try {
     const account = await this.findById(accountId).exec();
     return account.friends.some((id) => id.equals(friendId));
@@ -181,8 +174,8 @@ AccountSchema.statics.authenticate = async (username, password, callback) => {
     return callback(err);
   }
 };
-//checks the database to see if a username is already taken
-//calls the callback with false if the username is not taken
+// checks the database to see if a username is already taken
+// calls the callback with false if the username is not taken
 AccountSchema.statics.checkUsername = async (username, callback) => {
   try {
     const doc = await AccountModel.findOne({ username }).exec();
@@ -193,9 +186,8 @@ AccountSchema.statics.checkUsername = async (username, callback) => {
   } catch (err) {
     return callback(err, false);
   }
-
 };
-//change an account avatar by account id
+// change an account avatar by account id
 AccountSchema.statics.changeAvatar = async (_id, avatar, callback) => {
   try {
     console.log(_id, avatar);
@@ -204,12 +196,11 @@ AccountSchema.statics.changeAvatar = async (_id, avatar, callback) => {
       return callback();
     }
     return callback(null, doc);
-  }
-  catch (err) {
+  } catch (err) {
     return callback(err);
   }
-}
-//get the avatar of an account by account id
+};
+// get the avatar of an account by account id
 AccountSchema.statics.getAvatar = async (_id, callback) => {
   try {
     const doc = await AccountModel.findOne({ _id }, 'avatar').exec(); // Fetch only the avatar field
@@ -221,7 +212,7 @@ AccountSchema.statics.getAvatar = async (_id, callback) => {
     return callback(err);
   }
 };
-//get the avatar of an account by account id
+// get the avatar of an account by account id
 AccountSchema.statics.getAvatarByUsername = async (username, callback) => {
   try {
     const doc = await AccountModel.findOne({ username }, 'avatar').exec(); // Fetch only the avatar field
@@ -233,21 +224,20 @@ AccountSchema.statics.getAvatarByUsername = async (username, callback) => {
     return callback(err);
   }
 };
-//set the premium status of an account by account id
+// set the premium status of an account by account id
 AccountSchema.statics.setPremium = async (_id, premium, callback) => {
   try {
     const doc = await AccountModel.findOneAndUpdate({ _id }, { premium }).exec();
     if (!doc) {
       return callback();
     }
-    //console.log(doc);
+    // console.log(doc);
     return callback(null, doc.premium);
   } catch (err) {
     return callback(err);
   }
-
-}
-//get the premium status of an account by account id
+};
+// get the premium status of an account by account id
 AccountSchema.statics.getPremium = async (_id, callback) => {
   try {
     const doc = await AccountModel.findOne({ _id }, 'premium').exec();
@@ -259,12 +249,11 @@ AccountSchema.statics.getPremium = async (_id, callback) => {
   } catch (err) {
     return callback(err);
   }
-}
+};
 
 // Change the password of an account by username
 AccountSchema.statics.changePassword = async (username, oldPassword, newPassword, callback) => {
   try {
-
     const account = await AccountModel.findOne({ username }).exec();
     if (!account) {
       return callback(null, null); // User not found
@@ -287,10 +276,6 @@ AccountSchema.statics.changePassword = async (username, oldPassword, newPassword
     return callback(err);
   }
 };
-
-
-
-
 
 AccountModel = mongoose.model('Account', AccountSchema);
 module.exports = AccountModel;

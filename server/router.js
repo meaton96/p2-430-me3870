@@ -14,14 +14,14 @@ const router = (app) => {
   app.post('/setPremium', mid.requiresLogin, controllers.Account.setPremium);
   app.get('/getUsername/:id', controllers.Account.getUsername);
   app.get('/getUsername', controllers.Account.getUsername);
-  
+
   // Avatar routes
   app.get('/getDefaultAvatars', controllers.Account.getDefaultAvatars);
   app.get('/getAvatar', mid.requiresLogin, controllers.Account.getUserAvatar);
   app.get('/getAvatar/:id', controllers.Account.getAvatarById);
   app.get('/getAvatarByUsername/:username', controllers.Account.getAvatarByUsername);
 
-  //simple post routes (twitter)
+  // simple post routes (twitter)
   app.post('/simplePost', mid.requiresLogin, controllers.SimplePost.makePost);
   app.get('/simplePublicPosts', controllers.SimplePost.getPublicPosts);
   app.get('/getNumLikesForPost/:postId', controllers.SimplePost.getNumLikesForPost);
@@ -29,13 +29,11 @@ const router = (app) => {
   app.get('/getPostsForUser/:userId', controllers.SimplePost.getPostsForUser);
   app.get('/getPostsForUserByVisibility/:userId/:visibility', controllers.SimplePost.getPostsForUserByVisibility);
 
-
-
-  //post likes
+  // post likes
   app.post('/addLike', mid.requiresLogin, controllers.SimplePost.addLikeToPost);
   app.post('/removeLike', mid.requiresLogin, controllers.SimplePost.removeLikeFromPost);
   app.get('/simplePost/:postId/has-liked', mid.requiresLogin, controllers.SimplePost.hasUserLikedPost);
-  //post shares
+  // post shares
   app.get('/getNumSharesForPost/:postId', controllers.SimplePost.getNumSharesForPost);
   app.post('/addShare', mid.requiresLogin, controllers.SimplePost.addShareToPost);
   app.post('/removeShare', mid.requiresLogin, controllers.SimplePost.removeShareFromPost);
@@ -48,15 +46,15 @@ const router = (app) => {
   // app.post('/makeRandom', mid.requiresLogin, controllers.Domo.makeRandomDomo);
 
   // Page routes
-  //app.get('/maker', mid.requiresLogin, controllers.Domo.makerPage);
- // app.get('/battle', mid.requiresLogin, controllers.Domo.battlePage);
+  // app.get('/maker', mid.requiresLogin, controllers.Domo.makerPage);
+  // app.get('/battle', mid.requiresLogin, controllers.Domo.battlePage);
 
   // Root route: Redirect based on login state
   app.get('/', mid.requiresSecure, (req, res) => {
     if (req.session.account) {
-      return res.redirect('/app'); 
+      return res.redirect('/app');
     }
-    return res.redirect('/login'); 
+    return res.redirect('/login');
   });
 };
 

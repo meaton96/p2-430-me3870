@@ -1,5 +1,5 @@
 {
-  "name": "p2-430-me3870",
+  "name": "kitchen-sync",
   "version": "1.0.0",
   "description": "",
   "main": "./server/app.js",
@@ -37,6 +37,7 @@
     "webpack-hot-middleware": "^2.26.1"
   },
   "dependencies": {
+    "@stylistic/eslint-plugin-js": "^2.9.0",
     "@babel/preset-env": "^7.26.0",
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
     "@fortawesome/free-regular-svg-icons": "^6.7.0",

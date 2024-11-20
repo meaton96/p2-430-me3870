@@ -1,5 +1,4 @@
 const requiresLogin = (req, res, next) => {
-  
   if (!req.session.account) {
     // console.log('requiresLogin failed');
     return res.redirect('/');

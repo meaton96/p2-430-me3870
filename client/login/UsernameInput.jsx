@@ -8,9 +8,9 @@ const UsernameInput = ({ username, setUsername, validate, isSignup }) => {
 
     useEffect(() => {
         const validateUsername = async () => {
-            if (!username) {
-                setValidUsername(null);
-                setValidationMessage("");
+            if (username === "") {
+                setValidUsername(false);
+                setValidationMessage("Username cannot be empty");
                 return;
             }
             if (username.length < 3) {
@@ -18,7 +18,7 @@ const UsernameInput = ({ username, setUsername, validate, isSignup }) => {
                 setValidationMessage("Username must be at least 3 characters long");
                 return;
             }
-
+    
             try {
                 const res = await helper.sendPost("/validateUsername", { username });
                 if (res.exists !== undefined) {
@@ -40,9 +40,10 @@ const UsernameInput = ({ username, setUsername, validate, isSignup }) => {
                 setValidationMessage("Error validating username");
             }
         };
-
+    
         validateUsername();
     }, [username, validate, isSignup]);
+    
 
     return (
         <div className="field">

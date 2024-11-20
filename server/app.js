@@ -40,7 +40,7 @@ redisClient.connect().then(() => {
   //   res.setHeader('Content-Security-Policy', "script-src 'self' 'nonce-abc123' https://accounts.google.com;");
   //   next();
   // });
-  
+
   app.use('/assets', express.static(path.resolve(`${__dirname}/../hosted`)));
   app.use(favicon(`${__dirname}/../hosted/img/favicon.png`));
   app.use(compression());

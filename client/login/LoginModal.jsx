@@ -11,18 +11,24 @@ const LoginModal = ({ title, onClose }) => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [_title, setTitle] = useState(title);
     const [selectAvatar, setSelectAvatar] = useState(false);
-    const [loginError, setLoginError] = useState(""); // Track login errors
+    const [loginError, setLoginError] = useState(""); 
 
+    //Function to handle the login process
     const handleLogin = async (e) => {
         e.preventDefault();
-        if (!username || !password) return;
+        if (!username ) {
 
+            return;
+        }
+        if (!password) {
+            return;
+        }
+        
         try {
             const res = await helper.sendPost("/login", { username, pass: password });
             if (res.error) {
                 setLoginError("Incorrect username or password");
             } else {
-                // Handle successful login
                 setLoginError("");
                 onClose();
             }
@@ -32,6 +38,7 @@ const LoginModal = ({ title, onClose }) => {
         }
     };
 
+    //Function to handle the signup process
     const handleSignup = async (e) => {
         e.preventDefault();
         if (!username || !password || !confirmPassword) return;
@@ -44,7 +51,7 @@ const LoginModal = ({ title, onClose }) => {
     };
 
     return (
-        <div className="modal is-active">
+        <div className="modal is-active login-modal">
             <div
                 className="modal-background"
                 onClick={() => {
@@ -70,7 +77,7 @@ const LoginModal = ({ title, onClose }) => {
                                     username={username}
                                     setUsername={setUsername}
                                     validate
-                                    isSignup={_title === "Signup"} // Pass isSignup based on the modal title
+                                    isSignup={_title === "Signup"} 
                                 />
                                 <PasswordInput
                                     password={password}
@@ -82,7 +89,7 @@ const LoginModal = ({ title, onClose }) => {
                                 {_title === "Login" && loginError && (
                                     <p className="help is-danger">{loginError}</p>
                                 )}
-                                <button className="button is-primary mt-3" type="submit">
+                                <button className="button modal-login-btn mt-3" type="submit">
                                     {_title}
                                 </button>
                             </form>

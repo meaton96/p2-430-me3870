@@ -103,7 +103,6 @@ Ill answer this after finishing the project
 
 Rofl
 
-
 **10. If you used any borrowed code or code fragments, where did you get them from?**
 
 Nothing yet.
@@ -113,226 +112,258 @@ Nothing yet.
 None yet.
 
 # Endpoints
-URL: /login\
-Supported Methods: GET\
-Middleware: Requires Secure, Requires Logout\
-Query Params: \
-Description: Displays the login page.\
-Return Type(s): JSON\
+```URL: /login
+Supported Methods: GET
+Middleware: Requires Secure, Requires Logout
+Query Params: 
+Description: Displays the login page.
+Return Type(s): JSON
+```
 
-URL: /login
+```URL: /login
 Supported Methods: POST
 Middleware: Requires Secure, Requires Logout
 Body Params: username and password
 Description: Logs in a user.
 Return Type(s): JSON
+```
 
-URL: /logout
+```URL: /logout
 Supported Methods: GET
 Middleware: Requires Login
 Query Params: 
 Description: Logs out a user.
 Return Type(s): JSON
+```
 
-URL: /signup
+```URL: /signup
 Supported Methods: POST
 Middleware: Requires Secure, Requires Logout
 Query Params: username, password, password confirm
 Description: Signs up a new user.
 Return Type(s): JSON
+```
 
-URL: /changeAvatar
+```URL: /changeAvatar
 Supported Methods: POST
 Middleware: Requires Login
 Query Params: new avatar path
 Description: Changes the user's avatar.
 Return Type(s): JSON
+```
 
-URL: /validateUsername
+```URL: /validateUsername
 Supported Methods: POST
 Middleware: Requires Secure, Requires Logout
 Query Params: the username to validate
 Description: Validates if a username is available.
 Return Type(s): JSON
+```
 
-URL: /getPremium
+```URL: /getPremium
 Supported Methods: GET
 Middleware: Requires Login
 Query Params: 
 Description: Retrieves premium status of the user.
 Return Type(s): JSON
+```
 
-URL: /changePassword
+```URL: /changePassword
 Supported Methods: POST
 Middleware: Requires Secure, Requires Login
 Query Params: new password, old password, confirm password
 Description: Changes the user's password.
 Return Type(s): JSON
+```
 
-URL: /setPremium
+```URL: /setPremium
 Supported Methods: POST
 Middleware: Requires Login
 Query Params: true/false
 Description: Sets the user's premium status.
 Return Type(s): JSON
+```
 
-URL: /getUsername/:id
+```URL: /getUsername/:id
 Supported Methods: GET
 Middleware: 
 Query Params: the id of the user
 Description: Retrieves the username by user ID.
 Return Type(s): JSON
+```
 
-URL: /getUsername
+```URL: /getUsername
 Supported Methods: GET
 Middleware: 
 Query Params: 
 Description: Retrieves the username of the current user.
 Return Type(s): JSON
+```
 
-URL: /getDefaultAvatars
+```URL: /getDefaultAvatars
 Supported Methods: GET
 Middleware: 
 Query Params: 
 Description: Retrieves the default avatars.
 Return Type(s): JSON
+```
 
-URL: /getAvatar
+```URL: /getAvatar
 Supported Methods: GET
 Middleware: Requires Login
 Query Params: 
 Description: Retrieves the avatar of the current user.
 Return Type(s): JSON
+```
 
-URL: /getAvatar/:id
+```URL: /getAvatar/:id
 Supported Methods: GET
 Middleware: 
 Query Params: the id of the user
 Description: Retrieves the avatar by user ID.
 Return Type(s): JSON
+```
 
-URL: /getAvatarByUsername/:username
+```URL: /getAvatarByUsername/:username
 Supported Methods: GET
 Middleware: 
 Query Params: the username of the user
 Description: Retrieves the avatar by username.
 Return Type(s): JSON
+```
 
-URL: /simplePost
+```URL: /simplePost
 Supported Methods: POST
 Middleware: Requires Login
 Query Params: 
 Description: Creates a new simple post.
 Return Type(s): JSON
+```
 
-URL: /simplePublicPosts
+```URL: /simplePublicPosts
 Supported Methods: GET
 Middleware: 
 Query Params: 
 Description: Retrieves public simple posts.
 Return Type(s): JSON
+```
 
-URL: /getPostsForCurrentUser
+```URL: /getPostsForCurrentUser
 Supported Methods: GET
 Middleware: Requires Login
 Query Params: 
 Description: Retrieves posts for the current user.
 Return Type(s): JSON
+```
 
-URL: /getPostsForUser/:userId
+```URL: /getPostsForUser/:userId
 Supported Methods: GET
 Middleware: 
 Query Params: the id of the user
 Description: Retrieves posts for a specific user by user ID.
 Return Type(s): JSON
+```
 
-URL: /getPostsForUserByVisibility/:userId/:visibility
+```URL: /getPostsForUserByVisibility/:userId/:visibility
 Supported Methods: GET
 Middleware: 
 Query Params: the id of the user and visbility of the post
 Description: Retrieves posts for a specific user by visibility.
 Return Type(s): JSON
+```
 
-URL: /simplePost/:postId
+```URL: /simplePost/:postId
 Supported Methods: GET
 Middleware: 
 Query Params: the id of the post
 Description: Retrieves a simple post by post ID.
 Return Type(s): JSON
+```
 
-URL: /addLike
+```URL: /addLike
 Supported Methods: POST
 Middleware: Requires Login
 Query Params: 
 Description: Adds a like to a post.
 Return Type(s): JSON
+```
 
-URL: /removeLike
+```URL: /removeLike
 Supported Methods: POST
 Middleware: Requires Login
 Query Params: 
 Description: Removes a like from a post.
 Return Type(s): JSON
+```
 
-URL: /getNumLikesForPost/:postId
+```URL: /getNumLikesForPost/:postId
 Supported Methods: GET
 Middleware: 
 Query Params: the id of the post
 Description: Retrieves the number of likes for a post.
 Return Type(s): JSON
+```
 
-URL: /simplePost/:postId/has-liked
+```URL: /simplePost/:postId/has-liked
 Supported Methods: GET
 Middleware: Requires Login
 Query Params: the id of the post
 Description: Checks if the current user has liked a post.
 Return Type(s): JSON
+```
 
-URL: /getNumSharesForPost/:postId
+```URL: /getNumSharesForPost/:postId
 Supported Methods: GET
 Middleware: 
 Query Params: the id of the post
 Description: Retrieves the number of shares for a post.
 Return Type(s): JSON
+```
 
-URL: /addShare
+```URL: /addShare
 Supported Methods: POST
 Middleware: Requires Login
 Query Params: 
 Description: Adds a share to a post.
 Return Type(s): JSON
+```
 
-URL: /removeShare
+```URL: /removeShare
 Supported Methods: POST
 Middleware: Requires Login
 Query Params: 
 Description: Removes a share from a post.
 Return Type(s): JSON
+```
 
-URL: /simplePost/:postId/has-shared
+```URL: /simplePost/:postId/has-shared
 Supported Methods: GET
 Middleware: Requires Login
 Query Params: the id of the post
 Description: Checks if the current user has shared a post.
 Return Type(s): JSON
+```
 
-URL: /app*
+```URL: /app*
 Supported Methods: GET
 Middleware: Requires Login
 Query Params: 
 Description: Serves the app for authenticated users.
 Return Type(s): JSON
+```
 
-URL: /
+```URL: /
 Supported Methods: GET
 Middleware: Requires Secure
 Query Params: 
 Description: Redirects based on login state.
 Return Type(s): JSON
+```
 
-URL: *
+```URL: *
 Supported Methods: GET
 Middleware: Requires Secure, Requires Login
 Query Params: 
 Description: Catch-all route for client-side routing.
 Return Type(s): JSON
+```

@@ -112,7 +112,7 @@ Nothing yet.
 None yet.
 
 # Endpoints
-```URL: /login
+URL: /login```
 Supported Methods: GET
 Middleware: Requires Secure, Requires Logout
 Query Params: 

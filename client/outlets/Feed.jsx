@@ -1,6 +1,4 @@
 import React from "react";
-import { useContext } from "react";
-import { UserProvider } from "../utils/UserContext.js";
 const { Suspense, lazy } = React;
 const FollowingFeed = lazy(() => import("../feeds/FollowingFeed.jsx"));
 const SimplePostFeed = lazy(() => import("../feeds/SimplePostFeed.jsx"));

@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faHouse, faUser, faUtensils, faDoorClosed, faGear, faPenToSquare, faTimes } from "@fortawesome/free-solid-svg-icons";
 import DesktopNav from "./DesktopNav.jsx";
 import MobileNav from "./MobileNav.jsx";
+import { UserContext } from '../utils/UserContext.js';
 
-const Nav = ({ avatar, handlePageChange, setNewPostModalActive }) => {
+const Nav = ({ handlePageChange, setNewPostModalActive }) => {
     const [isNavModalOpen, setIsNavModalOpen] = useState(false);
+    const { avatar } = useContext(UserContext);
     const icons = {
         faHouse,
         faUser,

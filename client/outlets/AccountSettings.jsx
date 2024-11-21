@@ -6,11 +6,13 @@ import PremiumSection from "../account-settings/PremiumSection.jsx";
 import SecuritySection from "../account-settings/SecuritySection.jsx";
 import helper from "../utils/helper.js";
 
-const AccountSettings = ({ avatar, setAvatar }) => {
-    const { username } = useContext(UserContext);
+const AccountSettings = () => {
+    const { username, avatar, setAvatar } = useContext(UserContext);
     const [premiumMode, setPremiumMode] = useState(false);
     const [changeAvatarModalActive, setChangeAvatarModalActive] = useState(false);
     const [loading, setLoading] = useState(true);
+
+    
 
 
 

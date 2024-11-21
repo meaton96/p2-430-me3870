@@ -1,19 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import PostModalTextArea from "./PostModalTextArea.jsx";
 import PostModalHeader from "./PostModalHeader.jsx";
 import PostModalFooter from "./PostModalFooter.jsx";
+import { sendSimplePost } from "../hooks/simplePostProvider.js";
+import { UserContext } from "../utils/UserContext.js";
 
 const MAX_CHAR = 300;
 
-const NewPostModal = ({ isActive, onClose, onPost, avatar }) => {
+const NewPostModal = ({ isActive, onClose }) => {
     const [postText, setPostText] = useState("");
     // const [isPrivate, setIsPrivate] = useState(false);
     const [charactersRemaining, setCharactersRemaining] = useState(MAX_CHAR);
     const [visibility, setVisibility] = useState("public");
 
+    const { avatar } = useContext(UserContext);
+   
+
     const handlePost = () => {
         if (!postText.trim()) return;
-        onPost({ content: postText, visibility });
+        sendSimplePost({ content: postText, visibility });
         setPostText("");
         setVisibility("public");
         onClose();

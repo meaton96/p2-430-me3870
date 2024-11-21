@@ -70,37 +70,37 @@ const sendGet = async (url, handler) => {
 
 const fetchUsername = async () => {
   try {
-      const res = await sendGet("/getUsername");
-      if (res.username) {
-          return res.username;
-      }
+    const res = await sendGet("/getUsername");
+    if (res.username) {
+      return res.username;
+    }
   } catch (err) {
-      console.error("Error fetching username:", err);
+    console.error("Error fetching username:", err);
   }
   return "";
 };
 const getUserAvatar = async () => {
   try {
-      const res = await sendGet("/getAvatar");
-      if (res.avatar) {
-          return res.avatar;
-      }
+    const res = await sendGet("/getAvatar");
+    if (res.avatar) {
+      return res.avatar;
+    }
   } catch (err) {
-      console.error("Error fetching avatar:", err);
+    console.error("Error fetching avatar:", err);
   }
   return "";
 };
 
-function formatDateTime(isoDate) {
+const formatDateTime = (isoDate) => {
   const date = new Date(isoDate);
 
   const options = {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
-      hour12: true,
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: true,
   };
 
   return date.toLocaleString('en-US', options);

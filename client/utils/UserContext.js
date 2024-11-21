@@ -7,6 +7,21 @@ let breadcrumbs = [];
 export const UserProvider = ({ children }) => {
     // const [username, setUsername] = useState("");
     const [isBackButtonActive, setIsBackButtonActive] = useState(false);
+    const [avatar, setAvatar] = useState("/assets/img/avatar-grey-small.png");
+
+    useEffect(() => {
+        const getAvatar = async () => {
+            try {
+                const avatr = await helper.getUserAvatar();
+                if (avatr) {
+                    setAvatar(avatr);
+                }
+            } catch (err) {
+                console.error("Error getting avatar:", err);
+            }
+        };
+        getAvatar();
+    }, []);
 
 
     const addBreadcrumb = (crumb) => {
@@ -53,7 +68,9 @@ export const UserProvider = ({ children }) => {
             breadcrumbs: [...breadcrumbs],
             addBreadcrumb,
             removeBreadcrumb,
-            changeBasePage
+            changeBasePage,
+            avatar,
+            setAvatar,
         }}>
             {children}
         </UserContext.Provider>

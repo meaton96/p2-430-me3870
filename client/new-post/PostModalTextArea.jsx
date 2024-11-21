@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock, faGlobe, faUsers } from "@fortawesome/free-solid-svg-icons";
+import { UserContext } from "../utils/UserContext.js";
 
 
 const PostModalTextArea = ({
-    avatar,
     postText,
     setPostText,
     MAX_CHAR,
@@ -13,6 +13,7 @@ const PostModalTextArea = ({
     setCharactersRemaining
 }) => {
 
+    const { avatar } = useContext(UserContext);
     return (
         <section className="modal-card-body post-modal-card-body">
             <div className="columns">

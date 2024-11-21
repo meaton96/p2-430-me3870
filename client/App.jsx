@@ -13,12 +13,14 @@ const NewPostModal = React.lazy(() => import('./new-post/NewPostModal.jsx'));
 const Profile = React.lazy(() => import('./outlets/Profile.jsx'));
 const UserProfile = React.lazy(() => import('./outlets/UserProfile.jsx'));
 const PostView = React.lazy(() => import('./outlets/PostView.jsx'));
+const NewReplyModal = React.lazy(() => import('./new-post/NewReplyModal.jsx'));
 
 
 import { UserProvider } from './utils/UserContext.js';
 
 const App = () => {
-    const [newPostModalActive, setNewPostModalActive] = useState(false);
+    // const [newPostModalActive, setNewPostModalActive] = useState(false);
+    // const [newReplyModalActive, setNewReplyModalActive] = useState(false);
 
 
     return (
@@ -26,7 +28,7 @@ const App = () => {
             <Suspense fallback={<div>Loading...</div>}>
                 <div className='columns'>
                     <Nav
-                        setNewPostModalActive={setNewPostModalActive}
+                        //setNewPostModalActive={setNewPostModalActive}
                     />
                     <div className='column is-three-quarters is-full-height'>
                         <Routes>
@@ -40,7 +42,7 @@ const App = () => {
                                 path="/account-settings"
                                 element={
                                     <AccountSettings
-                                        setNewPostModalActive={setNewPostModalActive}
+                                       // setNewPostModalActive={setNewPostModalActive}
                                     />
                                 }
                             />
@@ -52,9 +54,14 @@ const App = () => {
                         </Routes>
                     </div>
                     <NewPostModal
-                        isActive={newPostModalActive}
-                        onClose={() => setNewPostModalActive(false)}
+                        // isActive={newPostModalActive}
+                        // onClose={() => setNewPostModalActive(false)}
                     />
+                    <NewReplyModal
+                        // isActive={newReplyModalActive}
+                        // onClose={() => setNewReplyModalActive(false)}
+                    />
+
                 </div>
             </Suspense>
         </Router>

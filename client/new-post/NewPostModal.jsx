@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext  } from "react";
 import PostModalTextArea from "./PostModalTextArea.jsx";
 import PostModalHeader from "./PostModalHeader.jsx";
 import PostModalFooter from "./PostModalFooter.jsx";
@@ -7,14 +7,15 @@ import { UserContext } from "../utils/UserContext.js";
 
 const MAX_CHAR = 300;
 
-const NewPostModal = ({ isActive, onClose }) => {
+const NewPostModal = () => {
     const [postText, setPostText] = useState("");
     // const [isPrivate, setIsPrivate] = useState(false);
     const [charactersRemaining, setCharactersRemaining] = useState(MAX_CHAR);
     const [visibility, setVisibility] = useState("public");
 
-    const { avatar } = useContext(UserContext);
-   
+    const { newPostModalActive, setNewPostModalActive } = useContext(UserContext);
+  
+   const onClose = () => setNewPostModalActive(false);
 
     const handlePost = () => {
         if (!postText.trim()) return;
@@ -25,7 +26,7 @@ const NewPostModal = ({ isActive, onClose }) => {
     };
 
     return (
-        <div className={`modal ${isActive ? "is-active" : ""}`}>
+        <div className={`modal ${newPostModalActive ? "is-active" : ""}`}>
 
 
             <div className="modal-background"></div>
@@ -35,8 +36,10 @@ const NewPostModal = ({ isActive, onClose }) => {
                     onClose={onClose}
                     isReply={false} />
 
+
+
                 <PostModalTextArea
-                    avatar={avatar}
+                    //avatar={avatar}
                     postText={postText}
                     setPostText={setPostText}
                     MAX_CHAR={MAX_CHAR}

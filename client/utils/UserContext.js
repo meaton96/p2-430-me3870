@@ -7,6 +7,8 @@ export const UserProvider = ({ children }) => {
     const [username, setUsername] = useState("");
     const [isBackButtonActive, setIsBackButtonActive] = useState(false);
     const [avatar, setAvatar] = useState("/assets/img/avatar-grey-small.png");
+    const [newPostModalActive, setNewPostModalActive] = useState(false);
+    const [newReplyModalActive, setNewReplyModalActive] = useState(false);
 
     useEffect(() => {
         const getAvatar = async () => {
@@ -49,6 +51,10 @@ export const UserProvider = ({ children }) => {
             handleBackButtonClicked,
             avatar,
             setAvatar,
+            newPostModalActive,
+            setNewPostModalActive,
+            newReplyModalActive,
+            setNewReplyModalActive
         }}>
             {children}
         </UserContext.Provider>

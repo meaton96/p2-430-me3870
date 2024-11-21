@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import NavButton from "./NavButton.jsx";
 
-const DesktopNav = ({ avatar, setNewPostModalActive, icons }) => {
-    const { isBackButtonActive, handleBackButtonClicked } = useContext(UserContext);
+const DesktopNav = ({ avatar, icons }) => {
+    const { isBackButtonActive, handleBackButtonClicked, setNewPostModalActive } = useContext(UserContext);
     
 
 

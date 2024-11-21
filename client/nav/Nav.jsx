@@ -5,7 +5,7 @@ import DesktopNav from "./DesktopNav.jsx";
 import MobileNav from "./MobileNav.jsx";
 import { UserContext } from '../utils/UserContext.js';
 
-const Nav = ({ handlePageChange, setNewPostModalActive }) => {
+const Nav = ({ handlePageChange }) => {
     const [isNavModalOpen, setIsNavModalOpen] = useState(false);
     const { avatar } = useContext(UserContext);
     const icons = {
@@ -31,7 +31,7 @@ const Nav = ({ handlePageChange, setNewPostModalActive }) => {
             <DesktopNav
                 handlePageChange={handlePageChange}
                 avatar={avatar}
-                setNewPostModalActive={setNewPostModalActive}
+                //setNewPostModalActive={setNewPostModalActive}
                 icons={icons}
             />
 

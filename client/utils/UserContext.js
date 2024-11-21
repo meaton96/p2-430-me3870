@@ -9,6 +9,7 @@ export const UserProvider = ({ children }) => {
     const [avatar, setAvatar] = useState("/assets/img/avatar-grey-small.png");
     const [newPostModalActive, setNewPostModalActive] = useState(false);
     const [newReplyModalActive, setNewReplyModalActive] = useState(false);
+    const [replyPost, setReplyPost] = useState(null);
 
     useEffect(() => {
         const getAvatar = async () => {
@@ -54,7 +55,9 @@ export const UserProvider = ({ children }) => {
             newPostModalActive,
             setNewPostModalActive,
             newReplyModalActive,
-            setNewReplyModalActive
+            setNewReplyModalActive,
+            replyPost,
+            setReplyPost
         }}>
             {children}
         </UserContext.Provider>

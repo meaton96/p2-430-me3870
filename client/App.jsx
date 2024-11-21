@@ -42,7 +42,7 @@ const App = () => {
                                 path="/account-settings"
                                 element={
                                     <AccountSettings
-                                        setNewPostModalActive={setNewPostModalActive}
+                                        //setNewPostModalActive={setNewPostModalActive}
                                     />
                                 }
                             />

@@ -8,14 +8,14 @@ import { UserContext } from "../utils/UserContext.js";
 
 const MAX_CHAR = 300;
 
-const NewReplyModal = ({ originalPost }) => {
+const NewReplyModal = () => {
 
     const [postText, setPostText] = useState("");
     // const [isPrivate, setIsPrivate] = useState(false);
     const [charactersRemaining, setCharactersRemaining] = useState(MAX_CHAR);
     const [visibility, setVisibility] = useState("public");
 
-    const { newReplyModalActive, setNewReplyModalActive } = useContext(UserContext);
+    const { newReplyModalActive, setNewReplyModalActive, replyPost } = useContext(UserContext);
 
     const onClose = () => setNewReplyModalActive(false);
 
@@ -39,7 +39,7 @@ const NewReplyModal = ({ originalPost }) => {
                     isReply={true} />
 
 
-                <ReplyModalOPText op={originalPost || {}} />
+                <ReplyModalOPText op={replyPost || {}} />
 
 
                 <PostModalTextArea

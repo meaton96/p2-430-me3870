@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRepeat, faComment, faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import helper from '../utils/helper';
+import { UserContext } from '../utils/UserContext';
 
 const FeedPostFooter = ({ post, likes, shares, liked, shared, setLikes, setShares, setLiked, setShared }) => {
+
+    const { setNewReplyModalActive, setReplyPost } = useContext(UserContext);
+
     const toggleLike = async () => {
         if (liked) {
             try {
@@ -61,7 +65,12 @@ const FeedPostFooter = ({ post, likes, shares, liked, shared, setLikes, setShare
 
     return (
         <div className="feed-post-footer is-flex is-justify-content-space-between is-fullwidth my-2">
-            <button className="comment-button">
+            <button className="comment-button" onClick={
+                () => {
+                    setReplyPost(post);
+                    setNewReplyModalActive(true);
+                }
+            }>
                 <span className="mx-1">
                     <FontAwesomeIcon icon={faComment} />
                 </span>

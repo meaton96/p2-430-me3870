@@ -43,31 +43,28 @@ const makePost = async (req, res) => {
   }
 };
 
-const addLikeAndShareInfoToGetPost = async (req, post) => {
+const addLikeAndShareInfoToGetPost = async (req, post) => SimplePost.toAPI(post);
 
-  return SimplePost.toAPI(post);
-  
-  const likes = await Likes.getLikesForPost(post._id);
-  const shares = await Shares.getSharesForPost(post._id);
+// const likes = await Likes.getLikesForPost(post._id);
+// const shares = await Shares.getSharesForPost(post._id);
 
-  const hasLiked = req.session.account._id
-    ? await Likes.hasUserLikedPost(post._id, req.session.account._id)
-    : false;
+// const hasLiked = req.session.account._id
+//   ? await Likes.hasUserLikedPost(post._id, req.session.account._id)
+//   : false;
 
-  const hasShared = req.session.account._id
-    ? await Shares.hasUserSharedPost(post._id, req.session.account._id)
-    : false;
+// const hasShared = req.session.account._id
+//   ? await Shares.hasUserSharedPost(post._id, req.session.account._id)
+//   : false;
 
-  return {
-    ...SimplePost.toAPI(post),
-    likesCount: likes.length,
-    likes,
-    hasLiked,
-    sharesCount: shares.length,
-    shares,
-    hasShared,
-  };
-};
+// return {
+//   ...SimplePost.toAPI(post),
+//   likesCount: likes.length,
+//   likes,
+//   hasLiked,
+//   sharesCount: shares.length,
+//   shares,
+//   hasShared,
+// };
 
 const getPublicPosts = async (req, res) => {
   const { limit = 10, skip = 0 } = req.query;
@@ -309,7 +306,7 @@ const getPost = async (req, res) => {
   } catch (err) {
     return res.status(500).json({ error: 'An error occurred while fetching post' });
   }
-}
+};
 
 module.exports = {
   makePost,

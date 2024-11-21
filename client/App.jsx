@@ -1,8 +1,7 @@
-import React, { useState, useEffect, Suspense, useContext } from 'react';
+import React, { useState, Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
-import helper from './utils/helper.js';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { UserContext } from './utils/UserContext.js';
+
 
 // Lazy-loaded components
 const Nav = React.lazy(() => import('./nav/Nav.jsx'));
@@ -19,40 +18,14 @@ const PostView = React.lazy(() => import('./outlets/PostView.jsx'));
 import { UserProvider } from './utils/UserContext.js';
 
 const App = () => {
-    //const [avatar, setAvatar] = useState("/assets/img/avatar-grey-small.png");
     const [newPostModalActive, setNewPostModalActive] = useState(false);
 
-    
-
-
-    // useEffect(() => {
-    //     const getAvatar = async () => {
-    //         try {
-    //             const res = await helper.sendGet("/getAvatar");
-    //             if (res.avatar) {
-    //                 setAvatar(res.avatar);
-    //             }
-    //         } catch (err) {
-    //             console.error("Error getting avatar:", err);
-    //         }
-    //     };
-    //     getAvatar();
-    // }, []);
-
-    // const handlePost = async (post) => {
-    //     try {
-    //         const res = await helper.sendPost("/simplePost", post);
-    //     } catch (err) {
-    //         console.error("Error posting:", err);
-    //     }
-    // };
 
     return (
         <Router>
             <Suspense fallback={<div>Loading...</div>}>
                 <div className='columns'>
                     <Nav
-                        //avatar={avatar}
                         setNewPostModalActive={setNewPostModalActive}
                     />
                     <div className='column is-three-quarters is-full-height'>
@@ -67,8 +40,6 @@ const App = () => {
                                 path="/account-settings"
                                 element={
                                     <AccountSettings
-                                        //avatar={avatar}
-                                        //setAvatar={setAvatar}
                                         setNewPostModalActive={setNewPostModalActive}
                                     />
                                 }
@@ -83,8 +54,6 @@ const App = () => {
                     <NewPostModal
                         isActive={newPostModalActive}
                         onClose={() => setNewPostModalActive(false)}
-                        //onPost={handlePost}
-                        //avatar={avatar}
                     />
                 </div>
             </Suspense>

@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkp2_430_me3870=self.webpackChunkp2_430_me3870||[]).push([[168],{168:(e,t,n)=>{n.r(t),n.d(t,{default:()=>l});var u=n(540);const l=function(){return u.createElement("div",null,u.createElement("h1",null,"Posts by You!"))}}}]);

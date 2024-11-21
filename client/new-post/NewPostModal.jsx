@@ -8,6 +8,7 @@ import { UserContext } from "../utils/UserContext.js";
 const MAX_CHAR = 300;
 
 const NewPostModal = () => {
+   
     const [postText, setPostText] = useState("");
     // const [isPrivate, setIsPrivate] = useState(false);
     const [charactersRemaining, setCharactersRemaining] = useState(MAX_CHAR);

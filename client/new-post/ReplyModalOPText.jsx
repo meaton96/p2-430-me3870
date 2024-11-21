@@ -1,11 +1,11 @@
 import React from "react";
 
-const ReplyModalOPText = ({ opText }) => {
+const ReplyModalOPText = ({ op }) => {
 
 
     return (
         <div className="reply-modal-op-text">
-            <p>{opText}</p>
+            <p>{op.content}</p>
         </div>
     );
 }

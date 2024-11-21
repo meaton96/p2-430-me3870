@@ -1,4 +1,4 @@
-import React, { useState, useContext  } from "react";
+import React, { useState, useContext } from "react";
 import PostModalTextArea from "./PostModalTextArea.jsx";
 import PostModalHeader from "./PostModalHeader.jsx";
 import PostModalFooter from "./PostModalFooter.jsx";
@@ -9,13 +9,14 @@ import { UserContext } from "../utils/UserContext.js";
 const MAX_CHAR = 300;
 
 const NewReplyModal = ({ originalPost }) => {
+
     const [postText, setPostText] = useState("");
     // const [isPrivate, setIsPrivate] = useState(false);
     const [charactersRemaining, setCharactersRemaining] = useState(MAX_CHAR);
     const [visibility, setVisibility] = useState("public");
 
     const { newReplyModalActive, setNewReplyModalActive } = useContext(UserContext);
-   
+
     const onClose = () => setNewReplyModalActive(false);
 
     const handlePost = () => {
@@ -37,7 +38,8 @@ const NewReplyModal = ({ originalPost }) => {
                     onClose={onClose}
                     isReply={true} />
 
- 
+
+                <ReplyModalOPText op={originalPost || {}} />
 
 
                 <PostModalTextArea

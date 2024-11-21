@@ -13,6 +13,7 @@ const FeedPostFooter = ({ post }) => {
     const [liked, setLiked] = useState(post.hasLiked || false);
     const [shared, setShared] = useState(post.hasShared || false);
 
+
     useEffect(() => {
 
         const getHasLiked = async () => {
@@ -27,6 +28,23 @@ const FeedPostFooter = ({ post }) => {
         }
         getHasLiked();
     }, []);
+
+    useEffect(() => {
+
+        const getHasShared = async () => {
+            try {
+                const data = await helper.sendGet(`/simplePost/${post._id}/has-shared/`);
+                if (data) {
+                    setShared(data.hasShared);
+                }
+            } catch (err) {
+                console.error("Error getting hasShared:", err);
+            }
+        }
+        getHasShared();
+    }, []);
+    
+
     useEffect(() => {
 
         const getLikes = async () => {

@@ -39,18 +39,23 @@ const NewReplyModal = () => {
                     isReply={true} />
 
 
-                <ReplyModalOPText op={replyPost || {}} />
 
 
-                <PostModalTextArea
-                    //avatar={avatar}
-                    postText={postText}
-                    setPostText={setPostText}
-                    MAX_CHAR={MAX_CHAR}
-                    visibility={visibility}
-                    setVisibility={setVisibility}
-                    setCharactersRemaining={setCharactersRemaining}
-                />
+
+                <section className="modal-card-body post-modal-card-body">
+                    <ReplyModalOPText op={replyPost || {}} />
+                    <hr className="new-reply-hr" />
+                    <PostModalTextArea
+                        //avatar={avatar}
+                        isReply={true}
+                        postText={postText}
+                        setPostText={setPostText}
+                        MAX_CHAR={MAX_CHAR}
+                        visibility={visibility}
+                        setVisibility={setVisibility}
+                        setCharactersRemaining={setCharactersRemaining}
+                    />
+                </section>
 
                 <PostModalFooter charactersRemaining={charactersRemaining} />
             </div>

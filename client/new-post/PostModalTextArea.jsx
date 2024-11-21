@@ -10,23 +10,24 @@ const PostModalTextArea = ({
     MAX_CHAR,
     visibility,
     setVisibility,
-    setCharactersRemaining
+    setCharactersRemaining,
+    isReply = false
 }) => {
 
     const { avatar } = useContext(UserContext);
     return (
-        <section className="modal-card-body post-modal-card-body">
-            <div className="columns">
-                <div className="column is-narrow">
-                    <figure className="image is-96x96">
+        <div>
+            <div className="is-flex">
+                <div className="is-narrow">
+                    <figure className={`image ${isReply ? 'is-48x48' : 'is-96x96'}`}>
                         <img src={avatar} alt="avatar" />
                     </figure>
                 </div>
-                <div className="column">
+                <div className="">
                     <div className="field">
                         <div className="control">
                             <textarea
-                                className="textarea"
+                                className="textarea post-text-box"
                                 placeholder="What's on your mind?"
                                 value={postText}
                                 onChange={(e) => {
@@ -68,8 +69,8 @@ const PostModalTextArea = ({
                 </label>
             </div>
 
+        </div>
 
-        </section>
     );
 }
 

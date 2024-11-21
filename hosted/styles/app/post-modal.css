@@ -17,7 +17,7 @@
     padding: 3rem 1rem 0rem 3rem;
 }
 
-.post-modal-card-body textarea {
+textarea.post-text-box {
     background-color: var(--secondary-color);
     width: 100%;
     height: 10rem;
@@ -26,9 +26,9 @@
     box-shadow: none;
 }
 
-.post-modal-card-body textarea:hover,
-.post-modal-card-body textarea:focus,
-.post-modal-card-body textarea:active {
+.textarea.post-text-box:hover,
+.textarea.post-text-box:focus,
+.textarea.post-text-box:active {
     background-color: var(--secondary-color) !important;
     border: none !important;
     outline: none !important;
@@ -119,4 +119,14 @@
     --bulma-tabs-link-active-color: var(--primary-color);
     --bulma-tabs-link-active-border-bottom-color: var(--accent-color);
     --bulma-tabs-boxed-link-active-background-color: var(--background-color);
+}
+
+.reply-modal-op-text {
+    color: var(--text-color-light);
+}
+.new-reply-hr {
+    height: 1px;
+    background-color: var(--highlight-color);
+    border: none;
+    margin: 1rem 0;
 }

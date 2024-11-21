@@ -1,4 +1,4 @@
-import React, { useState, useContext  } from "react";
+import React, { useState, useContext } from "react";
 import PostModalTextArea from "./PostModalTextArea.jsx";
 import PostModalHeader from "./PostModalHeader.jsx";
 import PostModalFooter from "./PostModalFooter.jsx";
@@ -8,15 +8,15 @@ import { UserContext } from "../utils/UserContext.js";
 const MAX_CHAR = 300;
 
 const NewPostModal = () => {
-   
+
     const [postText, setPostText] = useState("");
     // const [isPrivate, setIsPrivate] = useState(false);
     const [charactersRemaining, setCharactersRemaining] = useState(MAX_CHAR);
     const [visibility, setVisibility] = useState("public");
 
     const { newPostModalActive, setNewPostModalActive } = useContext(UserContext);
-  
-   const onClose = () => setNewPostModalActive(false);
+
+    const onClose = () => setNewPostModalActive(false);
 
     const handlePost = () => {
         if (!postText.trim()) return;
@@ -37,17 +37,17 @@ const NewPostModal = () => {
                     onClose={onClose}
                     isReply={false} />
 
-
-
-                <PostModalTextArea
-                    //avatar={avatar}
-                    postText={postText}
-                    setPostText={setPostText}
-                    MAX_CHAR={MAX_CHAR}
-                    visibility={visibility}
-                    setVisibility={setVisibility}
-                    setCharactersRemaining={setCharactersRemaining}
-                />
+                <section className="modal-card-body post-modal-card-body">
+                    <PostModalTextArea
+                        //avatar={avatar}
+                        postText={postText}
+                        setPostText={setPostText}
+                        MAX_CHAR={MAX_CHAR}
+                        visibility={visibility}
+                        setVisibility={setVisibility}
+                        setCharactersRemaining={setCharactersRemaining}
+                    />
+                </section>
 
                 <PostModalFooter charactersRemaining={charactersRemaining} />
             </div>

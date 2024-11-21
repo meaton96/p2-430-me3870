@@ -50,8 +50,11 @@ const sendGet = async (url, handler) => {
       "Content-Type": "application/json",
     }
   });
+ 
 
   const result = await response.json();
+
+ 
 
   if (result.redirect) {
     window.location = result.redirect;

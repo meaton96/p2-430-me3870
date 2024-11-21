@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import NavButton from "./NavButton.jsx";
 
 const DesktopNav = ({ avatar, setNewPostModalActive, icons }) => {
-    const { isBackButtonActive, handleBackButtonClicked, breadcrumbs } = useContext(UserContext);
+    const { isBackButtonActive, handleBackButtonClicked } = useContext(UserContext);
     
 
 
@@ -68,9 +68,7 @@ const DesktopNav = ({ avatar, setNewPostModalActive, icons }) => {
                     </button>
                 </li>
             </ul>
-            <div className="nav-footer">
-                <p>{breadcrumbs.join(" > ")}</p>
-            </div>
+            
         </div>
     );
 };

@@ -7,55 +7,67 @@
 **3. What components do you have?**
 
 - Account Settings
-> ChangeAvatarModal.jsx
-> ChangeAvatarSection.jsx
-> PremiumSection.jsx
-> SecuritySection.jsx
+``` 
+ ChangeAvatarModal.jsx
+ ChangeAvatarSection.jsx
+ PremiumSection.jsx
+ SecuritySection.jsx
+```
 
 - Feeds
-> FeedPost.jsx
-> FollowingFeed.jsx
-> SimplePostFeed.jsx
+```
+ FeedPost.jsx
+ FollowingFeed.jsx
+ SimplePostFeed.jsx
+```
 
 - Login
-> login.jsx
-> LoginModal.jsx
-> PasswordInput.jsx
-> SelectAvatar.jsx
-> UsernameInput.jsx
-
+```
+ login.jsx
+ LoginModal.jsx
+ PasswordInput.jsx
+ SelectAvatar.jsx
+ UsernameInput.jsx
+```
 - Nav
-> DesktopNav.jsx
-> MobileNav.jsx
-> Nav.jsx
-> NavButton.jsx
-
+```
+ DesktopNav.jsx
+ MobileNav.jsx
+ Nav.jsx
+ NavButton.jsx
+```
 - New Posts
-> NewPostModal.jsx
-> NewReplyModal.jsx
-> PostModalFooter.jsx
-> PostModalHeader.jsx
-> PostModalTextArea.jsx
-> ReplyModalOPText.jsx
-
+```
+ NewPostModal.jsx
+ NewReplyModal.jsx
+ PostModalFooter.jsx
+ PostModalHeader.jsx
+ PostModalTextArea.jsx
+ ReplyModalOPText.jsx
+```
 - Outlets
-> AccountSettings.jsx
-> Feed.jsx
-> Pantry.jsx
-> PostView.jsx
-> Profile.jsx
-> Recipes.jsx
-> UserProfile.jsx
+```
+ AccountSettings.jsx
+ Feed.jsx
+ Pantry.jsx
+ PostView.jsx
+ Profile.jsx
+ Recipes.jsx
+ UserProfile.jsx
+```
 
 - Posts
-> SinglePost.jsx
-
+```
+ SinglePost.jsx
+```
 - Shared
-> FeedPost.jsx
-
+```
+ FeedPost.jsx
+```
 - App
-> App.jsx
-
+```
+ App.jsx
+```
 **4. What data are you storing in MongoDB?**
 
 - User Accounts
@@ -101,12 +113,12 @@ Nothing yet.
 None yet.
 
 # Endpoints
-URL: /login
-Supported Methods: GET
-Middleware: Requires Secure, Requires Logout
-Query Params: 
-Description: Displays the login page.
-Return Type(s): JSON
+URL: /login\
+Supported Methods: GET\
+Middleware: Requires Secure, Requires Logout\
+Query Params: \
+Description: Displays the login page.\
+Return Type(s): JSON\
 
 URL: /login
 Supported Methods: POST

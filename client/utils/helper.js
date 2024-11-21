@@ -79,6 +79,32 @@ const fetchUsername = async () => {
   }
   return "";
 };
+const getUserAvatar = async () => {
+  try {
+      const res = await sendGet("/getAvatar");
+      if (res.avatar) {
+          return res.avatar;
+      }
+  } catch (err) {
+      console.error("Error fetching avatar:", err);
+  }
+  return "";
+};
+
+function formatDateTime(isoDate) {
+  const date = new Date(isoDate);
+
+  const options = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true,
+  };
+
+  return date.toLocaleString('en-US', options);
+}
 
 
 const hideError = () => {
@@ -92,4 +118,6 @@ module.exports = {
   sendGet,
   getCssVariable,
   fetchUsername,
+  getUserAvatar,
+  formatDateTime,
 };

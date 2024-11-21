@@ -1,0 +1,24 @@
+.single-post-container {
+    width: 60%;
+    border-right: 1px solid var(--secondary-color);
+    min-height: 105vh;
+}
+.post-content {
+    font-weight: bold;
+}
+.post-info {
+    font-weight: bold;
+    size: 110%;
+}
+.post-wrapper, .user-comment-box {
+    border-bottom: 1px solid var(--secondary-color);
+}
+.user-comment-btn {
+    border-radius: 20px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--background-color-highlight);
+        
+    }
+}

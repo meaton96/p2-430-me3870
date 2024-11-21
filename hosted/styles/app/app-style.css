@@ -10,6 +10,12 @@ body {
 .is-full-height {
     min-height: 100vh;
 }
+.post-hr  {
+    height: 1px;
+    background-color: var(--secondary-color);
+    border: none;
+    margin: 1rem 0;
+}
 
 
 

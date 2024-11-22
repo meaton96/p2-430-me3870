@@ -68,7 +68,7 @@ SimplePostSchema.statics.findByOwner = async (
   limit = 10,
   skip = 0,
 ) => SimplePostModel.find(
-  { owner: ownerId },
+  { owner: ownerId, parent: null },
 )
   .sort({ createdDate: -1 })
   .skip(skip)

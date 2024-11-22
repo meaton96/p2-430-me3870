@@ -63,6 +63,10 @@ SimplePostSchema.statics.deletePost = async (postId, userId) => {
   }
   return { success: false, message: 'User is not the owner of the post' };
 };
+SimplePostSchema.statics.hasUserCommented = async (postId, userId) => {
+  const post = await SimplePostModel.findOne({ parent: postId, owner: userId });
+  return post !== null;
+};
 SimplePostSchema.statics.findByOwner = async (
   ownerId,
   limit = 10,

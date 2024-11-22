@@ -125,6 +125,22 @@ const getNumCommentsForPost = async (req, res) => {
     return res.status(500).json({ error: 'An error occurred while counting comments' });
   }
 };
+const hasUserCommentedPost = async (req, res) => {
+  const { postId } = req.params;
+  const userId = req.session.account._id;
+
+  if (!postId) {
+    return res.status(400).json({ error: 'postId is required' });
+  }
+
+  try {
+    const hasCommented = await SimplePost.hasUserCommented(postId, userId);
+    return res.status(200).json({ hasCommented });
+  } catch (err) {
+    console.error('Error checking if user has commented:', err);
+    return res.status(500).json({ error: 'An error occurred while checking if user has commented' });
+  }
+};
 
 const getPublicPosts = async (req, res) => {
   const { limit = 10, skip = 0 } = req.query;
@@ -268,4 +284,5 @@ module.exports = {
   getCommentsForPost,
   getNumCommentsForPost,
   deletePost,
+  hasUserCommentedPost,
 };

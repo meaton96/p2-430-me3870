@@ -45,7 +45,7 @@
     /* text-align: right; */
 }
 
-.nav-list li a, .nav-list li button {
+.nav-list li a, .nav-list li button, .return-to-home-btn {
     color: var(--text-color-dark);
     display: flex;
     align-items: center;
@@ -71,7 +71,7 @@
     color: white !important;
 }
 
-.nav-list li a:hover, .nav-list li button:hover {
+.nav-list li a:hover, .nav-list li button:hover, .return-to-home-btn:hover {
 
     background-color: var(--hover-color);
     color: white;
@@ -82,12 +82,12 @@
     background-color: var(--accent-color) !important;
 }
 
-.nav-list li a i, .nav-list li button i {
+.nav-list li a i, .nav-list li button i, .return-to-home-btn i {
     font-size: 1.2rem;
     color: var(--primary-color);
 }
 
-.nav-list li a:hover i, .nav-list li button:hover i {
+.nav-list li a:hover i, .nav-list li button:hover i, .return-to-home-btn:hover i {
     color: white;
 }
 
@@ -158,7 +158,7 @@
 
 
 
-.nav-list li a:hover, .nav-list li button:hover {
+.nav-list li a:hover, .nav-list li button:hover, .return-to-home-btn:hover {
     background-color: var(--hover-color);
     color: white;
     transform: scale(1.05);
@@ -180,6 +180,7 @@
     padding: 1rem;
     color: var(--text-color-dark);
 }
+
 
 
 @media screen and (max-width: 1740px) {

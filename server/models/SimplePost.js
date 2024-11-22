@@ -59,8 +59,9 @@ SimplePostSchema.statics.deletePost = async (postId, userId) => {
   if (post.owner.equals(userId)) {
 
     const deleteMessage = await SimplePostModel.deleteOne({ _id: postId });
+    const deleteChildrenMessage = await SimplePostModel.deleteMany({ parent: postId });
 
-    return { success: true, message: deleteMessage};
+    return { success: true, delete: deleteMessage, deleteChildren: deleteChildrenMessage };
   }
   return { success: false, message: 'User is not the owner of the post' };
 

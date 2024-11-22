@@ -246,7 +246,7 @@ const deletePost = async (req, res) => {
 
 
     if (!deletedPost || !deletedPost.success) {
-      if (deletedPost.message === 'Cannot find post') {
+      if (deletedPost.deleteMessage === 'Cannot find post') {
         return res.status(404).json({ error: 'Post not found' });
       }
       else {

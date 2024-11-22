@@ -45,11 +45,15 @@ const router = (app) => {
 
   // Comment routes
   app.post('/addComment', mid.requiresPostId, mid.requiresLogin, controllers.SimplePost.makePost);
- // app.post('/removeComment', mid.requiresPostId, mid.requiresLogin, controllers.Comments.removeComment);
-  //app.post('/updateComment', mid.requiresPostId, mid.requiresLogin, controllers.Comments.updateComment);
   app.get('/getCommentsForPost/:postId', mid.requiresPostId, controllers.SimplePost.getCommentsForPost);
   app.get('/countCommentsForPost/:postId', mid.requiresPostId, controllers.SimplePost.getNumCommentsForPost);
-  app.get('/simplePost/:postId/has-commented', mid.requiresPostId, mid.requiresLogin, controllers.SimplePost.hasUserCommentedPost);
+
+  app.get(
+    '/simplePost/:postId/has-commented',
+    mid.requiresPostId,
+    mid.requiresLogin,
+    controllers.SimplePost.hasUserCommentedPost,
+  );
 
   // Serve the app for authenticated users
   app.get('/app*', mid.requiresLogin, controllers.App.appPage);

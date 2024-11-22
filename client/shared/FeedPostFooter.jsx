@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRepeat, faComment, faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
@@ -11,8 +11,8 @@ const FeedPostFooter = ({ post }) => {
     const { likes, shares, liked, shared, commented, comments,
         setLikes, setShares, setLiked, setShared, setCommented, setComments } = usePostInteractions(post._id);
 
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const menuRef = useRef(null);
+    const [menuOpen, setMenuOpen] = useState(false);
+    const menuRef = useRef(null); // Ref for the menu element
 
     const toggleLike = async () => {
         if (liked) {
@@ -68,11 +68,65 @@ const FeedPostFooter = ({ post }) => {
         }
     };
 
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
+    const handleMenuClick = () => {
+        setMenuOpen((prev) => !prev);
     };
 
-    // Close menu when clicking outside
+    const closeMenu = (e) => {
+        if (menuRef.current && !menuRef.current.contains(e.target)) {
+            setMenuOpen(false);
+        }
+    };
+
     useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (menuRef.current && !menuRef.current
+        // Attach the event listener for clicks outside the dropdown
+        if (menuOpen) {
+            document.addEventListener('mousedown', closeMenu);
+        } else {
+            document.removeEventListener('mousedown', closeMenu);
+        }
+
+        // Cleanup event listener on unmount
+        return () => {
+            document.removeEventListener('mousedown', closeMenu);
+        };
+    }, [menuOpen]);
+
+    return (
+        <div className="feed-post-footer is-flex is-justify-content-space-between is-fullwidth my-2">
+            <button className={`comment-button ${commented ? 'commented' : ''}`} onClick={() => {
+                setReplyPost(post);
+                setNewReplyModalActive(true);
+            }}>
+                <span className="mx-1">
+                    <FontAwesomeIcon icon={faComment} />
+                </span>
+                {comments}
+            </button>
+            <button className={`repeat-button ${shared ? 'shared' : ''}`} onClick={toggleShare}>
+                <span className="mx-1">
+                    <FontAwesomeIcon icon={faRepeat} />
+                </span>
+                {shares}
+            </button>
+            <button className={`like-button ${liked ? 'liked' : ''}`} onClick={toggleLike}>
+                <span className="mx-1">
+                    <FontAwesomeIcon icon={liked ? faHeartSolid : faHeart} />
+                </span>
+                {likes}
+            </button>
+            <div className="dropdown" ref={menuRef}>
+                <button onClick={handleMenuClick} className='px-2'>
+                    <p className='footer-menu-btn-text'>...</p>
+                </button>
+                {menuOpen && (
+                    <div className="dropdown-menu">
+                        <button onClick={() => console.log('Delete post')}>Delete</button>
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+};
+
+export default FeedPostFooter;

@@ -4,24 +4,15 @@ import { faRepeat, faComment, faHeart as faHeartSolid } from '@fortawesome/free-
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import helper from '../utils/helper';
 import { UserContext } from '../utils/UserContext';
+import usePostInteractions from '../hooks/usePostInteractions';
 
-const FeedPostFooter = ({ 
-    post, 
-    likes, 
-    shares, 
-    liked, 
-    shared,
-    comments,
-    commented, 
-    setLikes, 
-    setShares, 
-    setLiked, 
-    setShared,
-    setComments,
-    setCommented
- }) => {
+const FeedPostFooter = ({
+    post,
+}) => {
 
     const { setNewReplyModalActive, setReplyPost } = useContext(UserContext);
+    const { likes, shares, liked, shared, commented, comments,
+        setLikes, setShares, setLiked, setShared, setCommented, setComments } = usePostInteractions(post._id);
 
     const toggleLike = async () => {
         if (liked) {
@@ -79,7 +70,7 @@ const FeedPostFooter = ({
 
     return (
         <div className="feed-post-footer is-flex is-justify-content-space-between is-fullwidth my-2">
-            <button className={`comment-button ${commented ? 'commented' : '' }`} onClick={
+            <button className={`comment-button ${commented ? 'commented' : ''}`} onClick={
                 () => {
                     setReplyPost(post);
                     setNewReplyModalActive(true);

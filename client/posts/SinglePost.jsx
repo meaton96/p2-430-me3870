@@ -8,8 +8,7 @@ const SinglePost = ({ username, postId }) => {
 
     const [post, setPost] = useState(null);
     const [avatar, setAvatar] = useState(`/assets/img/avatar-grey-small.png`);
-    const { likes, shares, liked, shared, commented, comments, 
-        setLikes, setShares, setLiked, setShared, setCommented, setComments } = usePostInteractions(postId);
+    const { likes, shares } = usePostInteractions(postId);
 
 
     useEffect(() => {
@@ -81,18 +80,6 @@ const SinglePost = ({ username, postId }) => {
 
                         <FeedPostFooter
                             post={post}
-                            likes={likes}
-                            shares={shares}
-                            liked={liked}
-                            shared={shared}
-                            setLikes={setLikes}
-                            setShares={setShares}
-                            setLiked={setLiked}
-                            setShared={setShared}
-                            comments={comments}
-                            commented={commented}
-                            setComments={setComments}
-                            setCommented={setCommented}
                         />
                     </div>
                 }

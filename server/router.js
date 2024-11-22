@@ -50,7 +50,6 @@ const router = (app) => {
   app.get('/countCommentsForPost/:postId', mid.requiresPostId, controllers.SimplePost.getNumCommentsForPost);
   app.get('/simplePost/:postId/has-commented', mid.requiresPostId, mid.requiresLogin, controllers.Comments.hasUserCommentedPost);
 
-
   // Serve the app for authenticated users
   app.get('/app*', mid.requiresLogin, controllers.App.appPage);
 

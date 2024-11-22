@@ -11,7 +11,9 @@ const logRequest = (req, res, next) => {
 };
 
 const requiresPostId = (req, res, next) => {
-  const { postId } = req.params || req.body;
+  let { postId } = req.params;
+  postId = postId || req.body.postId;
+
   if (!postId) {
     return res.status(400).json({ error: 'postId is required' });
   }
@@ -41,8 +43,7 @@ module.exports = {
   requiresLogout,
   logRequest,
   requiresPostId,
-}
-
+};
 
 if (process.env.NODE_ENV === 'production') {
   module.exports.requiresSecure = requiresSecure;

@@ -1,26 +1,25 @@
 const models = require('../models');
 
-const { SimplePost } = models;
+const { SimplePost, Likes } = models;
 
 const MAX_CHAR = 300;
 
-const canUserViewPost = (post, session) => {
+const toApi = async (req, post) => SimplePost.toAPI(post);
+// const canUserViewPost = (post, session) => {
+//   if (post.visibility === 'public') {
+//     return true;
+//   }
 
-  if (post.visibility === 'public') {
-    return true;
-  }
+//   if (post.visibility === 'private') {
+//     return post.owner === session.account._id;
+//   }
 
-  if (post.visibility === 'private') {
-    return post.owner === session.account._id;
-  }
+//   if (post.visibility === 'followers-only') {
+//     return false; // NYI
+//   }
 
-  if (post.visibility === 'followers-only') {
-    return false; //NYI
-  }
-
-  return false;
-
-};
+//   return false;
+// };
 
 const makePost = async (req, res) => {
   if (!req.body.content) {
@@ -31,14 +30,11 @@ const makePost = async (req, res) => {
 
   const { username } = req.session.account;
 
-
   try {
-
     let postData = {};
 
-    //reply post
+    // reply post
     if (req.body.postId) {
-
       const parentId = req.body.postId;
       const post = await SimplePost.findById(parentId);
 
@@ -47,14 +43,12 @@ const makePost = async (req, res) => {
       }
       postData = {
         content: req.body.content,
-        visibility: post.visibility, //same visibility as parent
+        visibility: post.visibility, // same visibility as parent
         owner: req.session.account._id,
         author: `${username}`,
         parent: parentId,
       };
-    }
-    //original post
-    else {
+    } else { // original post
       postData = {
         content: req.body.content,
         visibility: req.body.visibility || 'public',
@@ -63,14 +57,10 @@ const makePost = async (req, res) => {
       };
     }
 
-
-
-
-
     const newPost = new SimplePost(postData);
     await newPost.save();
 
-    //auto like your own post
+    // auto like your own post
     const likeData = {
       postId: newPost._id,
       userId: req.session.account._id,
@@ -89,7 +79,6 @@ const makePost = async (req, res) => {
 };
 
 const getCommentsForPost = async (req, res) => {
-
   const { postId } = req.params;
   const { limit = 10, skip = 0 } = req.query;
 
@@ -111,20 +100,16 @@ const getCommentsForPost = async (req, res) => {
       .limit(parsedLimit);
 
     const postsWithInfo = await Promise.all(
-      posts.map((post) => addLikeAndShareInfoToGetPost(req, post)),
+      children.map((post) => toApi(req, post)),
     );
 
     return res.status(200).json(postsWithInfo);
-
   } catch (err) {
     console.error('Error fetching comments for post:', err);
     return res.status(500).json({ error: 'An error occurred while fetching comments' });
   }
-
-
 };
 const getNumCommentsForPost = async (req, res) => {
-
   const { postId } = req.params;
 
   if (!postId) {
@@ -140,9 +125,6 @@ const getNumCommentsForPost = async (req, res) => {
     return res.status(500).json({ error: 'An error occurred while counting comments' });
   }
 };
-
-const addLikeAndShareInfoToGetPost = async (req, post) => SimplePost.toAPI(post);
-
 
 const getPublicPosts = async (req, res) => {
   const { limit = 10, skip = 0 } = req.query;
@@ -161,7 +143,7 @@ const getPublicPosts = async (req, res) => {
       .limit(parsedLimit);
 
     const postsWithInfo = await Promise.all(
-      posts.map((post) => addLikeAndShareInfoToGetPost(req, post)),
+      posts.map((post) => toApi(req, post)),
     );
 
     return res.status(200).json(postsWithInfo);
@@ -169,7 +151,6 @@ const getPublicPosts = async (req, res) => {
     return res.status(500).json({ error: 'An error occurred while fetching posts' });
   }
 };
-
 
 const getPostsForUser = async (req, res) => {
   const { userId } = req.params;
@@ -190,7 +171,7 @@ const getPostsForUser = async (req, res) => {
     const posts = await SimplePost.findByOwner(userId, parsedLimit, parsedSkip);
 
     const postsWithInfo = await Promise.all(
-      posts.map((post) => addLikeAndShareInfoToGetPost(req, post)),
+      posts.map((post) => toApi(req, post)),
     );
     return res.status(200).json(postsWithInfo);
   } catch (err) {
@@ -229,7 +210,7 @@ const getPostsForUserByVisibility = async (req, res) => {
       .limit(parsedLimit);
 
     const postsWithInfo = await Promise.all(
-      posts.map((post) => addLikeAndShareInfoToGetPost(req, post)),
+      posts.map((post) => toApi(req, post)),
     );
 
     return res.status(200).json(postsWithInfo);
@@ -248,13 +229,12 @@ const getPost = async (req, res) => {
       return res.status(404).json({ error: 'Post not found' });
     }
 
-    const postWithInfo = await addLikeAndShareInfoToGetPost(req, post);
+    const postWithInfo = await toApi(req, post);
     return res.status(200).json(postWithInfo);
   } catch (err) {
     return res.status(500).json({ error: 'An error occurred while fetching post' });
   }
 };
-
 
 module.exports = {
   makePost,

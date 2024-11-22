@@ -84,7 +84,6 @@ AccountSchema.statics.addFollower = async (accountId, followerId) => {
   }
 };
 
-
 /* Helper function for authenticating a password against one already in the
    database. Essentially when a user logs in, we need to verify that the password
    they entered matches the one in the database. Since the database stores hashed

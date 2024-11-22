@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-
 const CommentSchema = new mongoose.Schema({
   post: {
     type: mongoose.Schema.ObjectId,
@@ -25,16 +24,15 @@ const CommentSchema = new mongoose.Schema({
   },
 }, { timestamps: true });
 
-CommentSchema.pre('save', function(next) {
+CommentSchema.pre('save', function (next) {
   if (!this.post && !this.parentComment) {
     return next(new Error('A comment must have either a post or a parent comment.'));
   }
   if (this.post && this.parentComment) {
     return next(new Error('A comment cannot have both a post and a parent comment.'));
   }
-  next();
+  return next();
 });
-
 
 // Get all comments for a specific post
 CommentSchema.statics.getCommentsForPost = async function (postId) {
@@ -51,12 +49,8 @@ CommentSchema.statics.countCommentsForPost = async function (postId) {
 
 // Add a new comment to a post
 CommentSchema.statics.addComment = async function (postId, userId, content) {
-  try {
-    const newComment = await this.create({ post: postId, user: userId, content });
-    return newComment;
-  } catch (err) {
-    throw err;
-  }
+  const newComment = await this.create({ post: postId, user: userId, content });
+  return newComment;
 };
 
 // Remove a comment by its ID and the user who posted it
@@ -69,7 +63,7 @@ CommentSchema.statics.updateComment = async function (commentId, userId, newText
   return this.findOneAndUpdate(
     { _id: commentId, user: userId },
     { content: newText },
-    { new: true }
+    { new: true },
   );
 };
 

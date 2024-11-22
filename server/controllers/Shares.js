@@ -3,9 +3,7 @@ const { Shares } = models;
 
 const getNumSharesForPost = async (req, res) => {
     const { postId } = req.params;
-    if (!postId) {
-        return res.status(400).json({ error: 'postId is required' });
-    }
+ 
 
     try {
         const count = await Shares.countSharesForPost(postId);
@@ -17,10 +15,7 @@ const getNumSharesForPost = async (req, res) => {
 
 const addShareToPost = async (req, res) => {
     const { postId } = req.body;
-    if (!postId) {
-        return res.status(400).json({ error: 'postId is required' });
-    }
-
+   
     try {
         const post = await SimplePost.findById(postId);
         if (!post) {
@@ -41,9 +36,7 @@ const addShareToPost = async (req, res) => {
 
 const removeShareFromPost = async (req, res) => {
     const { postId } = req.body;
-    if (!postId) {
-        return res.status(400).json({ error: 'postId is required' });
-    }
+   
 
     try {
         await Shares.removeShare(postId, req.session.account._id);
@@ -57,9 +50,7 @@ const hasUserSharedPost = async (req, res) => {
     const { postId } = req.params;
     const userId = req.session.account._id;
 
-    if (!postId) {
-        return res.status(400).json({ error: 'postId is required' });
-    }
+  
 
     try {
         const hasShared = await Shares.hasUserSharedPost(postId, userId);

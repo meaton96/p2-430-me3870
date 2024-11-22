@@ -29,52 +29,52 @@ const { Comments, SimplePost } = models;
 //   }
 // };
 
-const getCommentsForPost = async (req, res) => {
-  const { postId } = req.params;
-  const { limit = 10, skip = 0 } = req.query;
+// const getCommentsForPost = async (req, res) => {
+//   const { postId } = req.params;
+//   const { limit = 10, skip = 0 } = req.query;
 
-  if (!postId) {
-    return res.status(400).json({ error: 'postId is required' });
-  }
+//   if (!postId) {
+//     return res.status(400).json({ error: 'postId is required' });
+//   }
 
-  try {
-    const parsedLimit = parseInt(limit, 10);
-    const parsedSkip = parseInt(skip, 10);
+//   try {
+//     const parsedLimit = parseInt(limit, 10);
+//     const parsedSkip = parseInt(skip, 10);
 
-    if (Number.isNaN(parsedLimit) || Number.isNaN(parsedSkip)) {
-      return res.status(400).json({ error: 'Invalid pagination parameters' });
-    }
+//     if (Number.isNaN(parsedLimit) || Number.isNaN(parsedSkip)) {
+//       return res.status(400).json({ error: 'Invalid pagination parameters' });
+//     }
 
-    const comments = await Comments.find({ post: postId })
-      .sort({ createdAt: -1 })
-      .skip(parsedSkip)
-      .limit(parsedLimit)
-      .populate('user', 'username');
+//     const comments = await Comments.find({ post: postId })
+//       .sort({ createdAt: -1 })
+//       .skip(parsedSkip)
+//       .limit(parsedLimit)
+//       .populate('user', 'username');
 
-    return res.status(200).json(comments);
-  } catch (err) {
-    console.error('Error fetching comments for post:', err);
-    return res.status(500).json({ error: 'An error occurred while fetching comments' });
-  }
-};
+//     return res.status(200).json(comments);
+//   } catch (err) {
+//     console.error('Error fetching comments for post:', err);
+//     return res.status(500).json({ error: 'An error occurred while fetching comments' });
+//   }
+// };
 
 
-const countCommentsForPost = async (req, res) => {
-  const { postId } = req.params;
+// const countCommentsForPost = async (req, res) => {
+//   const { postId } = req.params;
 
-  if (!postId) {
-    return res.status(400).json({ error: 'postId is required' });
-  }
+//   if (!postId) {
+//     return res.status(400).json({ error: 'postId is required' });
+//   }
 
-  try {
-    const count = await Comments.countCommentsForPost(postId);
+//   try {
+//     const count = await Comments.countCommentsForPost(postId);
 
-    return res.status(200).json({ count });
-  } catch (err) {
-    console.error('Error counting comments for post:', err);
-    return res.status(500).json({ error: 'An error occurred while counting comments' });
-  }
-};
+//     return res.status(200).json({ count });
+//   } catch (err) {
+//     console.error('Error counting comments for post:', err);
+//     return res.status(500).json({ error: 'An error occurred while counting comments' });
+//   }
+// };
 
 const removeComment = async (req, res) => {
   const { commentId } = req.body;
@@ -140,8 +140,8 @@ const hasUserCommentedPost = async (req, res) => {
 
 module.exports = {
  // addComment,
-  getCommentsForPost,
-  countCommentsForPost,
+ // getCommentsForPost,
+  //countCommentsForPost,
   removeComment,
   updateComment,
   hasUserCommentedPost

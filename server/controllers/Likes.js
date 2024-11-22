@@ -3,9 +3,7 @@ const { Likes } = models;
 
 const getNumLikesForPost = async (req, res) => {
     const { postId } = req.params;
-    if (!postId) {
-      return res.status(400).json({ error: 'postId is required' });
-    }
+   
   
     try {
       const count = await Likes.countLikesForPost(postId);
@@ -17,9 +15,7 @@ const getNumLikesForPost = async (req, res) => {
   
   const addLikeToPost = async (req, res) => {
     const { postId } = req.body;
-    if (!postId) {
-      return res.status(400).json({ error: 'postId is required' });
-    }
+    
   
     try {
       const newLike = await Likes.addLike(postId, req.session.account._id);
@@ -31,9 +27,7 @@ const getNumLikesForPost = async (req, res) => {
   
   const removeLikeFromPost = async (req, res) => {
     const { postId } = req.body;
-    if (!postId) {
-      return res.status(400).json({ error: 'postId is required' });
-    }
+    
   
     try {
       await Likes.removeLike(postId, req.session.account._id);
@@ -47,9 +41,7 @@ const getNumLikesForPost = async (req, res) => {
     const { postId } = req.params;
     const userId = req.session.account._id;
   
-    if (!postId) {
-      return res.status(400).json({ error: 'postId is required' });
-    }
+    
   
     try {
       const hasLiked = await Likes.hasUserLikedPost(postId, userId);

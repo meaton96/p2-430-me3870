@@ -10,6 +10,14 @@ const logRequest = (req, res, next) => {
   return next();
 };
 
+const requiresPostId = (req, res, next) => {
+  const { postId } = req.params || req.body;
+  if (!postId) {
+    return res.status(400).json({ error: 'postId is required' });
+  }
+  return next();
+};
+
 const requiresLogout = (req, res, next) => {
   if (req.session.account) {
     return res.redirect('/app');
@@ -28,9 +36,13 @@ const bypassSecure = (req, res, next) => {
   next();
 };
 
-module.exports.requiresLogin = requiresLogin;
-module.exports.requiresLogout = requiresLogout;
-module.exports.logRequest = logRequest;
+module.exports = {
+  requiresLogin,
+  requiresLogout,
+  logRequest,
+  requiresPostId,
+}
+
 
 if (process.env.NODE_ENV === 'production') {
   module.exports.requiresSecure = requiresSecure;

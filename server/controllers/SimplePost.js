@@ -88,6 +88,59 @@ const makePost = async (req, res) => {
   }
 };
 
+const getCommentsForPost = async (req, res) => {
+
+  const { postId } = req.params;
+  const { limit = 10, skip = 0 } = req.query;
+
+  if (!postId) {
+    return res.status(400).json({ error: 'postId is required' });
+  }
+
+  try {
+    const parsedLimit = parseInt(limit, 10);
+    const parsedSkip = parseInt(skip, 10);
+
+    if (Number.isNaN(parsedLimit) || Number.isNaN(parsedSkip)) {
+      return res.status(400).json({ error: 'Invalid pagination parameters' });
+    }
+
+    const children = await SimplePost.getChildren(postId)
+      .sort({ createdDate: -1 })
+      .skip(parsedSkip)
+      .limit(parsedLimit);
+
+    const postsWithInfo = await Promise.all(
+      posts.map((post) => addLikeAndShareInfoToGetPost(req, post)),
+    );
+
+    return res.status(200).json(postsWithInfo);
+
+  } catch (err) {
+    console.error('Error fetching comments for post:', err);
+    return res.status(500).json({ error: 'An error occurred while fetching comments' });
+  }
+
+
+};
+const getNumCommentsForPost = async (req, res) => {
+
+  const { postId } = req.params;
+
+  if (!postId) {
+    return res.status(400).json({ error: 'postId is required' });
+  }
+
+  try {
+    const count = await SimplePost.getChildCount(postId);
+
+    return res.status(200).json({ count });
+  } catch (err) {
+    console.error('Error counting comments for post:', err);
+    return res.status(500).json({ error: 'An error occurred while counting comments' });
+  }
+};
+
 const addLikeAndShareInfoToGetPost = async (req, post) => SimplePost.toAPI(post);
 
 
@@ -189,10 +242,6 @@ const getPostsForUserByVisibility = async (req, res) => {
 const getPost = async (req, res) => {
   const { postId } = req.params;
 
-  if (!postId) {
-    return res.status(400).json({ error: 'postId is required' });
-  }
-
   try {
     const post = await SimplePost.findById(postId);
     if (!post) {
@@ -213,4 +262,6 @@ module.exports = {
   getPostsForUserByVisibility,
   getPostsForCurrentUser,
   getPost,
+  getCommentsForPost,
+  getNumCommentsForPost,
 };

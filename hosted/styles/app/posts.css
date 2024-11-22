@@ -22,3 +22,47 @@
         
     }
 }
+.feed-post-footer button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    color: var(--text-color);
+    transition: color 0.3s, background-color 0.3s;
+    border-radius: 20px;
+    padding: 0.25rem;
+}
+.feed-post-footer button:hover {
+    color: var(--primary-color);
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.feed-post-footer button span {
+    margin-right: 0.5rem;
+}
+
+/* Highlight effect */
+.feed-post-footer button.highlighted {
+    color: var(--accent-color);
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Liked state for the like button */
+.feed-post-footer button.like-button.liked, 
+.feed-post-footer button.repeat-button.shared,
+.feed-post-footer button.comment-button.commented {
+
+    color: var(--primary-color);
+}
+
+
+.feed-parent .post-link {
+    color: var(--text-color-dark);
+}
+
+.footer-menu-btn-text {
+    font-size: 1.2rem;
+    font-weight: bold;
+}

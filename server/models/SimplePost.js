@@ -45,6 +45,7 @@ SimplePostSchema.statics.toAPI = (doc) => ({
 SimplePostSchema.statics.getParent = async (postId) => SimplePostModel.findOne({ _id: postId  }); 
 SimplePostSchema.statics.getChildren = async (postId) => SimplePostModel.find({ parent: postId });  
 SimplePostSchema.statics.getChildCount = async (postId) => SimplePostModel.countDocuments({ parent: postId });
+SimplePostSchema.statics.deletePost = async (postId) => SimplePostModel.deleteOne({ _id : postId });
 SimplePostSchema.statics.findByOwner = async (
   ownerId,
   limit = 10,

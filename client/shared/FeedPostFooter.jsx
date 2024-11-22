@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRepeat, faComment, faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
@@ -6,13 +6,13 @@ import helper from '../utils/helper';
 import { UserContext } from '../utils/UserContext';
 import usePostInteractions from '../hooks/usePostInteractions';
 
-const FeedPostFooter = ({
-    post,
-}) => {
-
+const FeedPostFooter = ({ post }) => {
     const { setNewReplyModalActive, setReplyPost } = useContext(UserContext);
     const { likes, shares, liked, shared, commented, comments,
         setLikes, setShares, setLiked, setShared, setCommented, setComments } = usePostInteractions(post._id);
+
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const menuRef = useRef(null);
 
     const toggleLike = async () => {
         if (liked) {
@@ -68,33 +68,11 @@ const FeedPostFooter = ({
         }
     };
 
-    return (
-        <div className="feed-post-footer is-flex is-justify-content-space-between is-fullwidth my-2">
-            <button className={`comment-button ${commented ? 'commented' : ''}`} onClick={
-                () => {
-                    setReplyPost(post);
-                    setNewReplyModalActive(true);
-                }
-            }>
-                <span className="mx-1">
-                    <FontAwesomeIcon icon={faComment} />
-                </span>
-                {comments}
-            </button>
-            <button className={`repeat-button ${shared ? 'shared' : ''}`} onClick={toggleShare}>
-                <span className="mx-1">
-                    <FontAwesomeIcon icon={faRepeat} />
-                </span>
-                {shares}
-            </button>
-            <button className={`like-button ${liked ? 'liked' : ''}`} onClick={toggleLike}>
-                <span className="mx-1">
-                    <FontAwesomeIcon icon={liked ? faHeartSolid : faHeart} />
-                </span>
-                {likes}
-            </button>
-        </div>
-    );
-};
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
 
-export default FeedPostFooter;
+    // Close menu when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (menuRef.current && !menuRef.current

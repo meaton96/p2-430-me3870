@@ -6,7 +6,7 @@
   "scripts": {
     "webpack": "webpack",
     "wpw": "webpack --watch",
-    "nodemon": "nodemon -e js,html,css --watch ./server --watch ./hosted ./server/app.js",
+    "nodemon": "nodemon --delay .5 -e js,html,css --watch ./server --watch ./hosted ./server/app.js",
     "start": "node ./server/app.js",
     "pretest": "eslint ./server --fix",
     "test": "echo \"Tests complete\"",

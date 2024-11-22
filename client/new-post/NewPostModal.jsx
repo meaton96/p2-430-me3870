@@ -14,13 +14,18 @@ const NewPostModal = () => {
     const [charactersRemaining, setCharactersRemaining] = useState(MAX_CHAR);
     const [visibility, setVisibility] = useState("public");
 
-    const { newPostModalActive, setNewPostModalActive } = useContext(UserContext);
+    const { newPostModalActive, setNewPostModalActive, activeBLToast } = useContext(UserContext);
 
     const onClose = () => setNewPostModalActive(false);
 
     const handlePost = () => {
         if (!postText.trim()) return;
-        sendSimplePost({ content: postText, visibility });
+        const res = sendSimplePost({ content: postText, visibility });
+        if (res) {
+            console.log("Post successful", res);
+            activeBLToast("Post successful");
+
+        }
         setPostText("");
         setVisibility("public");
         onClose();

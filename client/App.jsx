@@ -1,7 +1,8 @@
-import React, { useState, Suspense } from 'react';
+import React, { useState, Suspense, useContext } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
+import { UserProvider } from './utils/UserContext.js';
+import { UserContext } from './utils/UserContext.js';
 
 // Lazy-loaded components
 const Nav = React.lazy(() => import('./nav/Nav.jsx'));
@@ -14,20 +15,18 @@ const Profile = React.lazy(() => import('./outlets/Profile.jsx'));
 const UserProfile = React.lazy(() => import('./outlets/UserProfile.jsx'));
 const PostView = React.lazy(() => import('./outlets/PostView.jsx'));
 const NewReplyModal = React.lazy(() => import('./new-post/NewReplyModal.jsx'));
+const BottomLeftToast = React.lazy(() => import('./shared/BottomLeftToast.jsx'));
 
-
-import { UserProvider } from './utils/UserContext.js';
 
 const App = () => {
 
+    const { blToastActive } = useContext(UserContext);
 
     return (
         <Router>
             <Suspense fallback={<div>Loading...</div>}>
                 <div className='columns'>
-                    <Nav
-                        //setNewPostModalActive={setNewPostModalActive}
-                    />
+                    <Nav />
                     <div className='column is-three-quarters is-full-height'>
                         <Routes>
                             <Route path="/" element={<Feed />} />
@@ -39,9 +38,7 @@ const App = () => {
                             <Route
                                 path="/account-settings"
                                 element={
-                                    <AccountSettings
-                                        //setNewPostModalActive={setNewPostModalActive}
-                                    />
+                                    <AccountSettings />
                                 }
                             />
                             <Route path="/pantry" element={<Pantry />} />
@@ -51,14 +48,14 @@ const App = () => {
                             {/* Add more routes as needed */}
                         </Routes>
                     </div>
-                    <NewPostModal
-                        // isActive={newPostModalActive}
-                        // onClose={() => setNewPostModalActive(false)}
-                    />
-                    <NewReplyModal
-                        // isActive={newReplyModalActive}
-                        // onClose={() => setNewReplyModalActive(false)}
-                    />
+                    <NewPostModal />
+                    <NewReplyModal />
+
+                    {
+                        blToastActive && <BottomLeftToast />
+                    }
+
+
 
                 </div>
             </Suspense>

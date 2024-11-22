@@ -1,0 +1,12 @@
+.bottom-left-toast {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    z-index: 100;
+    background-color: var(--secondary-color);
+    color: var(--text-color-light);
+    padding: 1rem 2rem;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+}

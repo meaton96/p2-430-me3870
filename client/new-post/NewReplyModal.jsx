@@ -15,14 +15,20 @@ const NewReplyModal = () => {
     const [charactersRemaining, setCharactersRemaining] = useState(MAX_CHAR);
     const [visibility, setVisibility] = useState("public");
 
-    const { newReplyModalActive, setNewReplyModalActive, replyPost } = useContext(UserContext);
+    const { newReplyModalActive, setNewReplyModalActive, replyPost, activeBLToast } = useContext(UserContext);
 
     const onClose = () => setNewReplyModalActive(false);
 
-    const handlePost = () => {
+    const handlePost = async () => {
         if (!replyText.trim()) return;
         
-        sendCommentOnPost(replyText, replyPost._id);
+        const res = await sendCommentOnPost(replyText, replyPost._id);
+        if (res) {
+           // console.log("Post successful", res);
+            activeBLToast("Comment successful");
+
+        }
+        
         setReplyText("");
         setVisibility("public");
         onClose();

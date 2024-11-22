@@ -10,6 +10,18 @@ export const UserProvider = ({ children }) => {
     const [newPostModalActive, setNewPostModalActive] = useState(false);
     const [newReplyModalActive, setNewReplyModalActive] = useState(false);
     const [replyPost, setReplyPost] = useState(null);
+    const [blToastMessage, setBlToastMessage] = useState("Test Message");
+    const [blToastActive, setBlToastActive] = useState(false);
+
+    const activeBLToast = (message) => {
+        setBlToastMessage(message);
+        setBlToastActive(true);
+        setTimeout(() => {
+            setBlToastActive(false);
+        }, 3000);
+    };
+
+
 
     useEffect(() => {
         const getAvatar = async () => {
@@ -58,7 +70,10 @@ export const UserProvider = ({ children }) => {
             newReplyModalActive,
             setNewReplyModalActive,
             replyPost,
-            setReplyPost
+            setReplyPost,
+            blToastMessage,
+            activeBLToast,
+            blToastActive,
         }}>
             {children}
         </UserContext.Provider>

@@ -48,7 +48,6 @@ SimplePostSchema
   .statics
   .getChildCount = async (postId) => SimplePostModel.countDocuments({ parent: postId });
 SimplePostSchema.statics.deletePost = async (postId, userId) => {
-
   if (!postId) {
     return null;
   }
@@ -57,14 +56,12 @@ SimplePostSchema.statics.deletePost = async (postId, userId) => {
     return { success: false, message: 'Cannot find post' };
   }
   if (post.owner.equals(userId)) {
-
     const deleteMessage = await SimplePostModel.deleteOne({ _id: postId });
     const deleteChildrenMessage = await SimplePostModel.deleteMany({ parent: postId });
 
     return { success: true, delete: deleteMessage, deleteChildren: deleteChildrenMessage };
   }
   return { success: false, message: 'User is not the owner of the post' };
-
 };
 SimplePostSchema.statics.findByOwner = async (
   ownerId,

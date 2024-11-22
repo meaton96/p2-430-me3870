@@ -2,27 +2,32 @@ const models = require('../models');
 
 const { Comments, SimplePost } = models;
 
-const addComment = async (req, res) => {
-  const { postId, content } = req.body;
 
-  //console.log('Adding comment:', postId, content);
-  if (!postId || !content) {
-    return res.status(400).json({ error: 'postId and content are required' });
-  }
+// const addComment = async (req, res) => {
+//   const { postId, content } = req.body;
 
-  try {
-    const post = await SimplePost.findById(postId);
-    if (!post) {
-      return res.status(404).json({ error: 'Post not found' });
-    }
+//   //console.log('Adding comment:', postId, content);
+//   if (!postId || !content) {
+//     return res.status(400).json({ error: 'postId and content are required' });
+//   }
 
-    const newComment = await Comments.addComment(postId, req.session.account._id, content);
-    return res.status(201).json(newComment);
-  } catch (err) {
-    console.error('Error adding comment:', err);
-    return res.status(500).json({ error: 'An error occurred while adding the comment' });
-  }
-};
+//   try {
+//     const post = await SimplePost.findById(postId);
+//     if (!post) {
+//       return res.status(404).json({ error: 'Post not found' });
+//     }
+
+//     // const newComment = await Comments.addComment(postId, req.session.account._id, content);
+//     //return res.status(201).json(newComment);
+
+//     const newPost = await SimplePost.makePost(req, res);
+//     return res.status(201).json(newPost);
+
+//   } catch (err) {
+//     console.error('Error adding comment:', err);
+//     return res.status(500).json({ error: 'An error occurred while adding the comment' });
+//   }
+// };
 
 const getCommentsForPost = async (req, res) => {
   const { postId } = req.params;
@@ -63,7 +68,7 @@ const countCommentsForPost = async (req, res) => {
 
   try {
     const count = await Comments.countCommentsForPost(postId);
-    
+
     return res.status(200).json({ count });
   } catch (err) {
     console.error('Error counting comments for post:', err);
@@ -134,7 +139,7 @@ const hasUserCommentedPost = async (req, res) => {
 };
 
 module.exports = {
-  addComment,
+ // addComment,
   getCommentsForPost,
   countCommentsForPost,
   removeComment,

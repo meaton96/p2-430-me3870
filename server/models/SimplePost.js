@@ -14,6 +14,11 @@ const SimplePostSchema = new mongoose.Schema({
     ref: 'Account',
     index: true,
   },
+  parent: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'SimplePost',
+    default: null,
+  },
   author: {
     type: String,
     required: true,
@@ -37,7 +42,8 @@ SimplePostSchema.statics.toAPI = (doc) => ({
   visibility: doc.visibility,
   createdDate: doc.createdDate,
 });
-
+SimplePostSchema.statics.getParent = async (postId) => SimplePostModel.findOne({ _id: postId  }); 
+SimplePostSchema.statics.getChildren = async (postId) => SimplePostModel.find({ parent: postId });  
 SimplePostSchema.statics.findByOwner = async (
   ownerId,
   limit = 10,

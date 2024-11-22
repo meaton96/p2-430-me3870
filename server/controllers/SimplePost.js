@@ -31,17 +31,46 @@ const makePost = async (req, res) => {
 
   const { username } = req.session.account;
 
-  const postData = {
-    content: req.body.content,
-    visibility: req.body.visibility || 'public',
-    owner: req.session.account._id,
-    author: `${username}`,
-  };
 
   try {
+
+    let postData = {};
+
+    //reply post
+    if (req.body.postId) {
+
+      const parentId = req.body.postId;
+      const post = await SimplePost.findById(parentId);
+
+      if (!post) {
+        return res.status(404).json({ error: 'Post not found' });
+      }
+      postData = {
+        content: req.body.content,
+        visibility: post.visibility, //same visibility as parent
+        owner: req.session.account._id,
+        author: `${username}`,
+        parent: parentId,
+      };
+    }
+    //original post
+    else {
+      postData = {
+        content: req.body.content,
+        visibility: req.body.visibility || 'public',
+        owner: req.session.account._id,
+        author: `${username}`,
+      };
+    }
+
+
+
+
+
     const newPost = new SimplePost(postData);
     await newPost.save();
 
+    //auto like your own post
     const likeData = {
       postId: newPost._id,
       userId: req.session.account._id,

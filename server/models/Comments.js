@@ -1,10 +1,15 @@
 const mongoose = require('mongoose');
 
+
 const CommentSchema = new mongoose.Schema({
   post: {
     type: mongoose.Schema.ObjectId,
-    required: true,
     ref: 'SimplePost',
+    index: true,
+  },
+  parentComment: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'Comments',
     index: true,
   },
   user: {
@@ -19,6 +24,17 @@ const CommentSchema = new mongoose.Schema({
     trim: true,
   },
 }, { timestamps: true });
+
+CommentSchema.pre('save', function(next) {
+  if (!this.post && !this.parentComment) {
+    return next(new Error('A comment must have either a post or a parent comment.'));
+  }
+  if (this.post && this.parentComment) {
+    return next(new Error('A comment cannot have both a post and a parent comment.'));
+  }
+  next();
+});
+
 
 // Get all comments for a specific post
 CommentSchema.statics.getCommentsForPost = async function (postId) {

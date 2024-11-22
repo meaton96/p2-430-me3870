@@ -43,7 +43,7 @@ const router = (app) => {
   app.get('/simplePost/:postId/has-shared', mid.requiresLogin, controllers.Shares.hasUserSharedPost);
 
   // Comment routes
-  app.post('/addComment', mid.requiresLogin, controllers.Comments.addComment);
+  app.post('/addComment', mid.requiresLogin, controllers.SimplePost.makePost);
   app.post('/removeComment', mid.requiresLogin, controllers.Comments.removeComment);
   app.post('/updateComment', mid.requiresLogin, controllers.Comments.updateComment);
   app.get('/getCommentsForPost/:postId', controllers.Comments.getCommentsForPost);

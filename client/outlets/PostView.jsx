@@ -1,28 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import SinglePost from '../posts/SinglePost.jsx';
 import { useParams } from 'react-router-dom';
 import { getUserAvatar } from '../utils/helper';
+import { UserContext } from '../utils/UserContext';
+import CommentBox from '../post-view/CommentBox.jsx';
 const PostView = () => {
 
     const { username, postId } = useParams();
-    const [avatar, setAvatar] = useState("/assets/img/avatar-grey-small.png");
+    const { avatar } = useContext(UserContext);
+    //const [avatar, setAvatar] = useState("/assets/img/avatar-grey-small.png");
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        const _getUserAvatar = async () => {
-            try {
-                const avt = await getUserAvatar();
-                if (avt) {
-                    setAvatar(avt);
-                }
+    //     const _getUserAvatar = async () => {
+    //         try {
+    //             const avt = await getUserAvatar();
+    //             if (avt) {
+    //                 setAvatar(avt);
+    //             }
 
-            } catch (err) {
-                console.error("Error getting avatar:", err);
-            }
+    //         } catch (err) {
+    //             console.error("Error getting avatar:", err);
+    //         }
 
-        }
-        _getUserAvatar();
-    }, []);
+    //     }
+    //     _getUserAvatar();
+    // }, []);
 
 
     return (
@@ -31,19 +34,10 @@ const PostView = () => {
                 username={username}
                 postId={postId}
             />
-            <div className='user-comment-box px-4 py-3'>
-                <div className='user-comment-btn is-flex'>
-                    <div className='is-narrow'>
-                        <figure className='image is-32x32'>
-                            <img src={avatar} alt='avatar' />
-                        </figure>
-                    </div>
-                    <div className='is-flex is-align-items-center pl-1'>
-                        Add a comment...
-                    </div>
-
-                </div>
-            </div>
+            <CommentBox
+                avatar={avatar}
+                onClick={() => console.log("Comment button clicked")}
+            />
         </div>
 
     );

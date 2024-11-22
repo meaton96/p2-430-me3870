@@ -31,16 +31,16 @@ const usePostInteractions = (postId) => {
 
         ]);
 
-        console.log('commentsData:', commentsData);
-        console.log('commentedData:', commentedData);
+       // console.log('commentsData:', commentsData);
+      //  console.log('commentedData:', commentedData);
 
 
 
         setLikes(likesData.count || 0);
         setShares(sharesData.count || 0);
+        setComments(commentsData.count || 0);
         setLiked(likedData.hasLiked || false);
         setShared(sharedData.hasShared || false);
-        setComments(commentsData.count || 0);
         setCommented(commentedData.hasCommented || false);
         
       } catch (err) {

@@ -8,7 +8,8 @@ const SinglePost = ({ username, postId }) => {
 
     const [post, setPost] = useState(null);
     const [avatar, setAvatar] = useState(`/assets/img/avatar-grey-small.png`);
-    const { likes, shares, liked, shared, setLikes, setShares, setLiked, setShared } = usePostInteractions(postId);
+    const { likes, shares, liked, shared, commented, comments, 
+        setLikes, setShares, setLiked, setShared, setCommented, setComments } = usePostInteractions(postId);
 
 
     useEffect(() => {
@@ -88,6 +89,10 @@ const SinglePost = ({ username, postId }) => {
                             setShares={setShares}
                             setLiked={setLiked}
                             setShared={setShared}
+                            comments={comments}
+                            commented={commented}
+                            setComments={setComments}
+                            setCommented={setCommented}
                         />
                     </div>
                 }

@@ -19,8 +19,6 @@ const NewReplyModal = React.lazy(() => import('./new-post/NewReplyModal.jsx'));
 import { UserProvider } from './utils/UserContext.js';
 
 const App = () => {
-    const [newPostModalActive, setNewPostModalActive] = useState(false);
-    const [newReplyModalActive, setNewReplyModalActive] = useState(false);
 
 
     return (
@@ -28,7 +26,7 @@ const App = () => {
             <Suspense fallback={<div>Loading...</div>}>
                 <div className='columns'>
                     <Nav
-                        setNewPostModalActive={setNewPostModalActive}
+                        //setNewPostModalActive={setNewPostModalActive}
                     />
                     <div className='column is-three-quarters is-full-height'>
                         <Routes>

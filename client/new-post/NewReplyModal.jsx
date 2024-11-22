@@ -3,14 +3,14 @@ import PostModalTextArea from "./PostModalTextArea.jsx";
 import PostModalHeader from "./PostModalHeader.jsx";
 import PostModalFooter from "./PostModalFooter.jsx";
 import ReplyModalOPText from "./ReplyModalOPText.jsx";
-import { sendSimplePost } from "../hooks/simplePostProvider.js";
+import { sendCommentOnPost } from "../hooks/simplePostProvider.js";
 import { UserContext } from "../utils/UserContext.js";
 
 const MAX_CHAR = 300;
 
 const NewReplyModal = () => {
 
-    const [postText, setPostText] = useState("");
+    const [replyText, setReplyText] = useState("");
     // const [isPrivate, setIsPrivate] = useState(false);
     const [charactersRemaining, setCharactersRemaining] = useState(MAX_CHAR);
     const [visibility, setVisibility] = useState("public");
@@ -20,9 +20,9 @@ const NewReplyModal = () => {
     const onClose = () => setNewReplyModalActive(false);
 
     const handlePost = () => {
-        if (!postText.trim()) return;
-        sendSimplePost({ content: postText, visibility });
-        setPostText("");
+        if (!replyText.trim()) return;
+        sendCommentOnPost({ content: replyText, postId: replyPost._id });
+        setReplyText("");
         setVisibility("public");
         onClose();
     };
@@ -48,8 +48,8 @@ const NewReplyModal = () => {
                     <PostModalTextArea
                         //avatar={avatar}
                         isReply={true}
-                        postText={postText}
-                        setPostText={setPostText}
+                        postText={replyText}
+                        setPostText={setReplyText}
                         MAX_CHAR={MAX_CHAR}
                         visibility={visibility}
                         setVisibility={setVisibility}

@@ -6,6 +6,8 @@ const usePostInteractions = (postId) => {
   const [shares, setShares] = useState(0);
   const [liked, setLiked] = useState(false);
   const [shared, setShared] = useState(false);
+  const [comments, setComments] = useState(0);
+  const [commented, setCommented] = useState(false);
 
   useEffect(() => {
     const getInteractions = async () => {
@@ -13,8 +15,12 @@ const usePostInteractions = (postId) => {
         const [likesData, sharesData, likedData, sharedData] = await Promise.all([
           helper.sendGet(`/getNumLikesForPost/${postId}`),
           helper.sendGet(`/getNumSharesForPost/${postId}`),
+          helper.sendGet(`/countCommentsForPost/${postId}`),
           helper.sendGet(`/simplePost/${postId}/has-liked/`),
           helper.sendGet(`/simplePost/${postId}/has-shared/`),
+          helper.sendGet(`/simplePost/${postId}/has-commented/`),
+
+
         ]);
 
         setLikes(likesData || 0);
@@ -29,7 +35,20 @@ const usePostInteractions = (postId) => {
     getInteractions();
   }, [postId]);
 
-  return { likes, shares, liked, shared, setLikes, setShares, setLiked, setShared };
+  return {
+    likes,
+    shares,
+    liked,
+    shared,
+    comments,
+    commented,
+    setLikes,
+    setShares,
+    setLiked,
+    setShared,
+    setComments,
+    setCommented
+  };
 };
 
 export default usePostInteractions;

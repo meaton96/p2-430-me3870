@@ -1,10 +1,26 @@
 const models = require('../models');
 
 const { SimplePost } = models;
-const { Likes } = models;
-const { Shares } = models;
 
 const MAX_CHAR = 300;
+
+const canUserViewPost = (post, session) => {
+
+  if (post.visibility === 'public') {
+    return true;
+  }
+
+  if (post.visibility === 'private') {
+    return post.owner === session.account._id;
+  }
+
+  if (post.visibility === 'followers-only') {
+    return false; //NYI
+  }
+
+  return false;
+
+};
 
 const makePost = async (req, res) => {
   if (!req.body.content) {
@@ -45,26 +61,6 @@ const makePost = async (req, res) => {
 
 const addLikeAndShareInfoToGetPost = async (req, post) => SimplePost.toAPI(post);
 
-// const likes = await Likes.getLikesForPost(post._id);
-// const shares = await Shares.getSharesForPost(post._id);
-
-// const hasLiked = req.session.account._id
-//   ? await Likes.hasUserLikedPost(post._id, req.session.account._id)
-//   : false;
-
-// const hasShared = req.session.account._id
-//   ? await Shares.hasUserSharedPost(post._id, req.session.account._id)
-//   : false;
-
-// return {
-//   ...SimplePost.toAPI(post),
-//   likesCount: likes.length,
-//   likes,
-//   hasLiked,
-//   sharesCount: shares.length,
-//   shares,
-//   hasShared,
-// };
 
 const getPublicPosts = async (req, res) => {
   const { limit = 10, skip = 0 } = req.query;
@@ -92,133 +88,6 @@ const getPublicPosts = async (req, res) => {
   }
 };
 
-const getNumLikesForPost = async (req, res) => {
-  const { postId } = req.params;
-  if (!postId) {
-    return res.status(400).json({ error: 'postId is required' });
-  }
-
-  try {
-    const likes = await Likes.countLikesForPost(postId);
-    return res.status(200).json(likes);
-  } catch (err) {
-    return res.status(500).json({ error: 'An error occurred while fetching likes' });
-  }
-};
-
-const addLikeToPost = async (req, res) => {
-  const { postId } = req.body;
-  if (!postId) {
-    return res.status(400).json({ error: 'postId is required' });
-  }
-
-  try {
-    const newLike = await Likes.addLike(postId, req.session.account._id);
-    return res.status(201).json({ newLike });
-  } catch (err) {
-    return res.status(500).json({ error: 'An error occurred while adding like' });
-  }
-};
-
-const removeLikeFromPost = async (req, res) => {
-  const { postId } = req.body;
-  if (!postId) {
-    return res.status(400).json({ error: 'postId is required' });
-  }
-
-  try {
-    await Likes.removeLike(postId, req.session.account._id);
-    return res.status(200).json({ postId });
-  } catch (err) {
-    return res.status(500).json({ error: 'An error occurred while removing like' });
-  }
-};
-
-const hasUserLikedPost = async (req, res) => {
-  const { postId } = req.params;
-  const userId = req.session.account._id;
-
-  if (!postId) {
-    return res.status(400).json({ error: 'postId is required' });
-  }
-
-  try {
-    const hasLiked = await Likes.hasUserLikedPost(postId, userId);
-    return res.status(200).json({ hasLiked });
-  } catch (err) {
-    console.error(`Error checking like for post ${postId} and user ${userId}:`, err);
-    return res.status(500).json({ error: 'An error occurred while checking like status' });
-  }
-};
-
-const getNumSharesForPost = async (req, res) => {
-  const { postId } = req.params;
-  if (!postId) {
-    return res.status(400).json({ error: 'postId is required' });
-  }
-
-  try {
-    const shares = await Shares.countSharesForPost(postId);
-    return res.status(200).json(shares);
-  } catch (err) {
-    return res.status(500).json({ error: 'An error occurred while fetching shares' });
-  }
-};
-
-const addShareToPost = async (req, res) => {
-  const { postId } = req.body;
-  if (!postId) {
-    return res.status(400).json({ error: 'postId is required' });
-  }
-
-  try {
-    const post = await SimplePost.findById(postId);
-    if (!post) {
-      return res.status(404).json({ error: 'Post not found' });
-    }
-
-    if (post.owner.toString() === req.session.account._id) {
-      return res.status(400).json({ error: 'You cannot share your own post' });
-    }
-
-    const newShare = await Shares.addShare(postId, req.session.account._id);
-    return res.status(201).json({ newShare });
-  } catch (err) {
-    console.error('Error in addShareToPost:', err);
-    return res.status(500).json({ error: 'An error occurred while adding share' });
-  }
-};
-
-const removeShareFromPost = async (req, res) => {
-  const { postId } = req.body;
-  if (!postId) {
-    return res.status(400).json({ error: 'postId is required' });
-  }
-
-  try {
-    await Shares.removeShare(postId, req.session.account._id);
-    return res.status(200).json({ postId });
-  } catch (err) {
-    return res.status(500).json({ error: 'An error occurred while removing share' });
-  }
-};
-
-const hasUserSharedPost = async (req, res) => {
-  const { postId } = req.params;
-  const userId = req.session.account._id;
-
-  if (!postId) {
-    return res.status(400).json({ error: 'postId is required' });
-  }
-
-  try {
-    const hasShared = await Shares.hasUserSharedPost(postId, userId);
-    return res.status(200).json({ hasShared });
-  } catch (err) {
-    console.error(`Error checking share for post ${postId} and user ${userId}:`, err);
-    return res.status(500).json({ error: 'An error occurred while checking share status' });
-  }
-};
 
 const getPostsForUser = async (req, res) => {
   const { userId } = req.params;
@@ -311,14 +180,6 @@ const getPost = async (req, res) => {
 module.exports = {
   makePost,
   getPublicPosts,
-  getNumLikesForPost,
-  addLikeToPost,
-  hasUserLikedPost,
-  removeLikeFromPost,
-  getNumSharesForPost,
-  addShareToPost,
-  hasUserSharedPost,
-  removeShareFromPost,
   getPostsForUser,
   getPostsForUserByVisibility,
   getPostsForCurrentUser,

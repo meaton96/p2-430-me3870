@@ -5,7 +5,21 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import helper from '../utils/helper';
 import { UserContext } from '../utils/UserContext';
 
-const FeedPostFooter = ({ post, likes, shares, liked, shared, setLikes, setShares, setLiked, setShared }) => {
+const FeedPostFooter = ({ 
+    post, 
+    likes, 
+    shares, 
+    liked, 
+    shared,
+    comments,
+    commented, 
+    setLikes, 
+    setShares, 
+    setLiked, 
+    setShared,
+    setComments,
+    setCommented
+ }) => {
 
     const { setNewReplyModalActive, setReplyPost } = useContext(UserContext);
 
@@ -74,7 +88,7 @@ const FeedPostFooter = ({ post, likes, shares, liked, shared, setLikes, setShare
                 <span className="mx-1">
                     <FontAwesomeIcon icon={faComment} />
                 </span>
-                0
+                {comments}
             </button>
             <button className={`repeat-button ${shared ? 'shared' : ''}`} onClick={toggleShare}>
                 <span className="mx-1">

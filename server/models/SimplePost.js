@@ -23,10 +23,6 @@ const SimplePostSchema = new mongoose.Schema({
     enum: ['public', 'private', 'followers-only'],
     default: 'public',
   },
-  likes: {
-    type: [mongoose.Schema.ObjectId],
-    default: [],
-  },
   createdDate: {
     type: Date,
     default: Date.now,

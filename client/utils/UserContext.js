@@ -24,6 +24,7 @@ export const UserProvider = ({ children }) => {
         };
         getAvatar();
     }, []);
+    
     const handleBackButtonClicked = () => {
         setIsBackButtonActive(false);
         window.history.back();

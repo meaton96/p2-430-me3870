@@ -47,7 +47,24 @@ SimplePostSchema.statics.getChildren = async (postId) => SimplePostModel.find({ 
 SimplePostSchema
   .statics
   .getChildCount = async (postId) => SimplePostModel.countDocuments({ parent: postId });
-SimplePostSchema.statics.deletePost = async (postId) => SimplePostModel.deleteOne({ _id: postId }); //todo - making menu
+SimplePostSchema.statics.deletePost = async (postId, userId) => {
+
+  if (!postId) {
+    return null;
+  }
+  const post = await SimplePostModel.findOne({ _id: postId });
+  if (!post) {
+    return { success: false, message: 'Cannot find post' };
+  }
+  if (post.owner.equals(userId)) {
+
+    const deleteMessage = await SimplePostModel.deleteOne({ _id: postId });
+
+    return { success: true, message: deleteMessage};
+  }
+  return { success: false, message: 'User is not the owner of the post' };
+
+};
 SimplePostSchema.statics.findByOwner = async (
   ownerId,
   limit = 10,

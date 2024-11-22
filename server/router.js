@@ -23,6 +23,7 @@ const router = (app) => {
 
   // Simple post routes
   app.post('/simplePost', mid.requiresLogin, controllers.SimplePost.makePost);
+  app.delete('/simplePost/:postId', mid.requiresPostId, mid.requiresLogin, controllers.SimplePost.deletePost);
   app.get('/simplePublicPosts', controllers.SimplePost.getPublicPosts);
 
   app.get('/getPostsForCurrentUser', mid.requiresLogin, controllers.SimplePost.getPostsForCurrentUser);

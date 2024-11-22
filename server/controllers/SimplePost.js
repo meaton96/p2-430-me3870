@@ -236,6 +236,31 @@ const getPost = async (req, res) => {
   }
 };
 
+const deletePost = async (req, res) => {
+  const { postId } = req.params;
+
+  try {
+    const deletedPost = await SimplePost.deletePost(postId, req.session.account._id);
+
+    console.log(deletedPost);
+
+
+    if (!deletedPost || !deletedPost.success) {
+      if (deletedPost.message === 'Cannot find post') {
+        return res.status(404).json({ error: 'Post not found' });
+      }
+      else {
+        return res.status(403).json({ error: 'User is not the owner of the post' });
+      }
+    }
+
+    return res.status(200).json({ postId });
+  }
+   catch (err) {
+    return res.status(500).json({ error: 'An error occurred while deleting post' });
+   }
+}
+
 module.exports = {
   makePost,
   getPublicPosts,
@@ -245,4 +270,5 @@ module.exports = {
   getPost,
   getCommentsForPost,
   getNumCommentsForPost,
+  deletePost,
 };

@@ -5,11 +5,13 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import helper from '../utils/helper';
 import { UserContext } from '../utils/UserContext';
 import usePostInteractions from '../hooks/usePostInteractions';
+import { deleteSimplePost } from '../hooks/simplePostProvider';
 
 const FeedPostFooter = ({ post }) => {
-    const { setNewReplyModalActive, setReplyPost } = useContext(UserContext);
+    const { setNewReplyModalActive, setReplyPost, username } = useContext(UserContext);
     const { likes, shares, liked, shared, commented, comments,
         setLikes, setShares, setLiked, setShared, setCommented, setComments } = usePostInteractions(post._id);
+
 
     const [menuOpen, setMenuOpen] = useState(false);
     const menuRef = useRef(null); // Ref for the menu element
@@ -93,6 +95,30 @@ const FeedPostFooter = ({ post }) => {
         };
     }, [menuOpen]);
 
+
+    const handleDeleteClick = async () => {
+
+        try {
+            const res = await deleteSimplePost(post._id);
+            console.log(res);
+            if (res.postId) {
+                //window.location.reload();
+            }
+        } catch (err) {
+            console.error('Error deleting post:', err);
+        }
+
+    };
+    const renderDeleteMenu = () => {
+        if (username === post.author) {
+            return (
+                <div className="dropdown-content open">
+                    <button onClick={handleDeleteClick}>Delete</button>
+                </div>
+            );
+        }
+    };
+
     return (
         <div className="feed-post-footer is-flex is-justify-content-space-between is-fullwidth my-2">
             <button className={`comment-button ${commented ? 'commented' : ''}`} onClick={() => {
@@ -120,12 +146,10 @@ const FeedPostFooter = ({ post }) => {
                 <button onClick={handleMenuClick} className="px-2">
                     <p className="footer-menu-btn-text">...</p>
                 </button>
-                {menuOpen && (
-                    <div className="dropdown-content open">
-                        <button onClick={() => console.log('Delete post')}>Delete</button>
-                    </div>
-                )}
+                {menuOpen && renderDeleteMenu()}
             </div>
+
+
 
         </div>
     );

@@ -18,3 +18,22 @@ export const sendCommentOnPost = async (comment, postId) => {
     }
 }
 
+export const deleteSimplePost = async (postId) => {
+    console.log(`deleteSimplePost called with postId: ${postId}`);
+    try {
+        const res = await fetch(`/simplePost/${postId}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+
+        const result = await res.json();
+        console.log("Result of deleteSimplePost:", result);
+        return result;
+        
+    }
+    catch (err) {
+        console.error("Error deleting post:", err);
+    }
+}

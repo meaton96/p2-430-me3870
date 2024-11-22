@@ -69,6 +69,7 @@ const FeedPostFooter = ({ post }) => {
     };
 
     const handleMenuClick = () => {
+        console.log("Menu clicked");
         setMenuOpen((prev) => !prev);
     };
 
@@ -116,15 +117,16 @@ const FeedPostFooter = ({ post }) => {
                 {likes}
             </button>
             <div className="dropdown" ref={menuRef}>
-                <button onClick={handleMenuClick} className='px-2'>
-                    <p className='footer-menu-btn-text'>...</p>
+                <button onClick={handleMenuClick} className="px-2">
+                    <p className="footer-menu-btn-text">...</p>
                 </button>
                 {menuOpen && (
-                    <div className="dropdown-menu">
+                    <div className="dropdown-content open">
                         <button onClick={() => console.log('Delete post')}>Delete</button>
                     </div>
                 )}
             </div>
+
         </div>
     );
 };

@@ -66,3 +66,34 @@
     font-size: 1.2rem;
     font-weight: bold;
 }
+.dropdown {
+    position: relative; /* Needed for positioning the dropdown menu relative to this container */
+}
+
+.dropdown-content {
+    position: absolute; /* Position the menu absolutely within the dropdown */
+    top: 100%; /* Aligns the menu below the button */
+    right: 0; /* Aligns the menu to the left edge of the button */
+    background-color: var(--background-color); /* Set your desired background color */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow for better visibility */
+    border-radius: 4px; /* Optional: Add some rounded corners */
+    z-index: 10; /* Ensures the dropdown appears above other content */
+    padding: 8px; /* Optional: Adjust padding for spacing */
+    display: none; /* Initially hide the menu */
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.dropdown-content.open {
+    display: block; /* Show the menu when the dropdown is open */
+    opacity: 1;
+    transform: scale(1);
+}
+
+
+@media screen and (max-width: 1100px) {
+    .single-post-container {
+        width: 100%;
+    }
+}

@@ -47,7 +47,7 @@ SimplePostSchema.statics.getChildren = async (postId) => SimplePostModel.find({ 
 SimplePostSchema
   .statics
   .getChildCount = async (postId) => SimplePostModel.countDocuments({ parent: postId });
-SimplePostSchema.statics.deletePost = async (postId) => SimplePostModel.deleteOne({ _id: postId });
+SimplePostSchema.statics.deletePost = async (postId) => SimplePostModel.deleteOne({ _id: postId }); //todo - making menu
 SimplePostSchema.statics.findByOwner = async (
   ownerId,
   limit = 10,

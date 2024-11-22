@@ -79,7 +79,7 @@ const FeedPostFooter = ({
 
     return (
         <div className="feed-post-footer is-flex is-justify-content-space-between is-fullwidth my-2">
-            <button className="comment-button" onClick={
+            <button className={`comment-button ${commented ? 'commented' : '' }`} onClick={
                 () => {
                     setReplyPost(post);
                     setNewReplyModalActive(true);

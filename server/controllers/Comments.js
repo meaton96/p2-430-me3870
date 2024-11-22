@@ -5,6 +5,7 @@ const { Comments, SimplePost } = models;
 const addComment = async (req, res) => {
   const { postId, content } = req.body;
 
+  //console.log('Adding comment:', postId, content);
   if (!postId || !content) {
     return res.status(400).json({ error: 'postId and content are required' });
   }
@@ -62,6 +63,7 @@ const countCommentsForPost = async (req, res) => {
 
   try {
     const count = await Comments.countCommentsForPost(postId);
+    
     return res.status(200).json({ count });
   } catch (err) {
     console.error('Error counting comments for post:', err);

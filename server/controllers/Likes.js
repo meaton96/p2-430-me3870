@@ -8,8 +8,8 @@ const getNumLikesForPost = async (req, res) => {
     }
   
     try {
-      const likes = await Likes.countLikesForPost(postId);
-      return res.status(200).json(likes);
+      const count = await Likes.countLikesForPost(postId);
+      return res.status(200).json({ count });
     } catch (err) {
       return res.status(500).json({ error: 'An error occurred while fetching likes' });
     }

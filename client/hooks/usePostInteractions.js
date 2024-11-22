@@ -12,7 +12,15 @@ const usePostInteractions = (postId) => {
   useEffect(() => {
     const getInteractions = async () => {
       try {
-        const [likesData, sharesData, likedData, sharedData] = await Promise.all([
+        const [
+          likesData, 
+          sharesData,
+          commentsData, 
+          likedData, 
+          sharedData,
+          commentedData
+        ] = await Promise.all([
+
           helper.sendGet(`/getNumLikesForPost/${postId}`),
           helper.sendGet(`/getNumSharesForPost/${postId}`),
           helper.sendGet(`/countCommentsForPost/${postId}`),
@@ -23,10 +31,18 @@ const usePostInteractions = (postId) => {
 
         ]);
 
-        setLikes(likesData || 0);
-        setShares(sharesData || 0);
+        console.log('commentsData:', commentsData);
+        console.log('commentedData:', commentedData);
+
+
+
+        setLikes(likesData.count || 0);
+        setShares(sharesData.count || 0);
         setLiked(likedData.hasLiked || false);
         setShared(sharedData.hasShared || false);
+        setComments(commentsData.count || 0);
+        setCommented(commentedData.hasCommented || false);
+        
       } catch (err) {
         console.error('Error fetching post interactions:', err);
       }

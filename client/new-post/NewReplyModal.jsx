@@ -21,7 +21,8 @@ const NewReplyModal = () => {
 
     const handlePost = () => {
         if (!replyText.trim()) return;
-        sendCommentOnPost({ content: replyText, postId: replyPost._id });
+        
+        sendCommentOnPost(replyText, replyPost._id);
         setReplyText("");
         setVisibility("public");
         onClose();

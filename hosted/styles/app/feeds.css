@@ -44,12 +44,13 @@
 }
 
 /* Liked state for the like button */
-.feed-post-footer button.like-button.liked {
+.feed-post-footer button.like-button.liked, 
+.feed-post-footer button.repeat-button.shared,
+.feed-post-footer button.comment-button.commented {
+
     color: var(--primary-color);
 }
-.feed-post-footer button.repeat-button.shared {
-    color: var(--primary-color);
-}
+
 
 .feed-parent .post-link {
     color: var(--text-color-dark);

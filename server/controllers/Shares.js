@@ -8,8 +8,8 @@ const getNumSharesForPost = async (req, res) => {
     }
 
     try {
-        const shares = await Shares.countSharesForPost(postId);
-        return res.status(200).json(shares);
+        const count = await Shares.countSharesForPost(postId);
+        return res.status(200).json({ count});
     } catch (err) {
         return res.status(500).json({ error: 'An error occurred while fetching shares' });
     }

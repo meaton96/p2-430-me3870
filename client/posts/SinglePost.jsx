@@ -4,25 +4,11 @@ import { useEffect, useState } from 'react';
 import helper from '../utils/helper.js';
 import usePostInteractions from '../hooks/usePostInteractions.js';
 
-const SinglePost = ({ username, postId }) => {
+const SinglePost = ({ username, postId, post }) => {
 
-    const [post, setPost] = useState(null);
     const [avatar, setAvatar] = useState(`/assets/img/avatar-grey-small.png`);
     const { likes, shares } = usePostInteractions(postId);
 
-
-    useEffect(() => {
-        const fetchPost = async () => {
-            try {
-                const res = await helper.sendGet(`/simplePost/${postId}`);
-                setPost(res);
-
-            } catch (err) {
-                console.error("Error fetching post:", err);
-            }
-        };
-        fetchPost();
-    }, [postId]);
 
     useEffect(() => {
         if (!post) return;

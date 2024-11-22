@@ -1,42 +1,47 @@
 import React, { useState, useEffect, useContext } from 'react';
 import SinglePost from '../posts/SinglePost.jsx';
 import { useParams } from 'react-router-dom';
-import { getUserAvatar } from '../utils/helper';
+import helper from '../utils/helper.js';
 import { UserContext } from '../utils/UserContext';
 import CommentBox from '../post-view/CommentBox.jsx';
 const PostView = () => {
 
+    const [post, setPost] = useState(null);
     const { username, postId } = useParams();
-    const { avatar } = useContext(UserContext);
+    const { avatar, setReplyPost, setNewReplyModalActive } = useContext(UserContext);
     //const [avatar, setAvatar] = useState("/assets/img/avatar-grey-small.png");
 
-    // useEffect(() => {
+    useEffect(() => {
+        const fetchPost = async () => {
+            try {
+                const res = await helper.sendGet(`/simplePost/${postId}`);
+                console.log(res);
+                setPost(res);
 
-    //     const _getUserAvatar = async () => {
-    //         try {
-    //             const avt = await getUserAvatar();
-    //             if (avt) {
-    //                 setAvatar(avt);
-    //             }
-
-    //         } catch (err) {
-    //             console.error("Error getting avatar:", err);
-    //         }
-
-    //     }
-    //     _getUserAvatar();
-    // }, []);
+            } catch (err) {
+                console.error("Error fetching post:", err);
+            }
+        };
+        fetchPost();
+    }, [postId]);
 
 
     return (
         <div className='single-post-container'>
-            <SinglePost
-                username={username}
-                postId={postId}
-            />
+            {
+                post && <SinglePost
+                    username={username}
+                    postId={postId}
+                    post={post}
+                />
+            }
+
             <CommentBox
                 avatar={avatar}
-                onClick={() => console.log("Comment button clicked")}
+                onClick={() => {
+                    setReplyPost(post);
+                    setNewReplyModalActive(true);
+                }}
             />
         </div>
 

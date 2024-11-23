@@ -42,8 +42,14 @@ SimplePostSchema.statics.toAPI = (doc) => ({
   visibility: doc.visibility,
   createdDate: doc.createdDate,
 });
-SimplePostSchema.statics.getParent = async (postId) => SimplePostModel.findOne({ _id: postId });
-SimplePostSchema.statics.getChildren = async (postId) => SimplePostModel.find({ parent: postId });
+SimplePostSchema.statics.getParent = async function (postId) {
+  const post = await this.findOne({ _id: postId }).select('parent');
+  return post ? post.parent : null;
+};
+SimplePostSchema.statics.getChildren = function (postId) {
+  //console.log('postId', postId);
+  return this.find({ parent: postId });
+};
 SimplePostSchema
   .statics
   .getChildCount = async (postId) => SimplePostModel.countDocuments({ parent: postId });

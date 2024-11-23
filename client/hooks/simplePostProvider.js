@@ -21,6 +21,16 @@ export const sendCommentOnPost = async (comment, postId) => {
     }
 }
 
+export const getCommentsForPost = async (postId, skip, limit) => {
+
+    try {
+        const res = await helper.sendGet(`/getCommentsForPost/${postId}?limit=${limit}&skip=${skip}`);
+        return res;
+    } catch (err) {
+        console.error("Error getting comments:", err);
+    }
+}
+
 export const deleteSimplePost = async (postId) => {
     console.log(`deleteSimplePost called with postId: ${postId}`);
     try {
@@ -32,9 +42,9 @@ export const deleteSimplePost = async (postId) => {
         });
 
         const result = await res.json();
-       // console.log("Result of deleteSimplePost:", result);
+        // console.log("Result of deleteSimplePost:", result);
         return result;
-        
+
     }
     catch (err) {
         console.error("Error deleting post:", err);

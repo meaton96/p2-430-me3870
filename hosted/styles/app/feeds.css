@@ -9,10 +9,14 @@
 
 .post-container {
     border-bottom: var(--secondary-color) 1px solid;
+    
    
     &:hover {
         background-color: var(--background-color-highlight);
         cursor: pointer;
     }
+}
+.post-container a {
+    color: var(--text-color-dark);
 }
 

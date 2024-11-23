@@ -82,9 +82,14 @@ const getCommentsForPost = async (req, res) => {
   const { postId } = req.params;
   const { limit = 10, skip = 0 } = req.query;
 
+ // console.log(postId, limit, skip);
+
+
   if (!postId) {
     return res.status(400).json({ error: 'postId is required' });
   }
+
+
 
   try {
     const parsedLimit = parseInt(limit, 10);
@@ -93,12 +98,14 @@ const getCommentsForPost = async (req, res) => {
     if (Number.isNaN(parsedLimit) || Number.isNaN(parsedSkip)) {
       return res.status(400).json({ error: 'Invalid pagination parameters' });
     }
+   // console.log(parsedLimit, parsedSkip);
 
     const children = await SimplePost.getChildren(postId)
       .sort({ createdDate: -1 })
-      .skip(parsedSkip)
-      .limit(parsedLimit);
+      .limit(parsedLimit)
+      .skip(parsedSkip); 
 
+   // console.log(children);
     const postsWithInfo = await Promise.all(
       children.map((post) => toApi(req, post)),
     );

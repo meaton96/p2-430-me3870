@@ -47,7 +47,7 @@ SimplePostSchema.statics.getParent = async function (postId) {
   return post ? post.parent : null;
 };
 SimplePostSchema.statics.getChildren = function (postId) {
-  //console.log('postId', postId);
+  // console.log('postId', postId);
   return this.find({ parent: postId });
 };
 SimplePostSchema

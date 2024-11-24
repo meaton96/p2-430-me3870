@@ -28,6 +28,10 @@ const SimplePostSchema = new mongoose.Schema({
     enum: ['public', 'private', 'followers-only'],
     default: 'public',
   },
+  media: {
+    type: String,
+    default: null,
+  },
   createdDate: {
     type: Date,
     default: Date.now,
@@ -40,6 +44,7 @@ SimplePostSchema.statics.toAPI = (doc) => ({
   author: doc.author,
   _id: doc._id,
   visibility: doc.visibility,
+  media: doc.media,
   createdDate: doc.createdDate,
 });
 SimplePostSchema.statics.getParent = async function (postId) {

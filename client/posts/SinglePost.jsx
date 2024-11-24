@@ -53,7 +53,13 @@ const SinglePost = ({ username, postId, post }) => {
                         <p>
                             {helper.formatDateTime(post.createdDate)}
                         </p>
+                        {post.media &&
+                            <div className="is-flex is-align-items-center is-justify-content-start my-1">
 
+                                <img className="post-media" src={post.media} alt="media" />
+
+                            </div>
+                        }
                         <hr className='post-hr' />
 
                         <p>

@@ -53,6 +53,7 @@ const makePost = async (req, res) => {
         content: req.body.content,
         visibility: req.body.visibility || 'public',
         owner: req.session.account._id,
+        media: req.body.media || null,
         author: `${username}`,
       };
     }

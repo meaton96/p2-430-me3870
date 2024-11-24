@@ -36,10 +36,29 @@ redisClient.connect().then(() => {
   const app = express();
 
   app.use(helmet());
-  // app.use((req, res, next) => {
-  //   res.setHeader('Content-Security-Policy', "script-src 'self' 'nonce-abc123' https://accounts.google.com;");
-  //   next();
-  // });
+  app.use(
+    helmet.contentSecurityPolicy({
+      directives: {
+        defaultSrc: ["'self'"],
+        imgSrc: ["'self'", 'data:', 'https://kitchen-sync.s3.us-east-2.amazonaws.com', 'blob:'],
+      },
+    }),
+  );
+  if (process.env.NODE_ENV === 'development') {
+    app.use(
+      helmet.contentSecurityPolicy({
+        directives: {
+          defaultSrc: ["'self'"],
+          imgSrc: ["'self'", 'data:', 'https://kitchen-sync.s3.us-east-2.amazonaws.com', 'blob:'],
+          scriptSrc: [
+            "'self'",
+            "'unsafe-inline'", // Allow inline scripts
+            "'unsafe-eval'", // Allow eval (sometimes needed for extensions)
+          ],
+        },
+      }),
+    );
+  }
 
   app.use('/assets', express.static(path.resolve(`${__dirname}/../hosted`)));
   app.use(favicon(`${__dirname}/../hosted/img/favicon.png`));

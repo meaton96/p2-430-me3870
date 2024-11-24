@@ -37,6 +37,8 @@ const FeedPost = ({ post }) => {
 
     const age = calculateAge(post.createdDate);
 
+    //console.log(post.media);
+
     return (
 
         <div className="post-container px-4 py-1">
@@ -66,6 +68,11 @@ const FeedPost = ({ post }) => {
                                     </span>
                                 ))}
                             </div>
+                        </div>
+                        <div className="is-flex is-align-items-center is-justify-content-start my-1">
+                            {post.media &&
+                                <img className="post-media" src={post.media} alt="media" />
+                            }
                         </div>
                     </Link>
                     <FeedPostFooter

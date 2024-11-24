@@ -31,6 +31,8 @@ const router = (app) => {
   app.get('/getPostsForUserByVisibility/:userId/:visibility', controllers.SimplePost.getPostsForUserByVisibility);
   app.get('/simplePost/:postId', mid.requiresPostId, controllers.SimplePost.getPost);
 
+  app.post('/uploadImage', mid.requiresLogin, controllers.Upload.uploadMid, controllers.Upload.uploadImage);
+
   // Post likes
   app.post('/addLike', mid.requiresPostId, mid.requiresLogin, controllers.Likes.addLikeToPost);
   app.post('/removeLike', mid.requiresPostId, mid.requiresLogin, controllers.Likes.removeLikeFromPost);

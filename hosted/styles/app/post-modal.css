@@ -130,3 +130,15 @@ textarea.post-text-box {
     border: none;
     margin: 1rem 0;
 }
+.img-upload-btn {
+    cursor: pointer;
+    &:hover {
+        color: var(--primary-color);
+    }
+}
+.post-media-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
+}

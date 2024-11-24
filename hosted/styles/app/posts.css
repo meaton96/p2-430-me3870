@@ -107,6 +107,11 @@
     padding-bottom: 3rem;
 }
 
+.post-media {
+    max-width: 40%;
+    height: auto;
+}
+
 
 @media screen and (max-width: 1100px) {
     .single-post-container {

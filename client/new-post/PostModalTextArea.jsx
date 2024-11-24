@@ -5,6 +5,7 @@ import { UserContext } from "../utils/UserContext.js";
 
 
 const PostModalTextArea = ({
+    mediaUrl,
     postText,
     setPostText,
     MAX_CHAR,
@@ -41,6 +42,12 @@ const PostModalTextArea = ({
                     </div>
                 </div>
             </div>
+            {
+                mediaUrl &&
+                <section className="post-media-container">
+                    <img src={mediaUrl} alt="media" />
+                </section>
+            }
             {
                 !isReply && <div className="field post-modal-visibility-dropdown">
                     <label className="label">

@@ -56,7 +56,7 @@ const SinglePost = ({ username, postId, post }) => {
                         {post.media &&
                             <div className="is-flex is-align-items-center is-justify-content-start my-1">
 
-                                <img className="post-media" src={post.media} alt="media" />
+                                <img className="post-media-single" src={post.media} alt="media" />
 
                             </div>
                         }

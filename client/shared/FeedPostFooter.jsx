@@ -100,9 +100,9 @@ const FeedPostFooter = ({ post }) => {
 
         try {
             const res = await deleteSimplePost(post._id);
-            console.log(res);
+            //console.log(res);
             if (res.postId) {
-                //window.location.reload();
+                window.location.reload();
             }
         } catch (err) {
             console.error('Error deleting post:', err);

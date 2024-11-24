@@ -52,8 +52,6 @@ redisClient.connect().then(() => {
           imgSrc: ["'self'", 'data:', 'https://kitchen-sync.s3.us-east-2.amazonaws.com', 'blob:'],
           scriptSrc: [
             "'self'",
-            "'unsafe-inline'", // Allow inline scripts
-            "'unsafe-eval'", // Allow eval (sometimes needed for extensions)
           ],
         },
       }),

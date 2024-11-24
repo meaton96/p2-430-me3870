@@ -1,4 +1,4 @@
-const path = require('path');
+require('dotenv').config();
 
 module.exports = {
     entry: {
@@ -6,7 +6,7 @@ module.exports = {
             import: './client/App.jsx',
         },
         login: {
-            import:'./client/login/login.jsx',
+            import: './client/login/login.jsx',
         },
     },
     module: {
@@ -23,13 +23,17 @@ module.exports = {
             },
         ],
     },
-    mode: 'development',
+    mode: process.env.NODE_ENV || 'development',
+    devtool: 'source-map', // Avoid eval-based maps
     watchOptions: {
         aggregateTimeout: 200,
     },
     output: {
         path: path.resolve(__dirname, 'hosted'),
         filename: '[name]Bundle.js',
+        clean: {
+            keep: /^(img|styles)/, // Keep 'img' and 'styles' folders
+        },
     },
     optimization: {
         splitChunks: false,

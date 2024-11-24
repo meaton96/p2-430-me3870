@@ -76,7 +76,6 @@ const NewPostModal = () => {
     return (
         <div className={`modal ${newPostModalActive ? "is-active" : ""}`}>
 
-
             <div className="modal-background"></div>
             <div className="modal-card post-modal-card">
                 <PostModalHeader

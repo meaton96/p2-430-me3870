@@ -72,6 +72,7 @@ const NewPostModal = () => {
         setVisibility("public");
         onClose();
     };
+    
 
     return (
         <div className={`modal ${newPostModalActive ? "is-active" : ""}`}>

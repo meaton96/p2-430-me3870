@@ -1,10 +1,10 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./client/Footer.jsx":
-/*!***************************!*\
-  !*** ./client/Footer.jsx ***!
-  \***************************/
+/***/ "./client/login/Footer.jsx":
+/*!*********************************!*\
+  !*** ./client/login/Footer.jsx ***!
+  \*********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -34586,7 +34586,7 @@ var __webpack_exports__ = {};
   !*** ./client/login/login.jsx ***!
   \********************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Footer_jsx__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Footer.jsx */ "./client/Footer.jsx");
+/* harmony import */ var _Footer_jsx__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Footer.jsx */ "./client/login/Footer.jsx");
 /* harmony import */ var _LoginModal_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LoginModal.jsx */ "./client/login/LoginModal.jsx");
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }

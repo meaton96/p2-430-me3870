@@ -14,43 +14,37 @@ const MobileNav = ({ icons, setIsNavModalOpen, avatar }) => {
                 >
                     <FontAwesomeIcon icon={icons.faTimes} />
                 </button>
-                {/* <div className="nav-avatar is-flex">
-                    <figure className="avatar-container">
-                        <img
-                            src={avatar}
-                            alt="avatar"
-                            className="avatar-image"
-                            onClick={() => {
-                                
-                                setIsNavModalOpen(false);
-                            }}
-                        />
-                    </figure>
-                </div> */}
+               
                 <div className="nav-list">
                     
                         <MobileNavButton
                             icon={icons.faHouse}
+                            setIsNavModalOpen={setIsNavModalOpen}
                             to="/feed"
                         />
                         <MobileNavButton
                             icon={icons.faUser}
+                            setIsNavModalOpen={setIsNavModalOpen}
                             to="/feed"
                         />
                         <MobileNavButton
                             icon={icons.faSearch}
+                            setIsNavModalOpen={setIsNavModalOpen}
                             to="/recipes/search"
                         />
                         <MobileNavButton
                             icon={icons.faUtensils}
+                            setIsNavModalOpen={setIsNavModalOpen}
                             to="/recipes"
                         />
                         <MobileNavButton
                             icon={icons.faDoorClosed}
+                            setIsNavModalOpen={setIsNavModalOpen}
                             to="/pantry"
                         />
                         <MobileNavButton
                             icon={icons.faGear}
+                            setIsNavModalOpen={setIsNavModalOpen}
                             to="/account-settings"
                         />
                 </div>

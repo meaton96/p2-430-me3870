@@ -622,21 +622,27 @@ var MobileNav = function MobileNav(_ref) {
     className: "nav-list"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MobileNavButton_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
     icon: icons.faHouse,
+    setIsNavModalOpen: setIsNavModalOpen,
     to: "/feed"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MobileNavButton_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
     icon: icons.faUser,
+    setIsNavModalOpen: setIsNavModalOpen,
     to: "/feed"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MobileNavButton_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
     icon: icons.faSearch,
+    setIsNavModalOpen: setIsNavModalOpen,
     to: "/recipes/search"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MobileNavButton_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
     icon: icons.faUtensils,
+    setIsNavModalOpen: setIsNavModalOpen,
     to: "/recipes"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MobileNavButton_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
     icon: icons.faDoorClosed,
+    setIsNavModalOpen: setIsNavModalOpen,
     to: "/pantry"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_MobileNavButton_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
     icon: icons.faGear,
+    setIsNavModalOpen: setIsNavModalOpen,
     to: "/account-settings"
   }))));
 };
@@ -666,7 +672,8 @@ var MobileNavButton = function MobileNavButton(_ref) {
   var icon = _ref.icon,
     text = _ref.text,
     to = _ref.to,
-    addClass = _ref.addClass;
+    addClass = _ref.addClass,
+    setIsNavModalOpen = _ref.setIsNavModalOpen;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
     onClick: function onClick() {
       setIsNavModalOpen(false);

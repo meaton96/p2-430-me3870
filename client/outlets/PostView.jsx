@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import SinglePost from '../posts/SinglePost.jsx';
+import SinglePost from '../modules/twitter-clone/posts/SinglePost.jsx';
 import { useParams } from 'react-router-dom';
 import helper from '../utils/helper.js';
 import { UserContext } from '../utils/UserContext';

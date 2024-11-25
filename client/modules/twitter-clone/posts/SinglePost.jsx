@@ -1,8 +1,8 @@
 import React from "react";
-import FeedPostFooter from "../shared/FeedPostFooter.jsx";
+import FeedPostFooter from "../../../shared/FeedPostFooter.jsx";
 import { useEffect, useState } from 'react';
-import helper from '../utils/helper.js';
-import usePostInteractions from '../hooks/usePostInteractions.js';
+import helper from '../../../utils/helper.js';
+import usePostInteractions from '../../../hooks/usePostInteractions.js';
 
 const SinglePost = ({ username, postId, post }) => {
 

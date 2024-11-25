@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkkitchen_sync=self.webpackChunkkitchen_sync||[]).push([[474],{474:(e,n,t)=>{t.r(n),t.d(n,{default:()=>c});var l=t(540);const c=function(){return l.createElement("div",null,l.createElement("h1",null,"Posts by people you are following"))}}}]);

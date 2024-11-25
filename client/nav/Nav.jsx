@@ -1,11 +1,11 @@
 import React, { useState, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faHouse, faUser, faUtensils, faDoorClosed, faGear, faPenToSquare, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faHouse, faUser, faUtensils, faDoorClosed, faGear, faPenToSquare, faTimes, faSearch } from "@fortawesome/free-solid-svg-icons";
 import DesktopNav from "./DesktopNav.jsx";
 import MobileNav from "./MobileNav.jsx";
 import { UserContext } from '../utils/UserContext.js';
 
-const Nav = ({ handlePageChange }) => {
+const Nav = () => {
     const [isNavModalOpen, setIsNavModalOpen] = useState(false);
     const { avatar } = useContext(UserContext);
     const icons = {
@@ -15,7 +15,8 @@ const Nav = ({ handlePageChange }) => {
         faDoorClosed,
         faGear,
         faPenToSquare,
-        faTimes
+        faTimes,
+        faSearch
     }
     return (
         <>
@@ -29,7 +30,6 @@ const Nav = ({ handlePageChange }) => {
 
             {/* Desktop Navigation */}
             <DesktopNav
-                handlePageChange={handlePageChange}
                 avatar={avatar}
                 //setNewPostModalActive={setNewPostModalActive}
                 icons={icons}
@@ -40,7 +40,6 @@ const Nav = ({ handlePageChange }) => {
             <MobileNav  
                 icons={icons} 
                 setIsNavModalOpen={setIsNavModalOpen} 
-                handlePageChange={handlePageChange}
                 avatar={avatar}
             /> 
             }

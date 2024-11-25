@@ -62,22 +62,22 @@ const Feed = () => {
                         <img src="/assets/img/logo-120p.png" alt="logo" />
                     </figure>
                 </div>
-                <div class="tabs">
+                <div className="tabs">
                     <ul>
                         <li
-                            class={(feed === feeds.discover ? "is-active" : "")}
+                            className={(feed === feeds.discover ? "is-active" : "")}
                             onClick={() => handleFeedChange(0)}
                         >
                             <a>Discover</a>
                         </li>
                         <li
-                            class={(feed === feeds.following ? "is-active" : "")}
+                            className={(feed === feeds.following ? "is-active" : "")}
                             onClick={() => handleFeedChange(1)}
                         >
                             <a>Following</a>
                         </li>
                         <li
-                            class={(feed === feeds.myPosts ? "is-active" : "")}
+                            className={(feed === feeds.myPosts ? "is-active" : "")}
                             onClick={() => handleFeedChange(2)}
                         >
                             <a>My Posts</a>

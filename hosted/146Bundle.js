@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkkitchen_sync=self.webpackChunkkitchen_sync||[]).push([[146],{146:(e,n,t)=>{t.r(n),t.d(n,{default:()=>l});var c=t(540);const l=function(){return c.createElement("div",null,c.createElement("h1",null,"User Profile"))}}}]);

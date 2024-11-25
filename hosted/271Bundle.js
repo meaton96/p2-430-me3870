@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkkitchen_sync=self.webpackChunkkitchen_sync||[]).push([[271],{271:(e,n,c)=>{c.r(n),c.d(n,{default:()=>l});var t=c(540);const l=function(){return t.createElement("div",null,t.createElement("h1",null,"My Recipes"))}}}]);

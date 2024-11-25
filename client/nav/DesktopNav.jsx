@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { UserContext } from '../utils/UserContext.js';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import NavButton from "./NavButton.jsx";
+import DesktopNavButton from "./DesktopNavButton.jsx";
 
 const DesktopNav = ({ avatar, icons }) => {
     const { isBackButtonActive, handleBackButtonClicked, setNewPostModalActive } = useContext(UserContext);
@@ -36,31 +36,38 @@ const DesktopNav = ({ avatar, icons }) => {
                         <img src={avatar} alt="avatar" className="avatar-image" />
                     </Link>
                 </li>
-                <NavButton
+                <DesktopNavButton
                     icon={icons.faHouse}
                     text="Home"
                     to="/feed"
                 />
-                <NavButton
+                <DesktopNavButton
                     icon={icons.faUser}
                     text="My Profile"
                     to={`/profile`}
                 />
-                <NavButton
-                    icon={icons.faGear}
-                    text="Account Settings"
-                    to="/account-settings"
+                <DesktopNavButton 
+                    icon={icons.faSearch}
+                    text="Search Recipes"
+                    to="/recipes/search"
                 />
-                <NavButton
-                    icon={icons.faDoorClosed}
-                    text="My Pantry"
-                    to="/pantry"
-                />
-                <NavButton
+                <DesktopNavButton
                     icon={icons.faUtensils}
                     text="My Recipes"
                     to="/recipes"
                 />
+                <DesktopNavButton
+                    icon={icons.faDoorClosed}
+                    text="My Pantry"
+                    to="/pantry"
+                />
+                <DesktopNavButton
+                    icon={icons.faGear}
+                    text="Account Settings"
+                    to="/account-settings"
+                />
+                
+                
                 <li>
                     <button onClick={() => setNewPostModalActive(true)} className="post-btn">
                         <FontAwesomeIcon icon={icons.faPenToSquare} />

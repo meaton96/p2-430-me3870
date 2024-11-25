@@ -1,10 +1,10 @@
 "use strict";
-(self["webpackChunkkitchen_sync"] = self["webpackChunkkitchen_sync"] || []).push([["client_feeds_FollowingFeed_jsx"],{
+(self["webpackChunkkitchen_sync"] = self["webpackChunkkitchen_sync"] || []).push([["client_modules_twitter-clone_feeds_FollowingFeed_jsx"],{
 
-/***/ "./client/feeds/FollowingFeed.jsx":
-/*!****************************************!*\
-  !*** ./client/feeds/FollowingFeed.jsx ***!
-  \****************************************/
+/***/ "./client/modules/twitter-clone/feeds/FollowingFeed.jsx":
+/*!**************************************************************!*\
+  !*** ./client/modules/twitter-clone/feeds/FollowingFeed.jsx ***!
+  \**************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -22,4 +22,4 @@ var FollowingFeed = function FollowingFeed() {
 /***/ })
 
 }]);
-//# sourceMappingURL=client_feeds_FollowingFeed_jsxBundle.js.map
+//# sourceMappingURL=client_modules_twitter-clone_feeds_FollowingFeed_jsxBundle.js.map

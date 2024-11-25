@@ -1,7 +1,7 @@
 import React from "react";
 const { Suspense, lazy } = React;
-const FollowingFeed = lazy(() => import("../feeds/FollowingFeed.jsx"));
-const SimplePostFeed = lazy(() => import("../feeds/SimplePostFeed.jsx"));
+const FollowingFeed = lazy(() => import("../modules/twitter-clone/feeds/FollowingFeed.jsx"));
+const SimplePostFeed = lazy(() => import("../modules/twitter-clone/feeds/SimplePostFeed.jsx"));
 
 
 

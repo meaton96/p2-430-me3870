@@ -23,10 +23,10 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 var Suspense = (react__WEBPACK_IMPORTED_MODULE_0___default().Suspense),
   lazy = (react__WEBPACK_IMPORTED_MODULE_0___default().lazy);
 var FollowingFeed = lazy(function () {
-  return __webpack_require__.e(/*! import() */ "client_feeds_FollowingFeed_jsx").then(__webpack_require__.bind(__webpack_require__, /*! ../feeds/FollowingFeed.jsx */ "./client/feeds/FollowingFeed.jsx"));
+  return __webpack_require__.e(/*! import() */ "client_modules_twitter-clone_feeds_FollowingFeed_jsx").then(__webpack_require__.bind(__webpack_require__, /*! ../modules/twitter-clone/feeds/FollowingFeed.jsx */ "./client/modules/twitter-clone/feeds/FollowingFeed.jsx"));
 });
 var SimplePostFeed = lazy(function () {
-  return __webpack_require__.e(/*! import() */ "client_feeds_SimplePostFeed_jsx").then(__webpack_require__.bind(__webpack_require__, /*! ../feeds/SimplePostFeed.jsx */ "./client/feeds/SimplePostFeed.jsx"));
+  return __webpack_require__.e(/*! import() */ "client_modules_twitter-clone_feeds_SimplePostFeed_jsx").then(__webpack_require__.bind(__webpack_require__, /*! ../modules/twitter-clone/feeds/SimplePostFeed.jsx */ "./client/modules/twitter-clone/feeds/SimplePostFeed.jsx"));
 });
 var feeds = {
   discover: 'discover',

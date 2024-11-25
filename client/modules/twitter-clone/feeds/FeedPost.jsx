@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
-import { UserContext } from '../utils/UserContext.js';
-import FeedPostFooter from "../shared/FeedPostFooter.jsx";
+import { UserContext } from '../../../utils/UserContext.js';
+import FeedPostFooter from "../../../shared/FeedPostFooter.jsx";
 import { Link } from 'react-router-dom';
-import usePostInteractions from '../hooks/usePostInteractions.js';
+import usePostInteractions from '../../../hooks/usePostInteractions.js';
 
 const FeedPost = ({ post }) => {
     const [avatar, setAvatar] = useState(`/assets/img/avatar-grey-small.png`);

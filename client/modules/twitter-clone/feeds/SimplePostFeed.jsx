@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ClipLoader } from "react-spinners";
 import FeedPost from "./FeedPost.jsx";
-import { getCssVariable } from "../utils/helper.js";
+import { getCssVariable } from "../../../utils/helper.js";
 
 // Component to display a feed of posts
 const SimplePostFeed = ({ endpoint }) => {

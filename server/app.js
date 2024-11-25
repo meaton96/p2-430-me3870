@@ -11,6 +11,7 @@ const session = require('express-session');
 const RedisStore = require('connect-redis').default;
 const redis = require('redis');
 const router = require('./router.js');
+const { devCSP, prodCSP } = require('./csp.js');
 
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
 const dbURI = process.env.MONGODB_URI;
@@ -37,24 +38,11 @@ redisClient.connect().then(() => {
 
   app.use(helmet());
   app.use(
-    helmet.contentSecurityPolicy({
-      directives: {
-        defaultSrc: ["'self'"],
-        imgSrc: ["'self'", 'data:', 'https://kitchen-sync.s3.us-east-2.amazonaws.com', 'blob:'],
-      },
-    }),
+    helmet.contentSecurityPolicy(prodCSP),
   );
   if (process.env.NODE_ENV === 'development') {
     app.use(
-      helmet.contentSecurityPolicy({
-        directives: {
-          defaultSrc: ["'self'"],
-          imgSrc: ["'self'", 'data:', 'https://kitchen-sync.s3.us-east-2.amazonaws.com', 'blob:'],
-          scriptSrc: [
-            "'self'",
-          ],
-        },
-      }),
+      helmet.contentSecurityPolicy(devCSP),
     );
   }
 

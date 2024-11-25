@@ -50,11 +50,11 @@ const sendGet = async (url, handler) => {
       "Content-Type": "application/json",
     }
   });
- 
+
 
   const result = await response.json();
 
- 
+
 
   if (result.redirect) {
     window.location = result.redirect;
@@ -109,6 +109,23 @@ const formatDateTime = (isoDate) => {
   return date.toLocaleString('en-US', options);
 }
 
+const addToLocalStorage = (key, value) => {
+  console.log('adding to local storage:', value);
+  localStorage.setItem(key, JSON.stringify(value)); // Stringify the value
+};
+
+const getFromLocalStorage = (key) => {
+  console.log('getting from local storage');
+  const storedValue = localStorage.getItem(key);
+  try {
+    return JSON.parse(storedValue); // Parse the stored value
+  } catch (error) {
+    console.error('Error parsing value from local storage:', error);
+    return null;
+  }
+};
+
+
 
 const hideError = () => {
   // document.querySelector('#domoMessage').classList.add('hidden');
@@ -123,4 +140,6 @@ module.exports = {
   fetchUsername,
   getUserAvatar,
   formatDateTime,
+  addToLocalStorage,
+  getFromLocalStorage
 };

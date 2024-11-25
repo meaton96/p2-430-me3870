@@ -884,6 +884,20 @@ var formatDateTime = function formatDateTime(isoDate) {
   };
   return date.toLocaleString('en-US', options);
 };
+var addToLocalStorage = function addToLocalStorage(key, value) {
+  console.log('adding to local storage:', value);
+  localStorage.setItem(key, JSON.stringify(value)); // Stringify the value
+};
+var getFromLocalStorage = function getFromLocalStorage(key) {
+  console.log('getting from local storage');
+  var storedValue = localStorage.getItem(key);
+  try {
+    return JSON.parse(storedValue); // Parse the stored value
+  } catch (error) {
+    console.error('Error parsing value from local storage:', error);
+    return null;
+  }
+};
 var hideError = function hideError() {
   // document.querySelector('#domoMessage').classList.add('hidden');
 };
@@ -895,7 +909,9 @@ module.exports = {
   getCssVariable: getCssVariable,
   fetchUsername: fetchUsername,
   getUserAvatar: getUserAvatar,
-  formatDateTime: formatDateTime
+  formatDateTime: formatDateTime,
+  addToLocalStorage: addToLocalStorage,
+  getFromLocalStorage: getFromLocalStorage
 };
 
 /***/ }),

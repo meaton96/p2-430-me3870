@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route, useParams } from 'react-router-dom';
 import PostView from './PostView.jsx';
+import UnderConstruction from '../shared/UnderConstruction.jsx';
 
 const Profile = () => {
     const { username } = useParams();
@@ -15,6 +16,15 @@ const Profile = () => {
     );
 };
 
-const ProfileDetails = () => <p>Profile details go here...</p>;
+const ProfileDetails = () => {
+
+    return (
+        <div>
+            <UnderConstruction />
+        </div>
+    )
+
+
+}
 
 export default Profile;

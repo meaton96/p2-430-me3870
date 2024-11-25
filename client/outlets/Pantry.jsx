@@ -1,10 +1,11 @@
 import React from "react";
+import UnderConstruction from "../shared/UnderConstruction.jsx";
 
 const Pantry = () => {
 
     return (
         <div>
-            <h1>Pantry</h1>
+            <UnderConstruction/>
         </div>
     );
 };

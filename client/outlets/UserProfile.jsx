@@ -1,10 +1,10 @@
 import React from "react";
-
+import UnderConstruction from "../shared/UnderConstruction.jsx";
 const UserProfile = () => {
 
     return (
         <div>
-            <h1>User Profile</h1>
+            <UnderConstruction />
         </div>
     );
 }

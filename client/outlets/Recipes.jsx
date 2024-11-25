@@ -1,9 +1,10 @@
 import React from "react";
+import UnderConstruction from "../shared/UnderConstruction.jsx";
 
 const Recipes = () => {
     return (
         <div>
-            <h1>My Recipes</h1>
+            <UnderConstruction />
         </div>
     );
 };

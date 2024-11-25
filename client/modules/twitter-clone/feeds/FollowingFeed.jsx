@@ -1,10 +1,11 @@
 import React from "react";
+import UnderConstruction from "../../../shared/UnderConstruction.jsx";
 
 const FollowingFeed = () => {
 
     return (
         <div>
-            <h1>Posts by people you are following</h1>
+            < UnderConstruction />
         </div>
     );
 };

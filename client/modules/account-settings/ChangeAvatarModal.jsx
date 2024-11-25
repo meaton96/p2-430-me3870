@@ -1,5 +1,5 @@
 import React from "react";
-import SelectAvatar from "../login/SelectAvatar.jsx";
+import SelectAvatar from "../../shared/SelectAvatar.jsx";
 
 // modal to change the avatar on the account settings page
 const ChangeAvatarModal = ({ onClose, setAvatar, avatar }) => {

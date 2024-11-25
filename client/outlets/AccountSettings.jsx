@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "../utils/UserContext.js";
-import ChangeAvatarModal from "../account-settings/ChangeAvatarModal.jsx";
-import ChangeAvatarSection from "../account-settings/ChangeAvatarSection.jsx";
-import PremiumSection from "../account-settings/PremiumSection.jsx";
-import SecuritySection from "../account-settings/SecuritySection.jsx";
+import ChangeAvatarModal from "../modules/account-settings/ChangeAvatarModal.jsx";
+import ChangeAvatarSection from "../modules/account-settings/ChangeAvatarSection.jsx";
+import PremiumSection from "../modules/account-settings/PremiumSection.jsx";
+import SecuritySection from "../modules/account-settings/SecuritySection.jsx";
 import helper from "../utils/helper.js";
 
 const AccountSettings = () => {

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import PasswordInput from "../login/PasswordInput.jsx";
-import helper from "../utils/helper";
+import PasswordInput from "../../shared/PasswordInput.jsx";
+import helper from "../../utils/helper";
 
 // Section in the account settings page to change the password
 const SecuritySection = () => {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import UsernameInput from "./UsernameInput.jsx";
-import PasswordInput from "./PasswordInput.jsx";
-import SelectAvatar from "./SelectAvatar.jsx";
+import PasswordInput from "../shared/PasswordInput.jsx";
+import SelectAvatar from "../shared/SelectAvatar.jsx";
 import { ClipLoader } from "react-spinners"; // Import spinner
 import helper from "../utils/helper.js";
 

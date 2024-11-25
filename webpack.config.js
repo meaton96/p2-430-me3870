@@ -7,7 +7,7 @@ module.exports = {
             import: './client/App.jsx',
         },
         login: {
-            import: './client/login/login.jsx',
+            import: './client/modules/login/login.jsx',
         },
     },
     module: {
@@ -32,9 +32,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'hosted/js'),
         filename: '[name]Bundle.js',
-        clean: {
-            keep: /^(img|styles)/, // Keep 'img' and 'styles' folders
-        },
+        clean: {},
     },
     optimization: {
         splitChunks: false,

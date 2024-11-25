@@ -50,6 +50,10 @@ const router = (app) => {
   app.get('/getCommentsForPost/:postId', mid.requiresPostId, controllers.SimplePost.getCommentsForPost);
   app.get('/countCommentsForPost/:postId', mid.requiresPostId, controllers.SimplePost.getNumCommentsForPost);
 
+  //recipe search
+  app.get('/recipes/spoon/basic-search', mid.requiresLogin, controllers.RecipeSearch.basicSpoonSearch);
+  app.get('/recipes/edamam/basic-search', mid.requiresLogin, controllers.RecipeSearch.basicEdamamSearch);
+
   app.get(
     '/simplePost/:postId/has-commented',
     mid.requiresPostId,

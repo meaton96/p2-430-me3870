@@ -1,9 +1,14 @@
 import React from "react";
+import RecipeSearchBox from "../modules/recipe-search/RecipeSearchBox.jsx";
+
 
 const RecipeSearch = () => {
+
+
+
     return (
         <div>
-            <h1>Recipe Search</h1>
+            <RecipeSearchBox />
         </div>
     );
 };

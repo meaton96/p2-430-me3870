@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext } from "react";
-import { UserContext } from '../utils/UserContext.js';
+import { UserContext } from '../../utils/UserContext.js';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DesktopNavButton from "./DesktopNavButton.jsx";

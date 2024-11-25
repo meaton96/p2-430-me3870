@@ -1,10 +1,10 @@
 "use strict";
-(self["webpackChunkkitchen_sync"] = self["webpackChunkkitchen_sync"] || []).push([["client_nav_Nav_jsx"],{
+(self["webpackChunkkitchen_sync"] = self["webpackChunkkitchen_sync"] || []).push([["client_modules_nav_Nav_jsx"],{
 
-/***/ "./client/nav/DesktopNav.jsx":
-/*!***********************************!*\
-  !*** ./client/nav/DesktopNav.jsx ***!
-  \***********************************/
+/***/ "./client/modules/nav/DesktopNav.jsx":
+/*!*******************************************!*\
+  !*** ./client/modules/nav/DesktopNav.jsx ***!
+  \*******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -13,10 +13,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _utils_UserContext_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/UserContext.js */ "./client/utils/UserContext.js");
+/* harmony import */ var _utils_UserContext_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/UserContext.js */ "./client/utils/UserContext.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
-/* harmony import */ var _DesktopNavButton_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./DesktopNavButton.jsx */ "./client/nav/DesktopNavButton.jsx");
+/* harmony import */ var _DesktopNavButton_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./DesktopNavButton.jsx */ "./client/modules/nav/DesktopNavButton.jsx");
 
 
 
@@ -98,10 +98,10 @@ var DesktopNav = function DesktopNav(_ref) {
 
 /***/ }),
 
-/***/ "./client/nav/DesktopNavButton.jsx":
-/*!*****************************************!*\
-  !*** ./client/nav/DesktopNavButton.jsx ***!
-  \*****************************************/
+/***/ "./client/modules/nav/DesktopNavButton.jsx":
+/*!*************************************************!*\
+  !*** ./client/modules/nav/DesktopNavButton.jsx ***!
+  \*************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -133,10 +133,10 @@ var DesktopNavButton = function DesktopNavButton(_ref) {
 
 /***/ }),
 
-/***/ "./client/nav/MobileNav.jsx":
-/*!**********************************!*\
-  !*** ./client/nav/MobileNav.jsx ***!
-  \**********************************/
+/***/ "./client/modules/nav/MobileNav.jsx":
+/*!******************************************!*\
+  !*** ./client/modules/nav/MobileNav.jsx ***!
+  \******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -146,7 +146,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
-/* harmony import */ var _MobileNavButton_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MobileNavButton.jsx */ "./client/nav/MobileNavButton.jsx");
+/* harmony import */ var _MobileNavButton_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MobileNavButton.jsx */ "./client/modules/nav/MobileNavButton.jsx");
 
 
 
@@ -200,10 +200,10 @@ var MobileNav = function MobileNav(_ref) {
 
 /***/ }),
 
-/***/ "./client/nav/MobileNavButton.jsx":
-/*!****************************************!*\
-  !*** ./client/nav/MobileNavButton.jsx ***!
-  \****************************************/
+/***/ "./client/modules/nav/MobileNavButton.jsx":
+/*!************************************************!*\
+  !*** ./client/modules/nav/MobileNavButton.jsx ***!
+  \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -238,10 +238,10 @@ var MobileNavButton = function MobileNavButton(_ref) {
 
 /***/ }),
 
-/***/ "./client/nav/Nav.jsx":
-/*!****************************!*\
-  !*** ./client/nav/Nav.jsx ***!
-  \****************************/
+/***/ "./client/modules/nav/Nav.jsx":
+/*!************************************!*\
+  !*** ./client/modules/nav/Nav.jsx ***!
+  \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -252,9 +252,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.mjs");
-/* harmony import */ var _DesktopNav_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./DesktopNav.jsx */ "./client/nav/DesktopNav.jsx");
-/* harmony import */ var _MobileNav_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./MobileNav.jsx */ "./client/nav/MobileNav.jsx");
-/* harmony import */ var _utils_UserContext_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/UserContext.js */ "./client/utils/UserContext.js");
+/* harmony import */ var _DesktopNav_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./DesktopNav.jsx */ "./client/modules/nav/DesktopNav.jsx");
+/* harmony import */ var _MobileNav_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./MobileNav.jsx */ "./client/modules/nav/MobileNav.jsx");
+/* harmony import */ var _utils_UserContext_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../utils/UserContext.js */ "./client/utils/UserContext.js");
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
@@ -307,4 +307,4 @@ var Nav = function Nav() {
 /***/ })
 
 }]);
-//# sourceMappingURL=client_nav_Nav_jsxBundle.js.map
+//# sourceMappingURL=client_modules_nav_Nav_jsxBundle.js.map

@@ -13,7 +13,7 @@ const NewPostModal = React.lazy(() => import('./modules/twitter-clone/new-post/N
 const NewReplyModal = React.lazy(() => import('./modules/twitter-clone/new-post/NewReplyModal.jsx'));
 
 
-const Nav = React.lazy(() => import('./nav/Nav.jsx'));
+const Nav = React.lazy(() => import('./modules/nav/Nav.jsx'));
 const AccountSettings = React.lazy(() => import('./outlets/AccountSettings.jsx'));
 const Feed = React.lazy(() => import('./outlets/Feed.jsx'));
 const Pantry = React.lazy(() => import('./outlets/Pantry.jsx'));

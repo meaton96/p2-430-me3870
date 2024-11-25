@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faHouse, faUser, faUtensils, faDoorClosed, faGear, faPenToSquare, faTimes, faSearch } from "@fortawesome/free-solid-svg-icons";
 import DesktopNav from "./DesktopNav.jsx";
 import MobileNav from "./MobileNav.jsx";
-import { UserContext } from '../utils/UserContext.js';
+import { UserContext } from '../../utils/UserContext.js';
 
 const Nav = () => {
     const [isNavModalOpen, setIsNavModalOpen] = useState(false);

@@ -58458,7 +58458,7 @@ var NewReplyModal = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().la
   return __webpack_require__.e(/*! import() */ "client_modules_twitter-clone_new-post_NewReplyModal_jsx").then(__webpack_require__.bind(__webpack_require__, /*! ./modules/twitter-clone/new-post/NewReplyModal.jsx */ "./client/modules/twitter-clone/new-post/NewReplyModal.jsx"));
 });
 var Nav = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().lazy(function () {
-  return __webpack_require__.e(/*! import() */ "client_nav_Nav_jsx").then(__webpack_require__.bind(__webpack_require__, /*! ./nav/Nav.jsx */ "./client/nav/Nav.jsx"));
+  return __webpack_require__.e(/*! import() */ "client_modules_nav_Nav_jsx").then(__webpack_require__.bind(__webpack_require__, /*! ./modules/nav/Nav.jsx */ "./client/modules/nav/Nav.jsx"));
 });
 var AccountSettings = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().lazy(function () {
   return __webpack_require__.e(/*! import() */ "client_outlets_AccountSettings_jsx").then(__webpack_require__.bind(__webpack_require__, /*! ./outlets/AccountSettings.jsx */ "./client/outlets/AccountSettings.jsx"));

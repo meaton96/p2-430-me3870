@@ -1,13 +1,8 @@
-
 const React = require('react');
 const { useState } = React;
 const { createRoot } = require('react-dom/client');
 import Footer from './Footer.jsx';
 import LoginModal from './LoginModal.jsx';
-
-
-
-
 
 
 const LoginButtons = () => {

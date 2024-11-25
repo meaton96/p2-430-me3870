@@ -30,7 +30,7 @@ module.exports = {
         aggregateTimeout: 200,
     },
     output: {
-        path: path.resolve(__dirname, 'hosted'),
+        path: path.resolve(__dirname, 'hosted/js'),
         filename: '[name]Bundle.js',
         clean: {
             keep: /^(img|styles)/, // Keep 'img' and 'styles' folders

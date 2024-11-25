@@ -3,8 +3,8 @@ import PostModalTextArea from "./PostModalTextArea.jsx";
 import PostModalHeader from "./PostModalHeader.jsx";
 import PostModalFooter from "./PostModalFooter.jsx";
 import ReplyModalOPText from "./ReplyModalOPText.jsx";
-import { sendCommentOnPost } from "../hooks/simplePostProvider.js";
-import { UserContext } from "../utils/UserContext.js";
+import { sendCommentOnPost } from "../../../hooks/simplePostProvider.js";
+import { UserContext } from "../../../utils/UserContext.js";
 
 const MAX_CHAR = 300;
 

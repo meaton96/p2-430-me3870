@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock, faGlobe, faUsers } from "@fortawesome/free-solid-svg-icons";
-import { UserContext } from "../utils/UserContext.js";
+import { UserContext } from "../../../utils/UserContext.js";
 
 
 const PostModalTextArea = ({

@@ -3,8 +3,8 @@ import SinglePost from '../posts/SinglePost.jsx';
 import { useParams } from 'react-router-dom';
 import helper from '../utils/helper.js';
 import { UserContext } from '../utils/UserContext';
-import CommentBox from '../post-view/CommentBox.jsx';
-import Comments from '../post-view/Comments.jsx';
+import CommentBox from '../modules/twitter-clone/post-view/CommentBox.jsx';
+import Comments from '../modules/twitter-clone/post-view/Comments.jsx';
 import { getCssVariable } from "../utils/helper.js";
 import { ClipLoader } from "react-spinners";
 

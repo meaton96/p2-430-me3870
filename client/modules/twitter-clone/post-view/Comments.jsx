@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ClipLoader } from "react-spinners";
 import FeedPost from "../feeds/FeedPost.jsx";
-import { getCssVariable } from "../utils/helper.js";
-import { getCommentsForPost } from "../hooks/simplePostProvider.js";
+import { getCssVariable } from "../../../utils/helper.js";
+import { getCommentsForPost } from "../../../hooks/simplePostProvider.js";
 
 const Comments = ({post}) => {
     const [posts, setPosts] = useState([]);

@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { sendGet } from "../utils/helper";
+import { sendGet } from "../../../utils/helper.js";
 
 const ReplyModalOPText = ({ op }) => {
 

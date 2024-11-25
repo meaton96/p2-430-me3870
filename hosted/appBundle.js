@@ -58450,6 +58450,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // Lazy-loaded components
+//twitter clone
+var NewPostModal = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().lazy(function () {
+  return __webpack_require__.e(/*! import() */ "client_modules_twitter-clone_new-post_NewPostModal_jsx").then(__webpack_require__.bind(__webpack_require__, /*! ./modules/twitter-clone/new-post/NewPostModal.jsx */ "./client/modules/twitter-clone/new-post/NewPostModal.jsx"));
+});
+var NewReplyModal = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().lazy(function () {
+  return __webpack_require__.e(/*! import() */ "client_modules_twitter-clone_new-post_NewReplyModal_jsx").then(__webpack_require__.bind(__webpack_require__, /*! ./modules/twitter-clone/new-post/NewReplyModal.jsx */ "./client/modules/twitter-clone/new-post/NewReplyModal.jsx"));
+});
 var Nav = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().lazy(function () {
   return __webpack_require__.e(/*! import() */ "client_nav_Nav_jsx").then(__webpack_require__.bind(__webpack_require__, /*! ./nav/Nav.jsx */ "./client/nav/Nav.jsx"));
 });
@@ -58465,9 +58472,6 @@ var Pantry = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().lazy(func
 var Recipes = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().lazy(function () {
   return __webpack_require__.e(/*! import() */ "client_outlets_Recipes_jsx").then(__webpack_require__.bind(__webpack_require__, /*! ./outlets/Recipes.jsx */ "./client/outlets/Recipes.jsx"));
 });
-var NewPostModal = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().lazy(function () {
-  return __webpack_require__.e(/*! import() */ "client_new-post_NewPostModal_jsx").then(__webpack_require__.bind(__webpack_require__, /*! ./new-post/NewPostModal.jsx */ "./client/new-post/NewPostModal.jsx"));
-});
 var Profile = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().lazy(function () {
   return __webpack_require__.e(/*! import() */ "client_outlets_Profile_jsx").then(__webpack_require__.bind(__webpack_require__, /*! ./outlets/Profile.jsx */ "./client/outlets/Profile.jsx"));
 });
@@ -58476,9 +58480,6 @@ var UserProfile = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().lazy
 });
 var PostView = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().lazy(function () {
   return __webpack_require__.e(/*! import() */ "client_outlets_PostView_jsx").then(__webpack_require__.bind(__webpack_require__, /*! ./outlets/PostView.jsx */ "./client/outlets/PostView.jsx"));
-});
-var NewReplyModal = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().lazy(function () {
-  return __webpack_require__.e(/*! import() */ "client_new-post_NewReplyModal_jsx").then(__webpack_require__.bind(__webpack_require__, /*! ./new-post/NewReplyModal.jsx */ "./client/new-post/NewReplyModal.jsx"));
 });
 var BottomLeftToast = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().lazy(function () {
   return __webpack_require__.e(/*! import() */ "client_shared_BottomLeftToast_jsx").then(__webpack_require__.bind(__webpack_require__, /*! ./shared/BottomLeftToast.jsx */ "./client/shared/BottomLeftToast.jsx"));

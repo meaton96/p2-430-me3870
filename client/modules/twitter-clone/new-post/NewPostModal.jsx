@@ -2,8 +2,8 @@ import React, { useState, useContext } from "react";
 import PostModalTextArea from "./PostModalTextArea.jsx";
 import PostModalHeader from "./PostModalHeader.jsx";
 import PostModalFooter from "./PostModalFooter.jsx";
-import { sendSimplePost } from "../hooks/simplePostProvider.js";
-import { UserContext } from "../utils/UserContext.js";
+import { sendSimplePost } from "../../../hooks/simplePostProvider.js";
+import { UserContext } from "../../../utils/UserContext.js";
 
 const MAX_CHAR = 300;
 

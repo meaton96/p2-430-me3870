@@ -19,7 +19,7 @@ var Footer = function Footer() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("footer", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "columns"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "column is-flex is-justify-content-start is-align-items-center is-one-third p-5"
+    className: "column is-flex is-justify-content-start is-align-items-center is-one-third p-5 is-hidden-mobile"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("figure", {
     className: "image is-96x96"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
@@ -30829,6 +30829,39 @@ if (
 
 /***/ }),
 
+/***/ "./node_modules/react-dom/client.js":
+/*!******************************************!*\
+  !*** ./node_modules/react-dom/client.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var m = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+if (false) {} else {
+  var i = m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+  exports.createRoot = function(c, o) {
+    i.usingClientEntryPoint = true;
+    try {
+      return m.createRoot(c, o);
+    } finally {
+      i.usingClientEntryPoint = false;
+    }
+  };
+  exports.hydrateRoot = function(c, h, o) {
+    i.usingClientEntryPoint = true;
+    try {
+      return m.hydrateRoot(c, h, o);
+    } finally {
+      i.usingClientEntryPoint = false;
+    }
+  };
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/react-dom/index.js":
 /*!*****************************************!*\
   !*** ./node_modules/react-dom/index.js ***!
@@ -34563,7 +34596,7 @@ function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" !=
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 var useState = React.useState;
-var _require = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js"),
+var _require = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js"),
   createRoot = _require.createRoot;
 
 
@@ -34579,7 +34612,7 @@ var LoginButtons = function LoginButtons() {
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     className: "columns container"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "column is-half is-flex p-5"
+    className: "column is-half is-flex is-hidden-mobile"
   }, /*#__PURE__*/React.createElement("figure", {
     className: "image is-square"
   }, /*#__PURE__*/React.createElement("img", {
@@ -34588,12 +34621,16 @@ var LoginButtons = function LoginButtons() {
   }))), /*#__PURE__*/React.createElement("div", {
     className: "column is-half"
   }, /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
-    className: "is-flex is-flex-direction-column m-5 is-justify-content-center is-align-items-center",
-    style: {
-      height: '100vh'
-    }
+    className: "mobile-header-container"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "is-text-align-left pb-2 mb-3"
+    className: "is-flex is-hidden-tablet mobile-header-img"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: "/assets/img/logo-large.png",
+    alt: "Kitchen"
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "is-flex is-flex-direction-column is-justify-content-center is-align-items-center login-btns"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "is-text-align-left pb-2 mb-3 login-title"
   }, /*#__PURE__*/React.createElement("h1", {
     className: "title"
   }, "Get"), /*#__PURE__*/React.createElement("h1", {

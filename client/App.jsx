@@ -3,6 +3,9 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { UserProvider } from './utils/UserContext.js';
 import { UserContext } from './utils/UserContext.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+
 
 // Lazy-loaded components
 const Nav = React.lazy(() => import('./nav/Nav.jsx'));
@@ -21,7 +24,7 @@ const RecipeSearch = React.lazy(() => import('./outlets/RecipeSearch.jsx'));
 
 const App = () => {
 
-    const { blToastActive } = useContext(UserContext);
+    const { blToastActive, setNewPostModalActive } = useContext(UserContext);
 
     return (
         <Router>
@@ -56,6 +59,12 @@ const App = () => {
                     {
                         blToastActive && <BottomLeftToast />
                     }
+                    <div className='is-hidden-tablet'>
+                        <button className='new-post-mobile-btn is-fullwidth' onClick={() => setNewPostModalActive(true)}>
+                            <FontAwesomeIcon icon={faPenToSquare} />
+
+                        </button>
+                    </div>
 
 
 

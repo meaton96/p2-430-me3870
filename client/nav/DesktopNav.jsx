@@ -68,7 +68,7 @@ const DesktopNav = ({ avatar, icons }) => {
                 />
                 
                 
-                <li>
+                <li className="hide-on-mobile">
                     <button onClick={() => setNewPostModalActive(true)} className="post-btn">
                         <FontAwesomeIcon icon={icons.faPenToSquare} />
                         <span className="hide-at-1100">New Post</span>

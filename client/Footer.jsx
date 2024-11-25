@@ -4,7 +4,7 @@ const Footer = () => {
     return (
         <footer>
             <div className='columns'>
-                <div className='column is-flex is-justify-content-start is-align-items-center is-one-third p-5'>
+                <div className='column is-flex is-justify-content-start is-align-items-center is-one-third p-5 is-hidden-mobile'>
                     <figure className="image is-96x96">
                         <img src="/assets/img/logo-120p.png" alt="Kitchen" />
                     </figure>

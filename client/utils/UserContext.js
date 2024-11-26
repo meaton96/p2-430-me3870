@@ -12,6 +12,7 @@ export const UserProvider = ({ children }) => {
     const [replyPost, setReplyPost] = useState(null);
     const [blToastMessage, setBlToastMessage] = useState("Test Message");
     const [blToastActive, setBlToastActive] = useState(false);
+    const [currentRecipe, setCurrentRecipe] = useState(null);
 
     const activeBLToast = (message) => {
         setBlToastMessage(message);
@@ -74,6 +75,8 @@ export const UserProvider = ({ children }) => {
             blToastMessage,
             activeBLToast,
             blToastActive,
+            currentRecipe,
+            setCurrentRecipe
         }}>
             {children}
         </UserContext.Provider>

@@ -5578,6 +5578,10 @@ var UserProvider = function UserProvider(_ref) {
     _useState16 = _slicedToArray(_useState15, 2),
     blToastActive = _useState16[0],
     setBlToastActive = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState18 = _slicedToArray(_useState17, 2),
+    currentRecipe = _useState18[0],
+    setCurrentRecipe = _useState18[1];
   var activeBLToast = function activeBLToast(message) {
     setBlToastMessage(message);
     setBlToastActive(true);
@@ -5671,7 +5675,9 @@ var UserProvider = function UserProvider(_ref) {
       setReplyPost: setReplyPost,
       blToastMessage: blToastMessage,
       activeBLToast: activeBLToast,
-      blToastActive: blToastActive
+      blToastActive: blToastActive,
+      currentRecipe: currentRecipe,
+      setCurrentRecipe: setCurrentRecipe
     }
   }, children);
 };

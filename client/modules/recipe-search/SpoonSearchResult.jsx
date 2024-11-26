@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../utils/UserContext";
+const SpoonSearchResult = ({ source, recipe, id, title, image }) => {
 
-const SpoonSearchResult = ({ recipe }) => {
-
-    const { id, title, image } = recipe;
+    
+    const { setCurrentRecipe } = useContext(UserContext);
 
     return (
 
         <div key={id} className="recipe-search-result post-wrapper">
-            <Link to={`/recipes/spoon/${id}`}>
+            <Link to={`/recipes/${source}/${id}`} onClick={() => setCurrentRecipe({source, recipe})}>
                 <div className="is-flex is-flex-direction-column is-align-items-center ">
                     <div>
                         <h2 className="is-font-weight-bold is-size-4">{title}</h2>

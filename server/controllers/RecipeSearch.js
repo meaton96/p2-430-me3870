@@ -34,6 +34,7 @@ const basicSpoonSearch = async (req, res) => {
     const url = `https://api.spoonacular.com/recipes/complexSearch?query=${query}&apiKey=${SPOONACULAR_API_KEY}`;
     return basicSearch(url, req, res);
 };
+
 const recipeSpoon = async (req, res) => {
     const { id } = req.params;
 

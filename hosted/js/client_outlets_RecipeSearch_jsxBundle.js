@@ -86,17 +86,41 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var RecipeSearchResults = function RecipeSearchResults(_ref) {
-  var recipes = _ref.recipes;
-  // console.log(recipes);
-
+  var source = _ref.source,
+    recipes = _ref.recipes;
+  var loadResultsFromSource = function loadResultsFromSource() {
+    if (source === "spoon") {
+      return recipes.map(function (recipe, index) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SpoonSearchResult_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          key: index,
+          recipe: recipe,
+          source: source,
+          id: recipe.id,
+          title: recipe.title,
+          image: recipe.image
+        });
+      });
+    } else if (source === "edamam") {
+      try {
+        return recipes.map(function (recipe, index) {
+          if (recipe.recipe) recipe = recipe.recipe;
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SpoonSearchResult_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+            key: index,
+            recipe: recipe,
+            source: source,
+            id: recipe.uri.split('#')[1],
+            title: recipe.label,
+            image: recipe.image
+          });
+        });
+      } catch (err) {
+        console.error("Error", err);
+      }
+    }
+  };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "recipe-search-results"
-  }, recipes.map(function (recipe, index) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SpoonSearchResult_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      key: index,
-      recipe: recipe
-    });
-  }));
+  }, loadResultsFromSource());
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RecipeSearchResults);
 
@@ -122,34 +146,40 @@ var RecipeSearchWrapper = function RecipeSearchWrapper(_ref) {
     recipes = _ref.recipes;
   var id, title, image;
   var mutatedRecipes = [];
-  if (source === "spoon") {
-    recipes.forEach(function (recipe) {
-      id = recipe.id;
-      title = recipe.title;
-      image = recipe.image;
-      mutatedRecipes.push({
-        id: id,
-        title: title,
-        image: image
+  try {
+    if (source === "spoon") {
+      recipes.forEach(function (recipe) {
+        id = recipe.id;
+        title = recipe.title;
+        image = recipe.image;
+        mutatedRecipes.push({
+          id: id,
+          title: title,
+          image: image
+        });
       });
-    });
-  } else if (source === 'edamam') {
-    recipes.forEach(function (hit) {
-      if (hit.recipe) {
-        hit = hit.recipe;
-      }
-      image = hit.image;
-      id = hit.uri;
-      title = hit.label;
-      mutatedRecipes.push({
-        id: id,
-        title: title,
-        image: image
+    } else if (source === 'edamam') {
+      recipes.forEach(function (hit) {
+        if (hit.recipe) {
+          hit = hit.recipe;
+        }
+        // console.log(hit);
+        image = hit.image;
+        id = hit.uri.split('#')[1];
+        title = hit.label;
+        mutatedRecipes.push({
+          id: id,
+          title: title,
+          image: image
+        });
       });
-    });
+    }
+  } catch (err) {
+    // console.error("Error mutating recipes:", err);
   }
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RecipeSearchResults_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    recipes: mutatedRecipes
+    recipes: recipes,
+    source: source
   }));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RecipeSearchWrapper);
@@ -168,19 +198,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var _utils_UserContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/UserContext */ "./client/utils/UserContext.js");
+
 
 
 var SpoonSearchResult = function SpoonSearchResult(_ref) {
-  var recipe = _ref.recipe;
-  var id = recipe.id,
-    title = recipe.title,
-    image = recipe.image;
+  var source = _ref.source,
+    recipe = _ref.recipe,
+    id = _ref.id,
+    title = _ref.title,
+    image = _ref.image;
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_utils_UserContext__WEBPACK_IMPORTED_MODULE_1__.UserContext),
+    setCurrentRecipe = _useContext.setCurrentRecipe;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     key: id,
     className: "recipe-search-result post-wrapper"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
-    to: "/recipes/spoon/".concat(id)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+    to: "/recipes/".concat(source, "/").concat(id),
+    onClick: function onClick() {
+      return setCurrentRecipe({
+        source: source,
+        recipe: recipe
+      });
+    }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "is-flex is-flex-direction-column is-align-items-center "
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
@@ -239,7 +280,7 @@ var RecipeSearch = function RecipeSearch() {
   var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useParams)(),
     recipeSource = _useParams.recipeSource,
     q = _useParams.q;
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("spoon"),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(recipeSource),
     _useState4 = _slicedToArray(_useState3, 2),
     source = _useState4[0],
     setSource = _useState4[1];

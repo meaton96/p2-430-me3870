@@ -9,7 +9,7 @@ import helper from "../utils/helper.js";
 const RecipeSearch = () => {
     const [recipes, setRecipes] = useState([]);
     const { recipeSource, q } = useParams();
-    const [source, setSource] = useState("spoon");
+    const [source, setSource] = useState(recipeSource);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const navigate = useNavigate();

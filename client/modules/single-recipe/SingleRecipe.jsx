@@ -43,17 +43,20 @@ const SingleRecipe = ({ recipe }) => {
             />
             <RecipeDescription summary={summary} />
 
-            <div className="is-flex mx-1">
+            <div className="ing-inst-cols">
                 <Ingredients
                     ingredients={extendedIngredients}
                 />
+                <div className="is-hidden-tablet">
+                    <hr className="settings-hr" />
+                </div>
                 <Instructions
                     instructions={instructions}
                     analyzedInstructions={analyzedInstructions}
                 />
             </div>
 
-            
+
 
 
         </div>

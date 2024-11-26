@@ -61,7 +61,7 @@ const SingleRecipeContainer = () => {
             );
         }
         else {
-            console.log(recipe);
+            //console.log(recipe);
             return (
                 <SingleRecipe
                     recipe={recipe}

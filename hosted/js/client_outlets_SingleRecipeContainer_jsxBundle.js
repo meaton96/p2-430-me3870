@@ -16,6 +16,19 @@ __webpack_require__.r(__webpack_exports__);
 
 var Ingredients = function Ingredients(_ref) {
   var ingredients = _ref.ingredients;
+  // console.log(ingredients);
+
+  var filterIngredients = function filterIngredients(ingredients) {
+    var uniqueIngredients = ingredients.filter(function (ingredient, index, self) {
+      return ingredient.id >= 0 && index === self.findIndex(function (i) {
+        return i.id === ingredient.id;
+      });
+    });
+    return uniqueIngredients;
+  };
+  var filteredIngredients = filterIngredients(ingredients);
+  // console.log(filteredIngredients);
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: ""
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
@@ -23,7 +36,7 @@ var Ingredients = function Ingredients(_ref) {
     style: {
       color: 'var(--secondary-color)'
     }
-  }, "Ingredients"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, ingredients.map(function (ingredient) {
+  }, "Ingredients"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, filteredIngredients.map(function (ingredient) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
       key: ingredient.id
     }, ingredient.original);
@@ -159,12 +172,11 @@ var RecipeHeader = function RecipeHeader(_ref) {
     sourceUrl = _ref.sourceUrl;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "is-flex-direction-column"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "is-flex recipe-title"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
-    className: "title",
-    style: {
-      color: 'var(--primary-color)'
-    }
-  }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "title "
+  }, title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "is-flex"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
     src: image,
@@ -255,10 +267,14 @@ var SingleRecipe = function SingleRecipe(_ref) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RecipeDescription_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
     summary: summary
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "is-flex mx-1"
+    className: "ing-inst-cols"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Ingredients_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
     ingredients: extendedIngredients
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Instructions_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "is-hidden-tablet"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
+    className: "settings-hr"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Instructions_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
     instructions: instructions,
     analyzedInstructions: analyzedInstructions
   })));
@@ -384,7 +400,7 @@ var SingleRecipeContainer = function SingleRecipeContainer() {
         size: 50
       }));
     } else {
-      console.log(recipe);
+      //console.log(recipe);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_modules_single_recipe_SingleRecipe_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
         recipe: recipe
       });

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import RecipeSearchBox from "../modules/recipe-search/RecipeSearchBox.jsx";
-import RecipeSearchResults from "../modules/recipe-search/RecipeSearchResults.jsx";
+import RecipeSearchWrapper from "../modules/recipe-search/RecipeSearchWrapper.jsx";
 import { ClipLoader } from "react-spinners";
 import { getCssVariable } from "../utils/helper.js";
 
@@ -12,6 +12,12 @@ const RecipeSearch = () => {
     const [source, setSource] = useState("spoon");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+
+    useEffect(() => {
+        setRecipes([]);
+        setError(null);
+
+    }, [source]);
 
 
     const renderResults = () => {
@@ -33,12 +39,20 @@ const RecipeSearch = () => {
             );
 
         }
-        else {
+        else if (recipes && recipes.length > 0) {
             return (
-                <RecipeSearchResults
+                <RecipeSearchWrapper
                     recipes={recipes}
+                    source={source}
                 />
             );
+        }
+        else {
+            return (
+                <div>
+                    <p>Start a search!</p>
+                </div>
+            )
         }
     }
 

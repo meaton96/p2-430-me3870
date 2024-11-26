@@ -5,7 +5,7 @@ import helper from "../../utils/helper";
 const RecipeSearchBox = ({ setRecipes, source, setSource, setLoading, setError }) => {
 
     const [searchTerm, setSearchTerm] = useState("");
-    
+
 
     const handleSearch = async () => {
         setError(null);
@@ -19,15 +19,30 @@ const RecipeSearchBox = ({ setRecipes, source, setSource, setLoading, setError }
         }
 
         const res = await fetch(`/api/recipes/${source}/basic-search?q=${searchTerm}`);
+        console.log(res);
         const data = await res.json();
-        if (data && data.results) {
-            setRecipes(data.results);
-            setLoading(false);
-            helper.addToLocalStorage(`recipe-search-${source}-${searchTerm}`, data.results);
+        console.log(data);
+        if (source === "spoon") {
+            if (data && data.results) {
+                setRecipes(data.results);
+                setLoading(false);
+                helper.addToLocalStorage(`recipe-search-${source}-${searchTerm}`, data.results);
+            }
+            else {
+                setError("Error getting recipes. Please try again later.");
+                setLoading(false);
+            }
         }
-        else {
-            setError("Error getting recipes. Please try again later.");
-            setLoading(false);
+        else if (source == 'edamam') {
+            if (data && data.hits) {
+                setRecipes(data.hits);
+                setLoading(false);
+                helper.addToLocalStorage(`recipe-search-${source}-${searchTerm}`, data.hits);
+            }
+            else {
+                setError("Error getting recipes. Please try again later.");
+                setLoading(false);
+            }
         }
         //console.log(data);
     }

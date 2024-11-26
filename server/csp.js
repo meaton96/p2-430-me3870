@@ -5,6 +5,7 @@ const devCSP = {
       "'self'",
       'data:',
       'https://kitchen-sync.s3.us-east-2.amazonaws.com',
+      'https://edamam-product-images.s3.amazonaws.com/',
       'https://img.spoonacular.com/',
       'blob:'],
     scriptSrc: [
@@ -20,6 +21,7 @@ const prodCSP = {
       "'self'",
       'data:',
       'https://img.spoonacular.com/',
+      'https://edamam-product-images.s3.amazonaws.com/',
       'https://kitchen-sync.s3.us-east-2.amazonaws.com',
       'blob:'],
   },

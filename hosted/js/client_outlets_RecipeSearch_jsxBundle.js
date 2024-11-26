@@ -58,20 +58,33 @@ var RecipeSearchBox = function RecipeSearchBox(_ref) {
             return fetch("/api/recipes/".concat(source, "/basic-search?q=").concat(searchTerm));
           case 9:
             res = _context.sent;
-            _context.next = 12;
+            console.log(res);
+            _context.next = 13;
             return res.json();
-          case 12:
+          case 13:
             data = _context.sent;
-            if (data && data.results) {
-              setRecipes(data.results);
-              setLoading(false);
-              _utils_helper__WEBPACK_IMPORTED_MODULE_1___default().addToLocalStorage("recipe-search-".concat(source, "-").concat(searchTerm), data.results);
-            } else {
-              setError("Error getting recipes. Please try again later.");
-              setLoading(false);
+            console.log(data);
+            if (source === "spoon") {
+              if (data && data.results) {
+                setRecipes(data.results);
+                setLoading(false);
+                _utils_helper__WEBPACK_IMPORTED_MODULE_1___default().addToLocalStorage("recipe-search-".concat(source, "-").concat(searchTerm), data.results);
+              } else {
+                setError("Error getting recipes. Please try again later.");
+                setLoading(false);
+              }
+            } else if (source == 'edamam') {
+              if (data && data.hits) {
+                setRecipes(data.hits);
+                setLoading(false);
+                _utils_helper__WEBPACK_IMPORTED_MODULE_1___default().addToLocalStorage("recipe-search-".concat(source, "-").concat(searchTerm), data.hits);
+              } else {
+                setError("Error getting recipes. Please try again later.");
+                setLoading(false);
+              }
             }
             //console.log(data);
-          case 14:
+          case 16:
           case "end":
             return _context.stop();
         }
@@ -145,6 +158,57 @@ var RecipeSearchResults = function RecipeSearchResults(_ref) {
 
 /***/ }),
 
+/***/ "./client/modules/recipe-search/RecipeSearchWrapper.jsx":
+/*!**************************************************************!*\
+  !*** ./client/modules/recipe-search/RecipeSearchWrapper.jsx ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _RecipeSearchResults_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RecipeSearchResults.jsx */ "./client/modules/recipe-search/RecipeSearchResults.jsx");
+
+
+var RecipeSearchWrapper = function RecipeSearchWrapper(_ref) {
+  var source = _ref.source,
+    recipes = _ref.recipes;
+  var id, title, image;
+  var mutatedRecipes = [];
+  if (source === "spoon") {
+    recipes.forEach(function (recipe) {
+      id = recipe.id;
+      title = recipe.title;
+      image = recipe.image;
+      mutatedRecipes.push({
+        id: id,
+        title: title,
+        image: image
+      });
+    });
+  } else if (source === 'edamam') {
+    recipes.forEach(function (hit) {
+      image = hit.recipe.image;
+      id = hit.recipe.uri;
+      title = hit.recipe.label;
+      mutatedRecipes.push({
+        id: id,
+        title: title,
+        image: image
+      });
+    });
+  }
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RecipeSearchResults_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    recipes: mutatedRecipes
+  }));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RecipeSearchWrapper);
+
+/***/ }),
+
 /***/ "./client/modules/recipe-search/SpoonSearchResult.jsx":
 /*!************************************************************!*\
   !*** ./client/modules/recipe-search/SpoonSearchResult.jsx ***!
@@ -196,7 +260,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _modules_recipe_search_RecipeSearchBox_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modules/recipe-search/RecipeSearchBox.jsx */ "./client/modules/recipe-search/RecipeSearchBox.jsx");
-/* harmony import */ var _modules_recipe_search_RecipeSearchResults_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../modules/recipe-search/RecipeSearchResults.jsx */ "./client/modules/recipe-search/RecipeSearchResults.jsx");
+/* harmony import */ var _modules_recipe_search_RecipeSearchWrapper_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../modules/recipe-search/RecipeSearchWrapper.jsx */ "./client/modules/recipe-search/RecipeSearchWrapper.jsx");
 /* harmony import */ var react_spinners__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-spinners */ "./node_modules/react-spinners/esm/ClipLoader.js");
 /* harmony import */ var _utils_helper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/helper.js */ "./client/utils/helper.js");
 /* harmony import */ var _utils_helper_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_utils_helper_js__WEBPACK_IMPORTED_MODULE_3__);
@@ -228,6 +292,10 @@ var RecipeSearch = function RecipeSearch() {
     _useState8 = _slicedToArray(_useState7, 2),
     error = _useState8[0],
     setError = _useState8[1];
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    setRecipes([]);
+    setError(null);
+  }, [source]);
   var renderResults = function renderResults() {
     if (error) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -245,10 +313,13 @@ var RecipeSearch = function RecipeSearch() {
         color: (0,_utils_helper_js__WEBPACK_IMPORTED_MODULE_3__.getCssVariable)('--primary-color'),
         size: 50
       }));
-    } else {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_modules_recipe_search_RecipeSearchResults_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        recipes: recipes
+    } else if (recipes && recipes.length > 0) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_modules_recipe_search_RecipeSearchWrapper_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        recipes: recipes,
+        source: source
       });
+    } else {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Start a search!"));
     }
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_modules_recipe_search_RecipeSearchBox_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {

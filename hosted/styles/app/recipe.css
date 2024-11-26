@@ -43,21 +43,30 @@
     margin: 0rem 1rem;
 }
 
+.half-width {
+    width: 50%;
+}
+
 
 @media screen and (max-width: 768px) {
     .recipe-quick-info-box {
         padding: 0 2rem;
     }
 
+    .half-width {
+        width: 100%;
+    }
+
+
     .recipe-title {
         justify-content: center;
         text-align: center;
     }
 
-    
+
 
     .ing-inst-cols {
-    
+
         flex-direction: column !important;
         padding: 2rem 0;
     }

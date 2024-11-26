@@ -44,16 +44,20 @@ const SingleRecipe = ({ recipe }) => {
             <RecipeDescription summary={summary} />
 
             <div className="ing-inst-cols">
-                <Ingredients
-                    ingredients={extendedIngredients}
-                />
+                <div className="half-width">
+                    <Ingredients
+                        ingredients={extendedIngredients}
+                    />
+                </div>
                 <div className="is-hidden-tablet">
                     <hr className="settings-hr" />
                 </div>
-                <Instructions
-                    instructions={instructions}
-                    analyzedInstructions={analyzedInstructions}
-                />
+                <div className="half-width">
+                    <Instructions
+                        instructions={instructions}
+                        analyzedInstructions={analyzedInstructions}
+                    />
+                </div>
             </div>
 
 

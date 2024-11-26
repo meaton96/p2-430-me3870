@@ -889,7 +889,7 @@ var addToLocalStorage = function addToLocalStorage(key, value) {
   localStorage.setItem(key, JSON.stringify(value)); // Stringify the value
 };
 var getFromLocalStorage = function getFromLocalStorage(key) {
-  // console.log('getting from local storage');
+  console.log('getting from local storage');
   var storedValue = localStorage.getItem(key);
   try {
     return JSON.parse(storedValue);

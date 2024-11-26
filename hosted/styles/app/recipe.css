@@ -47,6 +47,23 @@
     width: 50%;
 }
 
+.recipe-img-container {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    max-width: 60%;
+
+}
+
+.recipe-search-result a {
+    color: var(--text-color-dark) !important;
+    
+}
+
+.recipe-search-result:hover {
+    color: var(--background-color-highlight) !important;
+}
+
 
 @media screen and (max-width: 768px) {
     .recipe-quick-info-box {

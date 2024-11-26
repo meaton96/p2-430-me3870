@@ -17,9 +17,12 @@ const RecipeSearchWrapper = ({ source, recipes }) => {
     }
     else if (source === 'edamam' ) {
         recipes.forEach(hit=> {
-            image = hit.recipe.image;
-            id = hit.recipe.uri;
-            title = hit.recipe.label;
+            if (hit.recipe) {
+                hit = hit.recipe;
+            }
+            image = hit.image;
+            id = hit.uri;
+            title = hit.label;
             mutatedRecipes.push({ id, title, image });
         })
     }

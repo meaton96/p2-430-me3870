@@ -115,7 +115,7 @@ const addToLocalStorage = (key, value) => {
 };
 
 const getFromLocalStorage = (key) => {
- // console.log('getting from local storage');
+  console.log('getting from local storage');
   const storedValue = localStorage.getItem(key);
   try {
     return JSON.parse(storedValue); 

@@ -5867,7 +5867,7 @@ var addToLocalStorage = function addToLocalStorage(key, value) {
   localStorage.setItem(key, JSON.stringify(value)); // Stringify the value
 };
 var getFromLocalStorage = function getFromLocalStorage(key) {
-  // console.log('getting from local storage');
+  console.log('getting from local storage');
   var storedValue = localStorage.getItem(key);
   try {
     return JSON.parse(storedValue);
@@ -58543,6 +58543,12 @@ var App = function App() {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
     path: "/recipes",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Recipes, null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
+    path: "/recipes/search",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(RecipeSearch, null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
+    path: "/recipes/search/:recipeSource/:q",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(RecipeSearch, null)
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
     path: "/recipes/search/*",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(RecipeSearch, null)

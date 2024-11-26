@@ -13,7 +13,7 @@ const SpoonSearchResult = ({ recipe }) => {
                     <div>
                         <h2 className="is-font-weight-bold is-size-4">{title}</h2>
                     </div>
-                    <div>
+                    <div className="recipe-img-container">
                         <img src={image} alt={title} />
                     </div>
                 </div>

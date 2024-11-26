@@ -8,6 +8,7 @@ const RecipeSearchBox = ({ setRecipes, source, setSource, setLoading, setError }
     
 
     const handleSearch = async () => {
+        setError(null);
         setLoading(true);
         let cachedData = helper.getFromLocalStorage(`recipe-search-${source}-${searchTerm}`);
 

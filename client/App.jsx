@@ -43,24 +43,16 @@ const App = () => {
                             <Route path="/profile" element={<UserProfile />} />
                             <Route path="/profile/:username" element={<Profile />} />
                             <Route path="/profile/:username/post/:postId" element={<PostView />} />
-                            <Route
-                                path="/account-settings"
-                                element={
-                                    <AccountSettings />
-                                }
-                            />
+                            <Route path="/account-settings" element={<AccountSettings />} />
                             <Route path="/pantry" element={<Pantry />} />
                             <Route path="/recipes" element={<Recipes />} />
                             <Route path="/recipes/search/*" element={<RecipeSearch />} />
                             <Route path="/recipes/:source/:id" element={<SingleRecipeContainer />} />
                             <Route path="/*" element={<Feed />} />
-
-                            {/* Add more routes as needed */}
                         </Routes>
                     </div>
                     <NewPostModal />
                     <NewReplyModal />
-
                     {
                         blToastActive && <BottomLeftToast />
                     }

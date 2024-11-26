@@ -23,7 +23,7 @@ const SingleRecipe = ({ recipe }) => {
     } = recipe;
 
     return (
-        <div className="recipe-container" style={{ backgroundColor: 'var(--background-color)' }}>
+        <div className="recipe-container">
             <div className="is-flex">
                 <RecipeHeader
                     title={title}

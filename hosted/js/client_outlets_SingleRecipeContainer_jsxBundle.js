@@ -247,10 +247,7 @@ var SingleRecipe = function SingleRecipe(_ref) {
     _recipe$dishTypes = recipe.dishTypes,
     dishTypes = _recipe$dishTypes === void 0 ? [] : _recipe$dishTypes;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "recipe-container",
-    style: {
-      backgroundColor: 'var(--background-color)'
-    }
+    className: "recipe-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "is-flex"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RecipeHeader_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {

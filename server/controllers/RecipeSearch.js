@@ -8,8 +8,9 @@ const basicSearch = async (url, req, res) => {
     });
 
     if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+        return res.status(response.status).json({ response });
     }
+    console.log(response);  
 
     const data = await response.json();
 

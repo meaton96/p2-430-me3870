@@ -43,23 +43,24 @@ var RecipeSearchBox = function RecipeSearchBox(_ref) {
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
+            setError(null);
             setLoading(true);
             cachedData = _utils_helper__WEBPACK_IMPORTED_MODULE_1___default().getFromLocalStorage("recipe-search-".concat(source, "-").concat(searchTerm));
             if (!cachedData) {
-              _context.next = 6;
+              _context.next = 7;
               break;
             }
             setRecipes(cachedData);
             setLoading(false);
             return _context.abrupt("return");
-          case 6:
-            _context.next = 8;
+          case 7:
+            _context.next = 9;
             return fetch("/api/recipes/".concat(source, "/basic-search?q=").concat(searchTerm));
-          case 8:
+          case 9:
             res = _context.sent;
-            _context.next = 11;
+            _context.next = 12;
             return res.json();
-          case 11:
+          case 12:
             data = _context.sent;
             if (data && data.results) {
               setRecipes(data.results);
@@ -70,7 +71,7 @@ var RecipeSearchBox = function RecipeSearchBox(_ref) {
               setLoading(false);
             }
             //console.log(data);
-          case 13:
+          case 14:
           case "end":
             return _context.stop();
         }

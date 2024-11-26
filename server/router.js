@@ -51,8 +51,9 @@ const router = (app) => {
   app.get('/countCommentsForPost/:postId', mid.requiresPostId, controllers.SimplePost.getNumCommentsForPost);
 
   // recipe search
-  app.get('/recipes/spoon/basic-search', mid.requiresLogin, controllers.RecipeSearch.basicSpoonSearch);
-  app.get('/recipes/edamam/basic-search', mid.requiresLogin, controllers.RecipeSearch.basicEdamamSearch);
+  app.get('/api/recipes/spoon/basic-search', mid.requiresLogin, controllers.RecipeSearch.basicSpoonSearch);
+  app.get('/api/recipes/edamam/basic-search', mid.requiresLogin, controllers.RecipeSearch.basicEdamamSearch);
+  app.get('/api/recipes/spoon/:id', mid.requiresLogin, controllers.RecipeSearch.recipeSpoon);
 
   app.get(
     '/simplePost/:postId/has-commented',

@@ -5863,14 +5863,14 @@ var formatDateTime = function formatDateTime(isoDate) {
   return date.toLocaleString('en-US', options);
 };
 var addToLocalStorage = function addToLocalStorage(key, value) {
-  console.log('adding to local storage:', value);
+  // console.log('adding to local storage:', value);
   localStorage.setItem(key, JSON.stringify(value)); // Stringify the value
 };
 var getFromLocalStorage = function getFromLocalStorage(key) {
-  console.log('getting from local storage');
+  // console.log('getting from local storage');
   var storedValue = localStorage.getItem(key);
   try {
-    return JSON.parse(storedValue); // Parse the stored value
+    return JSON.parse(storedValue);
   } catch (error) {
     console.error('Error parsing value from local storage:', error);
     return null;
@@ -58503,6 +58503,9 @@ var BottomLeftToast = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().
 var RecipeSearch = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().lazy(function () {
   return __webpack_require__.e(/*! import() */ "client_outlets_RecipeSearch_jsx").then(__webpack_require__.bind(__webpack_require__, /*! ./outlets/RecipeSearch.jsx */ "./client/outlets/RecipeSearch.jsx"));
 });
+var SingleRecipeContainer = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().lazy(function () {
+  return __webpack_require__.e(/*! import() */ "client_outlets_SingleRecipeContainer_jsx").then(__webpack_require__.bind(__webpack_require__, /*! ./outlets/SingleRecipeContainer.jsx */ "./client/outlets/SingleRecipeContainer.jsx"));
+});
 var App = function App() {
   var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_utils_UserContext_js__WEBPACK_IMPORTED_MODULE_2__.UserContext),
     blToastActive = _useContext.blToastActive,
@@ -58543,6 +58546,9 @@ var App = function App() {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
     path: "/recipes/search/*",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(RecipeSearch, null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
+    path: "/recipes/:source/:id",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(SingleRecipeContainer, null)
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
     path: "/*",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Feed, null)

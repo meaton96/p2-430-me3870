@@ -54,7 +54,7 @@ var RecipeSearchBox = function RecipeSearchBox(_ref) {
             return _context.abrupt("return");
           case 6:
             _context.next = 8;
-            return fetch("/recipes/".concat(source, "/basic-search?q=").concat(searchTerm));
+            return fetch("/api/recipes/".concat(source, "/basic-search?q=").concat(searchTerm));
           case 8:
             res = _context.sent;
             _context.next = 11;
@@ -81,7 +81,7 @@ var RecipeSearchBox = function RecipeSearchBox(_ref) {
     };
   }();
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "is-flex pt-5 pl-1"
+    className: "is-flex py-5 pl-1 post-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
     className: "input",
     type: "text",
@@ -124,6 +124,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _SpoonSearchResult_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SpoonSearchResult.jsx */ "./client/modules/recipe-search/SpoonSearchResult.jsx");
+
 
 var RecipeSearchResults = function RecipeSearchResults(_ref) {
   var recipes = _ref.recipes;
@@ -132,16 +134,51 @@ var RecipeSearchResults = function RecipeSearchResults(_ref) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "recipe-search-results"
   }, recipes.map(function (recipe, index) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SpoonSearchResult_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
       key: index,
-      className: "recipe-search-result"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, recipe.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-      src: recipe.image,
-      alt: recipe.title
-    }));
+      recipe: recipe
+    });
   }));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RecipeSearchResults);
+
+/***/ }),
+
+/***/ "./client/modules/recipe-search/SpoonSearchResult.jsx":
+/*!************************************************************!*\
+  !*** ./client/modules/recipe-search/SpoonSearchResult.jsx ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+
+
+var SpoonSearchResult = function SpoonSearchResult(_ref) {
+  var recipe = _ref.recipe;
+  var id = recipe.id,
+    title = recipe.title,
+    image = recipe.image;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    key: id,
+    className: "recipe-search-result post-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+    to: "/recipes/spoon/".concat(id)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "is-flex is-flex-direction-column is-align-items-center "
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
+    className: "is-font-weight-bold is-size-4"
+  }, title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+    src: image,
+    alt: title
+  })))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SpoonSearchResult);
 
 /***/ }),
 

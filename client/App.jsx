@@ -23,6 +23,7 @@ const UserProfile = React.lazy(() => import('./outlets/UserProfile.jsx'));
 const PostView = React.lazy(() => import('./outlets/PostView.jsx'));
 const BottomLeftToast = React.lazy(() => import('./shared/BottomLeftToast.jsx'));
 const RecipeSearch = React.lazy(() => import('./outlets/RecipeSearch.jsx'));
+const SingleRecipeContainer = React.lazy(() => import('./outlets/SingleRecipeContainer.jsx'));
 
 
 const App = () => {
@@ -51,6 +52,7 @@ const App = () => {
                             <Route path="/pantry" element={<Pantry />} />
                             <Route path="/recipes" element={<Recipes />} />
                             <Route path="/recipes/search/*" element={<RecipeSearch />} />
+                            <Route path="/recipes/:source/:id" element={<SingleRecipeContainer />} />
                             <Route path="/*" element={<Feed />} />
 
                             {/* Add more routes as needed */}

@@ -10,14 +10,14 @@ const RecipeSearchBox = ({ setRecipes, source, setSource, setLoading, setError }
     const handleSearch = async () => {
         setLoading(true);
         let cachedData = helper.getFromLocalStorage(`recipe-search-${source}-${searchTerm}`);
-        
+
         if (cachedData) {
             setRecipes(cachedData);
             setLoading(false);
             return;
         }
 
-        const res = await fetch(`/recipes/${source}/basic-search?q=${searchTerm}`);
+        const res = await fetch(`/api/recipes/${source}/basic-search?q=${searchTerm}`);
         const data = await res.json();
         if (data && data.results) {
             setRecipes(data.results);
@@ -32,7 +32,7 @@ const RecipeSearchBox = ({ setRecipes, source, setSource, setLoading, setError }
     }
 
     return (
-        <div className="is-flex pt-5 pl-1">
+        <div className="is-flex py-5 pl-1 post-wrapper">
             <input
                 className="input"
                 type="text"

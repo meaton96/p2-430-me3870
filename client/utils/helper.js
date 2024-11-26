@@ -110,15 +110,15 @@ const formatDateTime = (isoDate) => {
 }
 
 const addToLocalStorage = (key, value) => {
-  console.log('adding to local storage:', value);
+ // console.log('adding to local storage:', value);
   localStorage.setItem(key, JSON.stringify(value)); // Stringify the value
 };
 
 const getFromLocalStorage = (key) => {
-  console.log('getting from local storage');
+ // console.log('getting from local storage');
   const storedValue = localStorage.getItem(key);
   try {
-    return JSON.parse(storedValue); // Parse the stored value
+    return JSON.parse(storedValue); 
   } catch (error) {
     console.error('Error parsing value from local storage:', error);
     return null;

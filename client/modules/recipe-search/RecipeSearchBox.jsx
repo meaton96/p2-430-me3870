@@ -10,7 +10,7 @@ const RecipeSearchBox = ({ source, onSearch }) => {
     };
 
     return (
-        <div className="is-flex py-5 pl-1 post-wrapper">
+        <div className="is-flex py-5 pl-1 post-wrapper is-justify-content-center">
             <div className="mx-1">
                 <input
                     className="input"
@@ -20,7 +20,7 @@ const RecipeSearchBox = ({ source, onSearch }) => {
                 />
             </div>
             <div className="control mx-1">
-                <div className="select">
+                <div className="select recipe-src-select">
                     <select value={tempSource} onChange={(e) => setTempSource(e.target.value)}>
                         <option value="spoon">Spoonacular</option>
                         <option value="edamam">Edamam</option>
@@ -28,7 +28,7 @@ const RecipeSearchBox = ({ source, onSearch }) => {
                 </div>
             </div>
             <div className="mx-1">
-                <button className="button" onClick={handleSearchClick}>
+                <button className="button is-primary recipe-search-btn" onClick={handleSearchClick}>
                     Search
                 </button>
             </div>

@@ -12,6 +12,7 @@ const RecipeSearch = () => {
     const [source, setSource] = useState(recipeSource);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [nextPage, setNextPage] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -34,12 +35,13 @@ const RecipeSearch = () => {
                 try {
                     const res = await fetch(`/api/recipes/${source}/basic-search?q=${q}`);
                     const data = await res.json();
-
+                    console.log(data);
                     if (source === "spoon" && data?.results) {
                         setRecipes(data.results);
                         helper.addToLocalStorage(`recipe-search-${source}-${q}`, data.results);
                     } else if (source === "edamam" && data?.hits) {
                         setRecipes(data.hits);
+                        setNextPage(data._links.next);
                         helper.addToLocalStorage(`recipe-search-${source}-${q}`, data.hits);
                     } else {
                         setError("Error getting recipes. Please try again later.");

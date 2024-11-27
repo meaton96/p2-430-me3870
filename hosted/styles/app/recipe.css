@@ -46,6 +46,11 @@
 .half-width {
     width: 50%;
 }
+.recipe-search-btn {
+    font-weight: bold;
+    color: #fff;
+}
+
 
 .recipe-img-container {
     display: flex;

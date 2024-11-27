@@ -36,7 +36,7 @@ var RecipeSearchBox = function RecipeSearchBox(_ref) {
     onSearch(tempSource, searchTerm);
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "is-flex py-5 pl-1 post-wrapper"
+    className: "is-flex py-5 pl-1 post-wrapper is-justify-content-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "mx-1"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
@@ -49,7 +49,7 @@ var RecipeSearchBox = function RecipeSearchBox(_ref) {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "control mx-1"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "select"
+    className: "select recipe-src-select"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("select", {
     value: tempSource,
     onChange: function onChange(e) {
@@ -62,7 +62,7 @@ var RecipeSearchBox = function RecipeSearchBox(_ref) {
   }, "Edamam")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "mx-1"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    className: "button",
+    className: "button is-primary recipe-search-btn",
     onClick: handleSearchClick
   }, "Search")));
 };
@@ -292,6 +292,10 @@ var RecipeSearch = function RecipeSearch() {
     _useState8 = _slicedToArray(_useState7, 2),
     error = _useState8[0],
     setError = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState10 = _slicedToArray(_useState9, 2),
+    nextPage = _useState10[0],
+    setNextPage = _useState10[1];
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useNavigate)();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (recipeSource) setSource(recipeSource);
@@ -304,7 +308,7 @@ var RecipeSearch = function RecipeSearch() {
           while (1) switch (_context.prev = _context.next) {
             case 0:
               if (!(q && source)) {
-                _context.next = 25;
+                _context.next = 26;
                 break;
               }
               setError(null);
@@ -327,31 +331,33 @@ var RecipeSearch = function RecipeSearch() {
               return res.json();
             case 14:
               data = _context.sent;
+              console.log(data);
               if (source === "spoon" && data !== null && data !== void 0 && data.results) {
                 setRecipes(data.results);
                 _utils_helper_js__WEBPACK_IMPORTED_MODULE_3___default().addToLocalStorage("recipe-search-".concat(source, "-").concat(q), data.results);
               } else if (source === "edamam" && data !== null && data !== void 0 && data.hits) {
                 setRecipes(data.hits);
+                setNextPage(data._links.next);
                 _utils_helper_js__WEBPACK_IMPORTED_MODULE_3___default().addToLocalStorage("recipe-search-".concat(source, "-").concat(q), data.hits);
               } else {
                 setError("Error getting recipes. Please try again later.");
               }
-              _context.next = 22;
+              _context.next = 23;
               break;
-            case 18:
-              _context.prev = 18;
+            case 19:
+              _context.prev = 19;
               _context.t0 = _context["catch"](8);
               console.error("Error getting recipes:", _context.t0);
               setError("Error getting recipes. Please try again later.");
-            case 22:
-              _context.prev = 22;
+            case 23:
+              _context.prev = 23;
               setLoading(false);
-              return _context.finish(22);
-            case 25:
+              return _context.finish(23);
+            case 26:
             case "end":
               return _context.stop();
           }
-        }, _callee, null, [[8, 18, 22, 25]]);
+        }, _callee, null, [[8, 19, 23, 26]]);
       }));
       return function fetchRecipes() {
         return _ref.apply(this, arguments);

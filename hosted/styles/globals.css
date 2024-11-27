@@ -4,11 +4,16 @@
     --accent-color: #E63946;
     --background-color: #F8F5F2;
     --background-color-highlight: #f9f9f8;
-    --text-color-dark: #333533; 
+    --text-color-dark: #333533;
     --text-color-light: #FBFBFA;
     --highlight-color: #FFD166;
     --depth-color: #6A994E;
     --hover-color: #FF8C61;
     --button-bg: white;
     --button-hover-bg: #ecf0f1;
+    --bulma-primary-h: 16;
+    --bulma-primary-s: 100%;
+    --bulma-primary-l: 69%;
+    
+
 }

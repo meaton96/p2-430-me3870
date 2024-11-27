@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 
 const RecipeSearchBox = ({ source, onSearch }) => {
     const [searchTerm, setSearchTerm] = useState("");
-    const [tempSource, setTempSource] = useState(source);
+    const [tempSource, setTempSource] = useState(source || 'spoon');
 
     const handleSearchClick = () => {
+        console.log(tempSource);
         onSearch(tempSource, searchTerm);
     };
 

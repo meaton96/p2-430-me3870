@@ -28,11 +28,12 @@ var RecipeSearchBox = function RecipeSearchBox(_ref) {
     _useState2 = _slicedToArray(_useState, 2),
     searchTerm = _useState2[0],
     setSearchTerm = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(source),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(source || 'spoon'),
     _useState4 = _slicedToArray(_useState3, 2),
     tempSource = _useState4[0],
     setTempSource = _useState4[1];
   var handleSearchClick = function handleSearchClick() {
+    console.log(tempSource);
     onSearch(tempSource, searchTerm);
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -367,6 +368,7 @@ var RecipeSearch = function RecipeSearch() {
   }, [q, source]);
   var handleSearch = function handleSearch(newSource, searchTerm) {
     setSource(newSource);
+    console.log(newSource, searchTerm);
     navigate("/recipes/search/".concat(newSource, "/").concat(searchTerm));
   };
   var renderResults = function renderResults() {

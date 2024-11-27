@@ -60,6 +60,7 @@ const RecipeSearch = () => {
 
     const handleSearch = (newSource, searchTerm) => {
         setSource(newSource);
+        console.log(newSource, searchTerm);
         navigate(`/recipes/search/${newSource}/${searchTerm}`);
     };
 

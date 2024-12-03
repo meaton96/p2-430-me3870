@@ -8,73 +8,108 @@
 
 - Account Settings
 ``` 
- ChangeAvatarModal.jsx
- ChangeAvatarSection.jsx
- PremiumSection.jsx
- SecuritySection.jsx
+ ChangeAvatarModal
+ ChangeAvatarSection
+ PremiumSection
+ SecuritySection
 ```
 
 - Feeds
 ```
- FeedPost.jsx
- FollowingFeed.jsx
- SimplePostFeed.jsx
+ FeedPost
+ FollowingFeed
+ SimplePostFeed
+```
+
+- Shared
+```
+BottomLeftToast
+FeedPostFooter
+PasswordInput
+SelectAvatar
+UnderConstruction
 ```
 
 - Login
 ```
- login.jsx
- LoginModal.jsx
- PasswordInput.jsx
- SelectAvatar.jsx
- UsernameInput.jsx
+ login
+ LoginModal
+ PasswordInput
+
+ UsernameInput
 ```
 - Nav
 ```
- DesktopNav.jsx
- MobileNav.jsx
- Nav.jsx
- NavButton.jsx
+ DesktopNav
+ MobileNavButton
+ MobileNav
+ Nav
+ DesktopNavButton
 ```
+
+- Recipe Search
+```
+RecipeSearchBox
+RecipeSearchResults
+RecipeSearchWrapper
+SpoonSearchResults
+```
+
+- Single Recipes
+```
+Ingredients
+Instructions
+QuickInfo
+RecipeDescription
+RecipeHeader
+SingleRecipe
+```
+
 - New Posts
 ```
- NewPostModal.jsx
- NewReplyModal.jsx
- PostModalFooter.jsx
- PostModalHeader.jsx
- PostModalTextArea.jsx
- ReplyModalOPText.jsx
+ NewPostModal
+ NewReplyModal
+ PostModalFooter
+ PostModalHeader
+ PostModalTextArea
+ ReplyModalOPText
 ```
+
+- Post View
+```
+Comments Box
+Comments
+```
+
 - Outlets
 ```
- AccountSettings.jsx
- Feed.jsx
- Pantry.jsx
- PostView.jsx
- Profile.jsx
- Recipes.jsx
- UserProfile.jsx
+ AccountSettings
+ Feed
+ Pantry
+ PostView
+ Profile
+ Recipes
+ RecipeSearch
+ SingleRecipeContainer
+ UserProfile
 ```
 
 - Posts
 ```
- SinglePost.jsx
+ SinglePost
 ```
-- Shared
-```
- FeedPost.jsx
-```
+
 - App
 ```
- App.jsx
+ App
 ```
 **4. What data are you storing in MongoDB?**
 
 - User Accounts
 username, password hash, avatar string, premium status
 
-- Simple Post, (tweet)
-post text, power owner
+- Simple Post / Comments, (tweet)
+post text, post owner, link to a media object
 
 - Shares
 a share by a user of a post
@@ -97,11 +132,24 @@ How or maybe how not to design DBMs for a scalable social media system. More abo
 
 **8. If you were to continue, what would you do to improve your application?**
 
-Ill answer this after finishing the project
+I would have loved to spend more time on this but I had other priorities. I would like:
+- Expand the twitter clone to include followers/following
+- Custom user avatars, profile banner
+- Much expanded recipe searching
+- Allow users to upload, save, edit recipes
+- Allow users to upload a list of food items to store in their pantry
+- Create a system to provide recipe recommendations based off of items in the pantry
+- Integrate the recipe system with the twitter clone, the goal being a social media feed 100% related to food and recipe sharing 
 
 **9. If you went above and beyond, how did you do so?**
 
-Rofl
+- Way more than the required number of components, more than required endpoints and database schema. Attempted to build a scalable DB system for the twitter clone.
+
+- Fully responsive design, works on mobile and desktop.
+
+- Users can upload images in their posts
+
+- Multiple external APIs, 2 recipe APIs, profanity filter API to check usernames
 
 **10. If you used any borrowed code or code fragments, where did you get them from?**
 
@@ -370,6 +418,59 @@ Supported Methods: GET
 Middleware: Requires Login
 Query Params: the id of the post
 Description: Checks if the current user has shared a post.
+Return Type(s): JSON
+```
+
+URL: /addComment
+```
+Supported Methods: POST
+Middleware: Requires Login, Requires PostID
+Description: Adds a comment to a post, similar to adding a simple post, but also takes a post ID for the parent post in the body
+Return Type(s): JSON
+```
+
+URL: /getCommentsForPost/:postId
+```
+Supported Methods: GET
+Middleware: Requires PostID
+Query Params: the id of the post
+Description: Gets the comments for a post with the given ID
+Return Type(s): JSON
+```
+
+URL: /countCommentsForPost/:postId
+```
+Supported Methods: GET
+Middleware: Requires PostID
+Query Params: the id of the post
+Description: Returns the number of comments a post has
+Return Type(s): JSON
+```
+
+URL: /api/recipes/spoon/basic-search
+```
+Supported Methods: GET
+Middleware: Requires Login
+Query Params: the search term
+Description: Performs a search using the Spoonacular API with the given search term and returns the recipe result list
+Return Type(s): JSON
+```
+
+URL: /api/recipes/edamam/basic-search
+```
+Supported Methods: GET
+Middleware: Requires Login
+Query Params: the id of the post
+Description: Performs a search using the Edamam API with the given search term and returns the recipe result list
+Return Type(s): JSON
+```
+
+URL: /api/recipes/spoon/:id
+```
+Supported Methods: GET
+Middleware: Requires Login
+Query Params: the id of the recipe
+Description: gets the details of a spoonacular recipe
 Return Type(s): JSON
 ```
 

@@ -6,7 +6,7 @@ const RecipeSearchBox = ({ source, onSearch }) => {
     const [tempSource, setTempSource] = useState(source || 'spoon');
 
     const handleSearchClick = () => {
-        console.log(tempSource);
+       
         onSearch(tempSource, searchTerm);
     };
 

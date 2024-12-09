@@ -33,7 +33,6 @@ var RecipeSearchBox = function RecipeSearchBox(_ref) {
     tempSource = _useState4[0],
     setTempSource = _useState4[1];
   var handleSearchClick = function handleSearchClick() {
-    console.log(tempSource);
     onSearch(tempSource, searchTerm);
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {

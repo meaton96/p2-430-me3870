@@ -47,8 +47,11 @@ const LoginModal = ({ title, onClose }) => {
         setIsLoading(true);
         try {
             const res = await helper.sendPost("/signup", { username, pass: password, pass2: confirmPassword });
-            if (res.status === 200) {
+            //console.log(res);
+            if (res && res.username) {
+               // window.location = "/app";
                 setSelectAvatar(true);
+             //   console.log("Signup successful");
             } else {
                 if (res.error) {
                     setValidUsername(false);

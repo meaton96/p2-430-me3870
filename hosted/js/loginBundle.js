@@ -194,8 +194,11 @@ var LoginModal = function LoginModal(_ref) {
             });
           case 9:
             res = _context2.sent;
-            if (res.status === 200) {
+            //console.log(res);
+            if (res && res.username) {
+              // window.location = "/app";
               setSelectAvatar(true);
+              //   console.log("Signup successful");
             } else {
               if (res.error) {
                 setValidUsername(false);
